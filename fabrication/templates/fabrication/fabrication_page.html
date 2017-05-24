@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}body--fabrication{% endblock %}
+
+{% block content %}
+<main>
+    <section>
+        <aside>
+            <h1 class="section-title">{{ page.title }}</h1>
+        </aside>
+        <article class="fabrication-process">
+            <h2 class="article-title">{{ page.process_title }}</h2>
+            {{ page.process_content }}
+        </article>
+        <aside>
+            <h2 class="article-title">{{ page.production_title }}</h2>
+            {{ page.production_content|richtext }}
+        </aside>
+    </section>
+    <section class="fabrication-fabrication-title">
+        <article>
+            <h2 class="article-title">{{ page.fabrication_title }}</h2>
+        </article>
+    </section>
+    <section class="section-slideshow fabrication-slideshow">
+        <div class="slideshow js-slideshow">
+        {% for item in page.gallery_images.all %}
+            <div>
+                {% image item.image fill-1600x608 as img %}
+                <img data-lazy="{{ img.url }}" />
+            </div>
+        {% endfor %}
+        </div>
+    </section>
+    <section class="fabrication-fabrication-content">
+        <article>
+            {{ page.fabrication_content }}
+        </article>
+    </section>
+</main>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}body--design{% endblock %}
+
+{% block content %}
+<main class="project">
+    <section class="section-image project-image">
+        {% image page.main_image fill-1600x608 %}
+    </section>
+    <section class="project-content">
+        <header>
+            <h1 class="article-title">{{ page.title }}</h1>
+            <h2>{{ page.location }}</h2>
+            <a class="link-back" href="{{ page.get_parent.url }}">Back</a>
+        </header>
+        <article>
+            {{ page.description|richtext }}
+        </article>
+        <aside>
+            <h3>{{ page.date|date:"M Y" }}<br />{{ page.size }}</h3>
+            <h3></h3>
+            <h3>Client:<br /></h3>
+            <h3>Collaborator:<br /></h3>
+        </aside>
+    </section>
+    <section class="section-slideshow project-slideshow">
+        <div class="slideshow js-slideshow">
+        {% for item in page.gallery_images.all %}
+            <div>
+                {% image item.image fill-1600x608 as img %}
+                <img data-lazy="{{ img.url }}" />
+            </div>
+        {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}

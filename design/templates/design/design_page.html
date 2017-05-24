@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}body--projects{% endblock %}
+
+{% block content %}
+<main>
+    <nav class="design-nav">
+        <h1>{{ page.title }}</h1>
+        <ul>
+        {% for category in page.categories.all %}
+            <li>{{ category.name }}</li>
+        {% endfor %}
+        </ul>
+    </nav>
+    {% for project in page.get_children %}
+    <section class="project">
+        {{ project.specific.title }}
+    </section>
+    {% endfor %}
+</main>
+{% endblock %}

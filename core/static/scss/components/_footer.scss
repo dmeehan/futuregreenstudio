@@ -1,0 +1,36 @@
+.footer-contact {
+    @include display(flex);
+    @include justify-content(center);
+
+    font-size: 0.75rem;
+    padding: 0;
+    margin: 0;
+
+    li {
+        border-left: 1px solid;
+        border-color: $dark-gray;
+        padding: 0 0.5rem;
+        line-height: 1.25;
+        list-style: none;
+
+        &:first-child {
+            border-left: 0;
+        }
+    }
+
+    a {
+        color: $color-font-base;
+    }
+}
+
+.footer-social {
+    @include display(flex);
+    @include justify-content(center);
+
+    padding: $spacing-small 0 0 0;
+    margin: 0;
+
+    li {
+        list-style: none;
+    }
+}

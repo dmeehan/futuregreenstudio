@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}body--blog{% endblock %}
+
+{% block content %}
+<main>
+    <section class="content">
+        <h1>{{ page.title }}</h1>
+        {% if page.tags.all.count %}
+        <div class="tags">
+            {% for tag in page.tags.all %}
+                <a href="{{ page.get_parent.url }}?tag={{ tag }}"><span class="badge--default">{{ tag }} {{tag.num_times}} </span></a>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <p class="meta">{{ page.date }}</p>
+
+        <div class="post">
+            <div class="post-body">
+                {% if page.gallery_images.all %}
+                <div class="post-images">
+                    <div class="image-gallery">
+                        {% for item in page.gallery_images.all %}
+                            <div>
+                                {% image item.image fill-455x340 as img %}
+                                <img src="{{ img.url }}" />
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                {{ page.body|richtext }}
+            </div>
+        </div>
+        <p><a class="link-back" href="{{ page.get_parent.url }}">Return to Of Interest</a></p>
+    </section>
+</main>
+{% endblock %}

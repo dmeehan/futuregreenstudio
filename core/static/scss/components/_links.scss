@@ -1,0 +1,8 @@
+.link-back {
+    font-family: $font-family-heading;
+
+    &::before {
+        content: "<";
+        padding-right: 0.25rem;
+    }
+}

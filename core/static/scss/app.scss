@@ -1,0 +1,252 @@
+@import "bourbon/bourbon";
+@import "base/base";
+
+
+@import "components/footer";
+@import "components/links";
+@import "components/logo";
+@import "components/nav";
+@import "components/project";
+@import "components/responsive-object";
+@import "components/social";
+@import "components/streamblocks";
+
+@import "components/slick";
+
+@import "layout";
+
+
+
+.section-title {
+    line-height: 1;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 1rem 0 0 0;
+}
+
+.article-title {
+    color: $green;
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.section-image {
+    display: block;
+    width: 100%;
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.section-slideshow {
+    display: block;
+    width: 100%;
+}
+
+.slideshow {
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.contact-contactinfo {
+    @include resetList;
+    columns: auto 2;
+    font-family: "KievitWeb W07 Bold";
+    font-size: 1.75rem;
+    font-weight: bold;
+
+    a {
+        color: $color-font-base;
+    }
+}
+
+.contact-signup {
+    padding: 0 $spacing-base*2;
+}
+
+.fabrication-fabrication-title {
+    margin-bottom: 0;
+}
+
+
+.body--home {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+
+
+    > header {
+        position: fixed;
+        position: fixed;
+        //top: 34px;
+        z-index: 999999;
+    }
+
+    > .slideshow {
+        @include resetList;
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+
+        > li {
+            @include transition(opacity 2s ease-in-out);
+            background: $medium-gray;
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            overflow: hidden;
+            opacity: 1;
+
+            .slideshow-caption {
+                position: absolute;
+                color: white;
+                font-weight: bold;
+                bottom: 40px;
+                left: 0;
+                right: 0;
+                text-align: center;
+            }
+
+            img {
+                min-height:100vh;
+                min-width:100%;
+                height:auto;
+                width:auto;
+                position:absolute;
+                top:-100%; bottom:-100%;
+                left:-100%; right:-100%;
+                margin:auto;
+
+                &[data-src] {
+                    //opacity: 0;
+                }
+
+                &[src] {
+                    //opacity: 1;
+                }
+            }
+
+            &.is-hidden {
+                @include transition(opacity 2s ease-in-out);
+                opacity: 0;
+            }
+        }
+    }
+
+    .nav-toggle {
+        span, &::before, &:after {
+            background: white;
+        }
+    }
+}
+
+
+.body--fabrication {
+    background-color: $green;
+
+    .article-title {
+        color: white;
+    }
+
+    .nav-toggle {
+        span, &::before, &:after {
+            background: white;
+        }
+    }
+
+    .block-numbered_item_list {
+        .block-text_and_title {
+            :first-child {
+                font-size: 2.5rem;
+                &::before {
+                    color: white;
+                }
+                
+            }
+        }
+    }
+
+    .slick-prev, .slick-next {
+        background-color: $dark-gray;
+
+        &::before {
+            color: $green;
+        }
+    }
+    
+}
+
+.body--press {
+    background-color: $dark-gray;
+    
+    main {
+        color: white;
+    }
+
+    .article-title {
+        color: white;
+    }
+
+    .logo-link {
+        background-image: url("../../img/fgs_logo_white.png");
+    }
+
+    .section-title {
+        color: white;
+    }
+
+    .footer-social {
+        .social-link {
+            background: $green;
+            color: $dark-gray;
+        }
+    }
+
+    .footer-contact {
+        color: white;
+
+        a {
+            color: white;
+        }
+
+        li {
+            border-color: white;
+        }
+    }
+}
+
+.body--design {
+
+}
+
+.newsitem {
+    padding-top: $spacing-base*2;
+
+    .article-title + & {
+        padding-top: $spacing-base;
+    }
+
+    h2 {
+        font-size: 2.5em;
+    }
+
+    h3 {
+        color: $green;
+        margin-bottom: $spacing-small;
+    }
+}
+
+
+
+
+
+
+

@@ -1,0 +1,46 @@
+ {% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}body--profile{% endblock %}
+
+{% block content %}
+<main class="profile">
+    <section class="section-image">
+        {% image page.image fill-1600x608 %}
+    </section>
+    <section class="content-section profile-about">
+        <aside><h1 class="section-title">{{ page.title }}</h1></aside>
+        <article>
+            <h2 class="article-title">{{ page.about_title }}</h2>
+            {{ page.about_text|richtext }}
+        </article>
+    </section>
+    <section class="profile-people">
+        {% for employee in page.profile_employees.all %}
+            {{ employee.name }}
+        {% endfor %}
+    </section>
+    <section class="profile-colleagues">
+        <aside><h1 class="section-title">{{ page.title }}</h1></aside>
+        <article>
+            <div class="profile-collaborators">
+                <h2 class="article-title">Collaborators</h2>
+                <ul>
+                    {% for collaborator in page.profile_collaborators.all %}
+                    <li>{{ collaborator.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="profile-clients">
+                <h2 class="article-title">Clients</h2>
+                <ul>
+                    {% for client in page.profile_clients.all %}
+                    <li>{{ client.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </article>
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,163 @@
+{% load static wagtailuserbar %}
+{% load compress %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {# Global stylesheets #}
+        {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "scss/app.scss" %}" />
+        {% endcompress %}
+        {% block extra_css %}
+            {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+        {% block header %}
+        <header>
+            <h1 class="logo"><a class="logo-link" href="/"><span>{{ settings.home.firminformation.name }}</span></a></h1>
+            <input type="checkbox" id="nav-toggle-trigger" class="nav-toggle-trigger">
+            <label for="nav-toggle-trigger" class="nav-toggle">
+                <span>Toggle Navigation</span>
+            </label>
+            <nav class="nav">
+                <div class="nav-header">
+                    <h1 class="logo"><a href="/"><span>{{ settings.home.firminformation.name }}</span></a></h1>
+                    <h2 class="tagline">{{ settings.home.firminformation.tagline }}</h2>
+                </div>
+                <div class="nav-links">
+                    <section>
+                        <h3>Studio</h3>
+                        <ul>
+                            <li class="nav-about"><a href="/profile">Profile</a></li>
+                            <li class="nav-press"><a href="/press">Press</a></li>
+                            <li class="nav-contact"><a href="/contact">Contact</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Work</h3>
+                        <ul>
+                            <li class="nav-about"><a href="/design">Design</a></li>
+                            <li class="nav-press"><a href="/research">Research</a></li>
+                            <li class="nav-contact"><a href="/fabrication">Fabrication</a></li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="nav-contact">
+                    <ul class="nav-address">
+                        <li>
+                            {{ settings.home.firminformation.address_1 }} {{ settings.home.firminformation.address_2 }}
+                        </li>
+                        <li>
+                            {{ settings.home.firminformation.city }}, {{ settings.home.firminformation.state }} {{ settings.home.firminformation.zip_code }}
+                        </li>
+                        <li>
+                            <span>T.</span>
+                            {{ settings.home.firminformation.phone }}
+                        </li>
+                        <li>
+                            <span>F.</span>
+                            {{ settings.home.firminformation.fax }}
+                        </li>
+                        <li>
+                            <a href="mailto:{{ settings.core.FirmInformation.email }}">
+                                {{ settings.home.firminformation.email }}
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="social">
+                        <li class="social-twitter">
+                            <a class="social-link" href="http://www.twitter.com/{{ settings.home.firminformation.twitter }}">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="social-facebook">
+                            <a class="social-link" href="{{ settings.home.firminformation.facebook }}">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="social-instagram">
+                            <a class="social-link" href="http://www.instagram.com/{{ settings.home.firminformation.instagram }}">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        {% endblock header %}
+        
+        {% block content %}{% endblock %}
+
+        {% block footer %}
+        <footer>
+            <ul class="footer-contact">
+                <li>
+                    {{ settings.home.firminformation.address_1 }} {{ settings.home.firminformation.address_2 }}
+                </li>
+                <li>
+                    {{ settings.home.firminformation.city }}, {{ settings.home.firminformation.state }} {{ settings.home.firminformation.zip_code }}
+                </li>
+                <li>
+                    <span>T.</span>
+                    {{ settings.home.firminformation.phone }}
+                </li>
+                <li>
+                    <span>T.</span>
+                    <a href="mailto:{{ settings.core.FirmInformation.email }}">
+                        {{ settings.home.firminformation.email }}
+                    </a>
+                </li>
+            </ul>
+            <ul class="footer-social social">
+                <li class="social-twitter">
+                    <a class="social-link" href="http://www.twitter.com/{{ settings.home.firminformation.twitter }}">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li class="social-facebook">
+                    <a class="social-link" href="{{ settings.home.firminformation.facebook }}">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                </li>
+                <li class="social-instagram">
+                    <a class="social-link" href="http://www.instagram.com/{{ settings.home.firminformation.instagram }}">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </li>
+            </ul>
+        </footer>
+        {% endblock %}
+        {% block js %}
+        <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+        <script>
+        $(document).ready(function(){
+              $('.js-slideshow').slick({
+                infinite: false,
+                dots: false,
+              });
+
+              $('.block-image_gallery > ul').slick({
+                infinite: false,
+                dots: false,
+                li: true,
+              });
+            });
+        </script>
+        {% endblock js %}
+        {% block extra_js %}
+            {# Override this in templates to add extra javascript #}
+        {% endblock %}
+    </body>
+</html>

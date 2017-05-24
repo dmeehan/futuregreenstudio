@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}body--home{% endblock %}
+
+{% block content %}
+    {% if page.slideshow_images %}
+    <ul class="slideshow js-slideshow-fullscreen">  
+    {% for item in page.slideshow_images.all %}
+        <li class="is-hidden">
+            {% if item.link_page %}
+            <a href="{{ item.link_page.url }}">
+            {% endif %}
+             {% image item.image original as img %}
+             <img data-src="{{ img.url }}" />
+             {% if item.caption %}
+                <span class="slideshow-caption">{{ item.caption }}</span>
+             {% endif %}
+            {% if item.link_page %}
+            </a>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block extra_js %}    
+    <script>
+
+        $(document).ready(function(){
+            var $slideshow = $('.js-slideshow-fullscreen');
+            var $firstSlide = $slideshow.find('li:first');
+            var $secondSlide = $firstSlide.next();
+            var $firstImg = $firstSlide.find('img');
+            var $secondImg = $secondSlide.find('img');
+
+            // load the first two images in the slideshow
+            $firstImg.attr('src', $firstImg.data('src'));
+            $secondImg.attr('src', $secondImg.data('src'));
+
+            // show the first slide
+            $firstSlide.removeClass('is-hidden');
+
+            setInterval(function() { 
+              // load the next unloaded image
+              var $nextImgToLoad = $slideshow.find('img:not([src])').first();
+              if ($nextImgToLoad.length) {
+                $nextImgToLoad.attr('src', $nextImgToLoad.data('src'))
+              };
+
+              // show the next slide
+              var $currentSlide = $slideshow.find('li:first'); 
+              $currentSlide.addClass('is-hidden');
+              $currentSlide.next().removeClass('is-hidden');
+              
+              // move current slide to last after transition is completed
+              setTimeout(function() { 
+                $currentSlide.appendTo($slideshow);
+              },  3000);
+            },  3000);
+        });
+    </script>
+{% endblock %}

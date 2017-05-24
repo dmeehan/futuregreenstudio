@@ -1,0 +1,47 @@
+.project {
+    
+
+}
+
+.project-content {
+    > header {
+        @include display(flex);
+        @include flex-direction(column);
+
+        h1 {
+            color: $green;
+        }
+
+        h2 {
+            font-size: 1rem;
+            font-family: $font-family-base;
+            color: $green;
+            text-transform: uppercase;
+        }
+
+        .link-back {
+            margin-top: auto;
+        }
+    }
+
+    > article {
+        .rich-text {
+            columns: auto 2;
+            column-gap: 2.5rem;
+            p {
+                &:first-child {
+                    margin-top: 0;
+                }
+            }
+        }
+        
+    }
+
+    > aside {
+        h3 {
+            //font-family: $font-family-base;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+        }
+    }
+}

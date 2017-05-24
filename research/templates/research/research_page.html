@@ -1,0 +1,20 @@
+ {% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}body--research{% endblock %}
+
+{% block content %}
+<main class="press">
+    <section>
+        <aside><h1 class="section-title">{{ page.title }}</h1></aside>
+        <article>
+            <h2>{{ page.intro }}</h2>
+        </article>
+        <aside>
+            
+        </aside>
+    </section>
+    </section>
+</main>
+{% endblock %}
