@@ -179,9 +179,5 @@ WAGTAIL_SITE_NAME = "Future Green Studio"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://example.com'
-
-
-#API keys
-SCISTARTER_API_KEY = os.environ.get('SCISTARTER_API_KEY', 'cf17a82c242295126d58f844e6618d536d36ca1f88888ba38b5e9925ee3157fd0a5e9059c81c89b3078c8d74a01daab1d790578dc89c4958bdce7b574778c8fd')
+BASE_URL = 'http://futuregreenstudio.com'
 
