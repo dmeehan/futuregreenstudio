@@ -41,10 +41,10 @@ class PressStreamBlock(StreamBlock):
     heading = CharBlock(icon="title", classname="title")
     subheading = CharBlock(icon="title", classname="title")
     text = RichTextBlock(icon="pilcrow")
-    image = ImageChooserBlock()
+    image = ImageChooserBlock(template='press/blocks/image.html')
     image_gallery = ListBlock(CaptionedImageBlock(), icon="image", label="Slideshow")
     video = EmbedBlock()
-    project = PageChooserBlock(target_model='design.ProjectPage', template = 'design/blocks/related_project.html')
+    project = PageChooserBlock(target_model='design.ProjectPage', template='design/blocks/related_project.html')
     pullquote = BlockQuoteBlock()
     document = DocumentChooserBlock(icon="doc-full-inverse")
 
