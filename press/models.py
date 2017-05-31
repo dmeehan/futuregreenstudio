@@ -7,7 +7,7 @@ from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
 from taggit.models import TaggedItemBase
 
-from wagtail.wagtailcore.blocks import CharBlock, RichTextBlock, StreamBlock, BlockQuoteBlock, ListBlock
+from wagtail.wagtailcore.blocks import CharBlock, RichTextBlock, StreamBlock, BlockQuoteBlock, ListBlock, PageChooserBlock
 from wagtail.wagtailembeds.blocks import EmbedBlock
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtaildocs.blocks import DocumentChooserBlock
@@ -20,6 +20,7 @@ from wagtail.wagtailsearch import index
 from core.blocks import CaptionedImageBlock, MarkdownBlock
 
 class Award(models.Model):
+    page = ParentalKey('press.PressPage', related_name='awards')
     name = models.CharField(max_length=255)
     date = models.DateField("Award date")
     url = models.URLField(null=True, blank=True)
@@ -33,21 +34,8 @@ class Award(models.Model):
     def __str__(self):
         return self.name
 
-
-'''class PressPageAward(Orderable, models.Model):
-    page = ParentalKey(PressPage, related_name='awards')
-    advert = models.ForeignKey('demo.Advert', related_name='+')
-
     class Meta:
-        verbose_name = "advert placement"
-        verbose_name_plural = "advert placements"
-
-    panels = [
-        SnippetChooserPanel('advert'),
-    ]
-
-    def __str__(self):
-        return self.page.title + " -> " + self.advert.text'''
+        ordering  = ['-date',]
 
 class PressStreamBlock(StreamBlock):
     heading = CharBlock(icon="title", classname="title")
@@ -56,6 +44,7 @@ class PressStreamBlock(StreamBlock):
     image = ImageChooserBlock()
     image_gallery = ListBlock(CaptionedImageBlock(), icon="image", label="Slideshow")
     video = EmbedBlock()
+    project = PageChooserBlock(target_model='design.ProjectPage', template = 'design/blocks/related_project.html')
     pullquote = BlockQuoteBlock()
     document = DocumentChooserBlock(icon="doc-full-inverse")
 
@@ -64,7 +53,7 @@ class PressPage(Page):
 
     def get_context(self, request):
         context = super(PressPage, self).get_context(request)
-        all_newsitems = self.get_children().type(NewsItemPage).live()
+        all_newsitems = NewsItemPage.objects.live().child_of(self).order_by('-date')
 
         paginator = Paginator(all_newsitems, 5) # Show 5 resources per page
 
@@ -78,15 +67,19 @@ class PressPage(Page):
             # If page is out of range (e.g. 9999), deliver last page of results.
             newsitems = paginator.page(paginator.num_pages)
 
-        # make the variable 'resources' available on the template
-        context['newitems'] = resources
+        # make the variable 'newsitems' available on the template
+        context['newsitems'] = newsitems
 
         return context
     
-    def get_context(self, request):
-        context = super(PressPage, self).get_context(request)
-        context['newsitems'] = self.get_children().type(NewsItemPage)
-        return context
+    #def get_context(self, request):
+    #    context = super(PressPage, self).get_context(request)
+    #    context['newsitems'] = self.get_children().type(NewsItemPage)
+    #    return context
+
+    content_panels = Page.content_panels + [
+        InlinePanel('awards', label="Awards"),
+    ]
 
     parent_page_types = ['home.HomePage']
     subpage_types = ['press.PublicationPage', 'press.NewsItemPage']

@@ -72,6 +72,21 @@
     margin-bottom: 0;
 }
 
+.press-awards {
+    h3 {
+        font-size: 1rem;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        padding-top: $spacing-base;
+
+        &:first-child {
+            padding-top: 0;
+        }
+    }
+
+
+}
+
 
 .body--home {
     position: relative;
@@ -178,6 +193,13 @@
         background-color: $dark-gray;
 
         &::before {
+            color: $green;
+        }
+    }
+
+    .footer-social {
+        .social-link {
+            background: white;
             color: $green;
         }
     }

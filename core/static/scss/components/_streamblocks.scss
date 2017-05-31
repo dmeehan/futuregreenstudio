@@ -1,23 +1,46 @@
 .block-image, .block-captioned_image {
     img, picture {
+        display: block;
         width: 100%;
         height: auto; 
     } 
+
+    margin: 0;
+    padding: 0;
+}
+
+.block-image {
+    padding-bottom: $spacing-base;
+}
+
+.block-captioned_image {
+    &::after {
+        content: '';
+        padding-bottom: $spacing-base;
+    }
 }
 
 .block-image_gallery {
     > ul {
         @include resetList;
     }
+
+    margin: 0;
+    padding: 0;
+    padding-bottom: $spacing-base;
 }
 
 .block-video {
-    margin: 0 0 $spacing-base;
+    margin: 0;
+    padding: 0;
+    padding-bottom: $spacing-base;
 }
 
 .block-heading, .block-subheading {
-    margin: 0 0 $spacing-base;
     letter-spacing: 0.0625rem;
+    margin: 0;
+    padding: 0;
+    padding-bottom: $spacing-base;
 }
 
 .block-heading {
@@ -34,7 +57,11 @@
     font-weight: normal;
 }
 
-.block-paragraph {
+.block-paragraph, .block-text {
+    margin: 0;
+    padding: 0;
+    padding-bottom: $spacing-base;
+
     h3 {
         font-size: 1em;
     }
@@ -46,8 +73,9 @@
         font-weight: normal;
     }
 
-    ul {
-        
+    :last-child {
+        padding-bottom: 0;
+        margin-bottom: 0;
     }
 }
 
@@ -70,6 +98,15 @@
 
         }
     }
+
+    margin: 0;
+    padding: 0;
+    padding-bottom: $spacing-base;
+
+    :last-child {
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
 }
 
 .block-numbered_item_list {
@@ -83,6 +120,15 @@
             }
             
         }
+    }
+
+    margin: 0;
+    padding: 0;
+    padding-bottom: $spacing-base;
+
+    :last-child {
+        padding-bottom: 0;
+        margin-bottom: 0;
     }
 }
 
@@ -101,4 +147,44 @@
             content: "\201D";
         }
     }
+
+    margin: 0;
+    padding: 0;
+    padding-bottom: $spacing-base;
 }
+
+
+.block-project {
+    @include clearfix;
+    margin-bottom: $spacing-base;
+    font-size: 0.875rem;
+
+    h5 {
+        margin-bottom: $spacing-small/2;
+    }
+
+    img {
+        float: left;
+        padding-right: 1rem;
+    }
+
+    p {
+        margin: 0;
+        padding-bottom: $spacing-small;
+
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+
+    margin: 0;
+    padding: 0;
+    padding-bottom: $spacing-base;
+
+    :last-child {
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+}
+
+

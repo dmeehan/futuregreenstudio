@@ -1,4 +1,4 @@
- {% extends "base.html" %}
+{% extends "base.html" %}
 
 {% load wagtailcore_tags wagtailimages_tags %}
 
@@ -25,6 +25,23 @@
         <aside>
             <h2 class="article-title">Publications</h2>
             <h2 class="article-title">Awards</h2>
+                <div class="press-awards">
+                {% for award in page.awards.all %}
+                    {% ifchanged award.date|date:"Y" %}
+                        <h3>{{ award.date|date:"Y" }}</h3>
+                    {% endifchanged %}
+                    <div class="press-award">
+                    {% if award.url %}
+                        <a href="{{ award.url }}" _target="blank">
+                    {% endif %}
+                    {{ award.name }}
+                    {% if award.url %}
+                        </a>
+                    {% endif %}
+                    <br />
+                    </div>
+                {% endfor %}
+                </div>
         </aside>
     </section>
     <ul class="pagination">
