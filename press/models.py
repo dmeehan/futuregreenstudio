@@ -55,7 +55,7 @@ class PressPage(Page):
         context = super(PressPage, self).get_context(request)
         all_newsitems = NewsItemPage.objects.live().child_of(self).order_by('-date')
 
-        paginator = Paginator(all_newsitems, 5) # Show 5 resources per page
+        paginator = Paginator(all_newsitems, 3) # Show 3 news items per page
 
         page = request.GET.get('page')
         try:
@@ -72,10 +72,6 @@ class PressPage(Page):
 
         return context
     
-    #def get_context(self, request):
-    #    context = super(PressPage, self).get_context(request)
-    #    context['newsitems'] = self.get_children().type(NewsItemPage)
-    #    return context
 
     content_panels = Page.content_panels + [
         InlinePanel('awards', label="Awards"),
