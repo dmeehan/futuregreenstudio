@@ -87,6 +87,7 @@
 
         > li {
             @include flex(1 1 50%);
+            padding-bottom: $spacing-base;
 
             &:nth-child(odd) {
                 padding-right: 1.75rem;
@@ -95,6 +96,8 @@
             &:nth-child(even) {
                 padding-left: 1.75rem;
             }
+
+
 
         }
     }

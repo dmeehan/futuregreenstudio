@@ -36,12 +36,25 @@
         }
         
     }
+}
 
-    > aside {
-        h3 {
-            //font-family: $font-family-base;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-        }
+.project-meta {
+    ul, p {
+        @include resetList;
+        font-size: 0.875rem;
+    }
+
+    h3 {
+        font-size: 0.875rem;
+        margin-bottom: 0;
+        text-transform: uppercase;
+    }
+
+    &-size, &-clients {
+        margin-bottom: $spacing-base;
+    }
+
+    &-date {
+        margin-bottom: 0;
     }
 }

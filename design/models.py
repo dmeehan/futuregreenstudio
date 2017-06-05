@@ -90,8 +90,8 @@ class ProjectPage(Page):
         FieldPanel('location'),
         FieldPanel('description'),
         FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
-        InlinePanel('collaborators', label="Collaborators"),
         InlinePanel('clients', label="Clients"),
+        InlinePanel('collaborators', label="Collaborators"),
         InlinePanel('gallery_images', label="Gallery images"),
         MultiFieldPanel([
             FieldPanel('website'),
