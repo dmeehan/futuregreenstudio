@@ -30,4 +30,4 @@ class PressAdminGroup(ModelAdminGroup):
     items = (NewsItemPageModelAdmin, PublicationPageModelAdmin, AwardModelAdmin)
 
 
-modeladmin_register(PressAdminGroup)
+#modeladmin_register(PressAdminGroup)

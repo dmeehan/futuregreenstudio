@@ -23,4 +23,4 @@ class DesignAdminGroup(ModelAdminGroup):
     menu_order = 700
     items = (ProjectPageModelAdmin,)
 
-modeladmin_register(DesignAdminGroup)
+#modeladmin_register(DesignAdminGroup)

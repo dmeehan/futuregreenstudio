@@ -14,39 +14,24 @@ from wagtail.wagtailsnippets.models import register_snippet
 
 from modelcluster.fields import ParentalKey
 
-@register_snippet
-@python_2_unicode_compatible
-class Collaborator(models.Model):
-    name = models.CharField(max_length=255)
-    url = models.URLField(null=True, blank=True)
 
-    panels = [
-        FieldPanel('name'),
-        FieldPanel('url'),  
-    ]
+class ProfilePageClient(Orderable, models.Model):
+    page = ParentalKey('profile.ProfilePage', related_name='clients')
+    client = models.ForeignKey('design.Client', related_name='+')
 
     def __str__(self):
-        return self.name
+        return self.page.title + " -> " + self.client.name
 
-@register_snippet
-@python_2_unicode_compatible
-class Client(models.Model):
-    name = models.CharField(max_length=255)
-    url = models.URLField(null=True, blank=True)
-
-    panels = [
-        FieldPanel('name'),
-        FieldPanel('url'),  
-    ]
+class ProfilePageCollaborator(Orderable, models.Model):
+    page = ParentalKey('profile.ProfilePage', related_name='collaborators')
+    collaborator = models.ForeignKey('design.Collaborator', related_name='+')
 
     def __str__(self):
-        return self.name
+        return self.page.title + " -> " + self.collaborator.name
 
-@register_snippet
-@python_2_unicode_compatible
-class Employee(models.Model):
-    name = models.CharField(max_length=255)
-    title = models.CharField(max_length=255)
+
+class EmployeePage(Page):
+    job_title = models.CharField(max_length=255)
     bio = RichTextField(blank=True)
     image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.PROTECT, related_name='+'
@@ -58,6 +43,8 @@ class Employee(models.Model):
         FieldPanel('bio'), 
         ImageChooserPanel('image'),
     ]
+
+    subpage_types = []
 
     def __str__(self):
         return self.name
@@ -74,12 +61,11 @@ class ProfilePage(Page):
         ImageChooserPanel('image'),
         FieldPanel('about_title'),
         FieldPanel('about_text'),
-        InlinePanel('profile_employees', label="Employees"),
-        InlinePanel('profile_clients', label="Clients"),
-        InlinePanel('profile_collaborators', label="Collaborators"),
+        InlinePanel('clients', label="Clients"),
+        InlinePanel('collaborators', label="Collaborators"),
     ]
 
-    subpage_types = []
+    subpage_types = ['profile.EmployeePage']
 
     @classmethod
     def can_create_at(cls, parent):
@@ -87,29 +73,7 @@ class ProfilePage(Page):
         return super(ProfilePage, cls).can_create_at(parent) \
             and not cls.objects.exists()
 
-class ProfilePageClient(Orderable, models.Model):
-    page = ParentalKey(ProfilePage, related_name='profile_clients')
-    client = models.ForeignKey('profile.Client', related_name='+')
-
-    panels = [
-        SnippetChooserPanel('client'),
-    ]
-
-    def __str__(self):
-        return self.page.title + " -> " + self.client.name
-
-class ProfilePageCollaborator(Orderable, models.Model):
-    page = ParentalKey(ProfilePage, related_name='profile_collaborators')
-    collaborator = models.ForeignKey('profile.Collaborator', related_name='+')
-
-    panels = [
-        SnippetChooserPanel('collaborator'),
-    ]
-
-    def __str__(self):
-        return self.page.title + " -> " + self.collaborator.name
-
-class ProfilePageEmployee(Orderable, models.Model):
+'''class ProfilePageEmployee(Orderable, models.Model):
     page = ParentalKey(ProfilePage, related_name='profile_employees')
     employee = models.ForeignKey('profile.Employee', related_name='+')
 
@@ -118,6 +82,6 @@ class ProfilePageEmployee(Orderable, models.Model):
     ]
 
     def __str__(self):
-        return self.page.title + " -> " + self.employee.name
+        return self.page.title + " -> " + self.employee.name'''
     
 

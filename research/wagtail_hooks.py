@@ -23,4 +23,4 @@ class ResearchAdminGroup(ModelAdminGroup):
     menu_order = 700
     items = (ResearchProjectPageModelAdmin,)
 
-modeladmin_register(ResearchAdminGroup)
+#modeladmin_register(ResearchAdminGroup)

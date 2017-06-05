@@ -32,6 +32,33 @@ class DesignPage(Page):
 class ProjectPageTag(TaggedItemBase):
     content_object = ParentalKey('ProjectPage', related_name='tagged_items')
 
+
+class Collaborator(Orderable):
+    page = ParentalKey('ProjectPage', related_name='collaborators')
+    name = models.CharField(max_length=255)
+    url = models.URLField(null=True, blank=True)
+
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('url'),  
+    ]
+
+    def __str__(self):
+        return self.name
+
+class Client(Orderable):
+    page = ParentalKey('ProjectPage', related_name='clients')
+    name = models.CharField(max_length=255)
+    url = models.URLField(null=True, blank=True)
+
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('url'),  
+    ]
+
+    def __str__(self):
+        return self.name
+
 class ProjectPage(Page):    
     main_image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.PROTECT, related_name='+'
@@ -76,29 +103,6 @@ class ProjectPage(Page):
 
     class Meta:
         verbose_name = "Project"
-
-
-class ProjectPageCollaborator(Orderable, models.Model):
-    page = ParentalKey(ProjectPage, related_name='collaborators')
-    collaborator = models.ForeignKey('profile.Collaborator', related_name='+')
-
-    panels = [
-        SnippetChooserPanel('collaborator'),
-    ]
-
-    def __str__(self):
-        return self.page.title + " -> " + self.collaborator.name
-
-class ProjectPageClient(Orderable, models.Model):
-    page = ParentalKey(ProjectPage, related_name='clients')
-    client = models.ForeignKey('profile.Client', related_name='+')
-
-    panels = [
-        SnippetChooserPanel('client'),
-    ]
-
-    def __str__(self):
-        return self.page.title + " -> " + self.client.name
 
 
 class ProjectPageGalleryImage(Orderable):

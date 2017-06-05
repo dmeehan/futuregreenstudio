@@ -1,4 +1,4 @@
-from wagtail.contrib.modeladmin.options import ModelAdmin, ModelAdminGroup, modeladmin_register
+'''from wagtail.contrib.modeladmin.options import ModelAdmin, ModelAdminGroup, modeladmin_register
 
 from .models import Employee, Client, Collaborator, ProfilePage
 
@@ -50,4 +50,4 @@ class ProfileAdminGroup(ModelAdminGroup):
 #modeladmin_register(EmployeeModelAdmin)
 #modeladmin_register(ClientModelAdmin)
 #modeladmin_register(CollaboratorModelAdmin)
-modeladmin_register(ProfileAdminGroup)
+#modeladmin_register(ProfileAdminGroup)'''
