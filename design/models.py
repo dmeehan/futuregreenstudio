@@ -22,6 +22,7 @@ class DesignPage(Page):
     ]
 
     subpage_types = ['design.ProjectPage']
+    parent_page_types = ['home.HomePage']
 
     @classmethod
     def can_create_at(cls, parent):
@@ -100,6 +101,9 @@ class ProjectPage(Page):
             FieldPanel('instagram'),
         ], heading="External Links"),
     ]
+
+    subpage_types = []
+    parent_page_types = ['design.DesignPage']
 
     class Meta:
         verbose_name = "Project"

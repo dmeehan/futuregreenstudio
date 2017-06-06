@@ -80,6 +80,7 @@ class HomePage(Page):
         verbose_name = "Homepage"
 
     subpage_types = ['design.DesignPage', 'profile.ProfilePage', 'contact.ContactPage', 'press.PressPage', 'research.ResearchPage', 'fabrication.FabricationPage']
+    parent_page_types = []
 
     @classmethod
     def can_create_at(cls, parent):

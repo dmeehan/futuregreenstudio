@@ -44,6 +44,7 @@ class EmployeePage(Page):
     ]
 
     subpage_types = []
+    parent_page_types = ['profile.ProfilePage']
 
     def __str__(self):
         return self.name
@@ -65,6 +66,7 @@ class ProfilePage(Page):
     ]
 
     subpage_types = ['profile.EmployeePage']
+    parent_page_types = ['home.HomePage']
 
     @classmethod
     def can_create_at(cls, parent):
