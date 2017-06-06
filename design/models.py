@@ -124,7 +124,7 @@ class ProjectPageGalleryImage(Orderable):
 from wagtail.wagtailsnippets.models import register_snippet
 
 class ProjectCategory(Orderable, models.Model):
-    page = ParentalKey(DesignPage, related_name='categories')
+    page = ParentalKey(DesignPage, related_name='project_categories')
     name = models.CharField(max_length=255)
     
     panels = [
