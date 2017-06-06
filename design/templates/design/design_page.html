@@ -16,7 +16,7 @@
     </nav>
     {% for project in page.get_children %}
     <section class="project">
-        {{ project.specific.title }}
+        <a href="{{ project.specific.url }}">{{ project.specific.title }}</a>
     </section>
     {% endfor %}
 </main>
