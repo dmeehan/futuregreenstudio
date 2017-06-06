@@ -37,9 +37,8 @@ class EmployeePage(Page):
         'wagtailimages.Image', on_delete=models.PROTECT, related_name='+'
     )
 
-    panels = [
-        FieldPanel('name'),
-        FieldPanel('title'), 
+    content_panels = Page.content_panels + [
+        FieldPanel('job_title'), 
         FieldPanel('bio'), 
         ImageChooserPanel('image'),
     ]
@@ -72,6 +71,15 @@ class ProfilePage(Page):
         # You can only create one of these!
         return super(ProfilePage, cls).can_create_at(parent) \
             and not cls.objects.exists()
+
+    def get_context(self, request):
+        context = super(ProfilePage, self).get_context(request)
+        employees = EmployeePage.objects.live().child_of(self)
+
+        # make the variable 'employees' available on the template
+        context['employees'] = employees
+
+        return context
 
 '''class ProfilePageEmployee(Orderable, models.Model):
     page = ParentalKey(ProfilePage, related_name='profile_employees')

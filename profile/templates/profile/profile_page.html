@@ -17,8 +17,30 @@
         </article>
     </section>
     <section class="profile-people">
-        {% for employee in page.profile_employees.all %}
-            {{ employee.name }}
+        {% for employee in employees %}
+            <div class="modal-anchor js-modal-anchor profile-employee">
+                 <button type="button" class="modal-trigger js-modal-glance-trigger">
+                 {% image page.image fill-400x400 %}
+                 </button>
+                 <div class="modal js-modal">
+                     <div class="modal-glance profile-employee-glance">
+                        <h3 class="modal-title">{{ employee.title }}</h3>
+                        <h4 class="modal-subtitle">{{ employee.job_title }}</h4>
+                        <button class="js-modal-detail-trigger">More</button>
+                     </div>
+                     <div class="modal-detail profile-employee-detail">
+                        <header>
+                            <div>
+                                <h3 class="modal-title">{{ employee.title }}</h3>
+                                <h4 class="modal-subtitle">{{ employee.job_title }}</h4>
+                            </div>
+                            <button type="button" class="modal-close js-modal-close"><span>Close</span></button>
+                        </header>
+                        
+                        {{ employee.bio|richtext }}
+                     </div>
+                </div>
+            </div>
         {% endfor %}
     </section>
     <section class="profile-colleagues">
@@ -27,16 +49,16 @@
             <div class="profile-collaborators">
                 <h2 class="article-title">Collaborators</h2>
                 <ul>
-                    {% for collaborator in page.profile_collaborators.all %}
-                    <li>{{ collaborator.name }}</li>
+                    {% for item in page.collaborators.all %}
+                    <li>{{ item.collaborator.name }}</li>
                     {% endfor %}
                 </ul>
             </div>
             <div class="profile-clients">
                 <h2 class="article-title">Clients</h2>
                 <ul>
-                    {% for client in page.profile_clients.all %}
-                    <li>{{ client.name }}</li>
+                    {% for item in page.clients.all %}
+                    <li>{{ item.client.name }}</li>
                     {% endfor %}
                 </ul>
             </div>
@@ -44,3 +66,27 @@
     </section>
 </main>
 {% endblock %}
+
+{% block extra_js %}
+    <script>
+        $(document).ready(function(){
+            $('body').on('click', '.js-modal-detail-trigger', function(){
+                $('.js-modal-anchor').removeClass('is-released');
+                $('.js-modal').removeClass('is-visible is-expanded');
+                $(this).closest('.js-modal-anchor').addClass('is-released');
+                $(this).closest('.js-modal').addClass('is-visible is-expanded');
+            });
+
+            $('body').on('click', '.js-modal-glance-trigger', function(){
+                $('.js-modal-anchor').removeClass('is-released');
+                $('.js-modal').removeClass('is-visible is-expanded');
+                $(this).next('.js-modal').addClass('is-visible');
+            });
+
+            $('body').on('click', '.js-modal-close', function(){
+                $(this).closest('.js-modal').removeClass('is-visible is-expanded');
+            });
+        });
+    </script>
+{% endblock %}
+
