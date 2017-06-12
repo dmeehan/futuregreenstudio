@@ -2,22 +2,33 @@
 
 {% load wagtailcore_tags wagtailimages_tags %}
 
-{% block body_class %}body--projects{% endblock %}
+{% block body_class %}body--{% endblock %}
 
 {% block content %}
 <main>
-    <nav class="design-nav">
-        <h1>{{ page.title }}</h1>
-        <ul>
-        {% for category in page.project_categories.all %}
-            <li>{{ category.name }}</li>
+    <div class="design-projects">
+        <nav class="design-nav">
+            <h1 class="section-title">{{ page.title }}</h1>
+            <ul>
+            {% for category in page.project_categories.all %}
+                <li>{{ category.name }}</li>
+            {% endfor %}
+            </ul>
+        </nav>
+        {% for project in page.get_children %}
+        {% image project.specific.main_image width-1000 as img %}
+        <section class="project" style="background-image: url({{ img.url }})">
+            <div href="{{ project.specific.url }}" class="modal js-modal">
+                 <div class="modal-glance profile-employee-glance">
+                    <h3 class="modal-title">{{ project.specific.title }}</h3>
+                    {% if project.specific.location %}
+                    <h4 class="modal-subtitle">{{ project.specific.location }}</h4>
+                    {% endif %}
+                    <a href="{{ project.specific.url }}">More</a>
+                 </div>
+            </div>
+        </section>
         {% endfor %}
-        </ul>
-    </nav>
-    {% for project in page.get_children %}
-    <section class="project">
-        <a href="{{ project.specific.url }}">{{ project.specific.title }}</a>
-    </section>
-    {% endfor %}
+    </div>
 </main>
 {% endblock %}

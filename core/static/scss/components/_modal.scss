@@ -3,7 +3,7 @@
     opacity: 0;
     position: absolute;
     background-color: $green;
-    margin: $spacing-small;
+    margin: 1rem;
     top: 0;
     bottom: 0;
     left: 0;
@@ -54,6 +54,12 @@
 
     .modal-title, .modal-subtitle {
         color: white;
+    }
+
+    a {
+        color: $dark-gray;
+        text-transform: uppercase;
+        font-size: 0.875rem;
     }
 }
 

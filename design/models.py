@@ -35,7 +35,7 @@ class ProjectPageTag(TaggedItemBase):
 
 
 class Collaborator(Orderable):
-    page = ParentalKey('ProjectPage', related_name='collaborators')
+    page = ParentalKey('ProjectPage', related_name='collaborators', blank=True, null=True)
     name = models.CharField(max_length=255)
     url = models.URLField(null=True, blank=True)
 
@@ -48,7 +48,7 @@ class Collaborator(Orderable):
         return self.name
 
 class Client(Orderable):
-    page = ParentalKey('ProjectPage', related_name='clients')
+    page = ParentalKey('ProjectPage', related_name='clients', blank=True, null=True)
     name = models.CharField(max_length=255)
     url = models.URLField(null=True, blank=True)
 
