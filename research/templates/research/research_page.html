@@ -5,16 +5,57 @@
 {% block body_class %}body--research{% endblock %}
 
 {% block content %}
-<main class="press">
+<main class="research">
     <section>
         <aside><h1 class="section-title">{{ page.title }}</h1></aside>
         <article>
-            <h2>{{ page.intro }}</h2>
+            <h2 class="article-title research-intro">{{ page.intro }}</h2>
         </article>
-        <aside>
-            
-        </aside>
     </section>
-    </section>
+    {% for project in projects %}
+        <section class="section-slideshow project-slideshow">
+            <div class="slideshow js-slideshow">
+            {% for item in project.gallery_images.all %}
+                <div>
+                    {% image item.image fill-1600x608 as img %}
+                    <img data-lazy="{{ img.url }}" />
+                </div>
+            {% endfor %}
+            </div>
+        </section>
+        <section class="project-content">
+            <header>
+                <h1 class="article-title">{{ project.title }}</h1>
+                {% if project.date %}
+                <h2>{{ project.date|date:"F d, Y" }}</h2>
+                {% endif %}
+            </header>
+            <article>
+                {{ project.description|richtext }}
+            </article>
+            <aside class="project-meta">
+                {% if project.related_links %}
+                <h3>Related Links:</h3>
+                <ul class="link-list project-links">
+                    {% for link in project.related_links.all %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </aside>
+        </section>
+    {% endfor %}
+    <ul class="pagination">
+      {% if projects.has_next %}
+        <li><a href="?page={{ projects.next_page_number }}"><i class="fa fa-angle-left"></i>&#160;Older</a></li>
+      {% endif %}
+      {% if projects.has_previous %}
+        <li><a href="?page={{ projects.previous_page_number }}">Newer&#160;<i class="fa fa-angle-right"></i></a></li>
+      {% endif %}
+      <!--
+      {% for page_num in projects.paginator.page_range %}
+        <li {% if page_num == projects.number %}class="is-active"{% endif %}><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+      {% endfor %}-->
+    </ul>
 </main>
 {% endblock %}

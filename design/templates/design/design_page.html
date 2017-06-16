@@ -18,7 +18,7 @@
         </nav>
         {% for project in projects %}
         {% image project.specific.main_image width-1000 as img %}
-        <section class="project" style="background-image: url({{ img.url }})" 
+        <section class="project-tile" style="background-image: url({{ img.url }})" 
             data-categories="all  {% for category in project.categories.all %}{{ category|cut:' '|cut:'/' }} {% endfor %}">
             <div href="{{ project.specific.url }}" class="modal js-modal">
                  <div class="modal-glance profile-employee-glance">

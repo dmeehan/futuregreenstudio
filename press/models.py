@@ -53,6 +53,7 @@ class PressPage(Page):
 
     def get_context(self, request):
         context = super(PressPage, self).get_context(request)
+        publications = PublicationPage.objects.live().child_of(self)
         all_newsitems = NewsItemPage.objects.live().child_of(self).order_by('-date')
 
         paginator = Paginator(all_newsitems, 3) # Show 3 news items per page
@@ -69,6 +70,7 @@ class PressPage(Page):
 
         # make the variable 'newsitems' available on the template
         context['newsitems'] = newsitems
+        context['publications'] = publications
 
         return context
     
@@ -91,6 +93,7 @@ class PublicationPage(Page):
 
     content_panels = Page.content_panels + [
         StreamFieldPanel('body'),
+        InlinePanel('related_links', label="Related Links"),
     ]
 
     parent_page_types = ['press.PressPage']
@@ -113,6 +116,19 @@ class NewsItemPage(Page):
 
     class Meta:
         verbose_name = "News Item"
+
+class PublicationPageRelatedLink(Orderable):
+    page = ParentalKey(PublicationPage, related_name='related_links')
+    title = models.CharField(max_length=255)
+    url = models.URLField(null=True, blank=True)
+
+    panels = [
+        FieldPanel('title'),
+        FieldPanel('url'),  
+    ]
+
+    def __str__(self):
+        return self.title
 
 
 

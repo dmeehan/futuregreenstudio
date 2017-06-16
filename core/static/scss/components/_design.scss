@@ -4,7 +4,7 @@
     @include display(flex);
     @include flex-wrap(wrap);
 
-    .project, .design-nav {
+    .project-tile, .design-nav {
         overflow: hidden;
         width: 25%;
         height: 400px;
@@ -50,7 +50,7 @@
             height: auto;
         }
 
-        .project {
+        .project-tile {
             width: auto;
             height: auto;
         }

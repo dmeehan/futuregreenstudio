@@ -19,6 +19,10 @@
 @import "layout";
 
 
+.link-list {
+    @include resetList;
+    margin-bottom: $spacing-small;
+}
 
 .section-title {
     line-height: 1;
@@ -30,7 +34,7 @@
 
 .article-title {
     color: $green;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 
@@ -81,13 +85,50 @@
         margin-bottom: 0;
         padding-bottom: 0;
         padding-top: $spacing-base;
-
-        &:first-child {
-            padding-top: 0;
-        }
     }
 
+    h2 + h3 {
+        padding-top: 0;
+    }
+}
 
+.press-publications {
+    margin-bottom: $spacing-base * 2;
+}
+
+
+
+
+.research-intro {
+    color: $color-font-base;
+}
+
+.research {
+    .project-content {
+        border-bottom: 2px solid $green;
+        padding-bottom: $spacing-base;
+    }
+}
+
+.newsitem, .publication {
+    padding-top: $spacing-base*2;
+
+    .article-title + & {
+        padding-top: $spacing-base;
+    }
+
+    h2 {
+        font-size: 2.5em;
+    }
+
+    h3 {
+        color: $green;
+        margin-bottom: $spacing-small;
+    }
+}
+
+.article-title + .newsitem {
+    padding-top: 0;
 }
 
 
@@ -250,23 +291,6 @@
 
 .body--design {
 
-}
-
-.newsitem {
-    padding-top: $spacing-base*2;
-
-    .article-title + & {
-        padding-top: $spacing-base;
-    }
-
-    h2 {
-        font-size: 2.5em;
-    }
-
-    h3 {
-        color: $green;
-        margin-bottom: $spacing-small;
-    }
 }
 
 

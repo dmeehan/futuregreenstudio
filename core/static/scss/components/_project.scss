@@ -1,6 +1,5 @@
-.project {
+.project-tile {
     position: relative;
-    //@include display(flex);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -49,6 +48,7 @@
 }
 
 .project-content {
+
     > header {
         @include display(flex);
         @include flex-direction(column);
@@ -79,6 +79,8 @@
                 }
             }
         }
+
+        padding: 0 3rem;
         
     }
 }
@@ -87,6 +89,11 @@
     ul, p {
         @include resetList;
         font-size: 0.875rem;
+    }
+
+    .project-links {
+        font-size: 1rem;
+        font-family: $font-family-heading;
     }
 
     h3 {

@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
@@ -21,6 +22,29 @@ class ResearchPage(Page):
 
     parent_page_types = ['home.HomePage']
     subpage_types = ['research.ResearchProjectPage']
+
+    def get_context(self, request):
+        pagination_num = 3
+        context = super(ResearchPage, self).get_context(request)
+        
+        all_projects = ResearchProjectPage.objects.live().child_of(self)
+
+        paginator = Paginator(all_projects, pagination_num)
+
+        page = request.GET.get('page')
+        try:
+            projects = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            projects = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            projects = paginator.page(paginator.num_pages)
+
+        # make the variable 'projects' available on the template
+        context['projects'] = projects
+        
+        return context
 
     @classmethod
     def can_create_at(cls, parent):

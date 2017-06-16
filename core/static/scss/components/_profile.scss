@@ -10,6 +10,213 @@
 
 .profile-people {
     @include display(flex);
+
+    @supports (display: grid) {
+        $grid-column-first: 1;
+        $grid-column-last: 41;
+        $grid-row-first: 1;
+        $grid-row-last: 29;
+
+        
+        display: grid;
+        grid-template-columns: repeat(40, 2.5%);
+        grid-template-rows: 40px;
+        grid-auto-columns: 2.5%;
+        grid-auto-rows: 40px;
+        
+
+        .profile-employee {
+            display: block;
+            position: relative;
+        
+        }
+
+        :first-child {
+            grid-column-start: 1;
+            grid-column-end: span 6;
+            grid-row-start: 1;
+            grid-row-end: span 7; 
+        }
+        
+        :nth-child(2) {
+            grid-column-start: 8;
+            grid-column-end: span 11;
+            grid-row-start: 1;
+            grid-row-end: span 7;
+        }
+
+        :nth-child(3) {
+            grid-column-start: 20;
+            grid-column-end: span 10;
+            grid-row-start: 1;
+            grid-row-end: span 11;
+        }
+
+        :nth-child(4) {
+            grid-column-start: 31;
+            grid-column-end: span 10;
+            grid-row-start: 1;
+            grid-row-end: span 9;
+        }
+
+        :nth-child(5) {
+            grid-column-start: 1;
+            grid-column-end: span 11;
+            grid-row-start: 9;
+            grid-row-end: span 7;
+        }
+
+        :nth-child(6) {
+            grid-column-start: 13;
+            grid-column-end: span 6;
+            grid-row-start: 9;
+            grid-row-end: span 7;
+        }
+
+        :nth-child(7) {
+            grid-column-start: 20;
+            grid-column-end: span 10;
+            grid-row-start: 13;
+            grid-row-end: span 7;
+        }
+
+        :nth-child(8) {
+            grid-column-start: 31;
+            grid-column-end: span 10;
+            grid-row-start: 11;
+            grid-row-end: span 6;
+        }
+
+        :nth-child(9) {
+            grid-column-start: 1;
+            grid-column-end: span 11;
+            grid-row-start: 17;
+            grid-row-end: span 12;
+        }
+
+        :nth-child(10) {
+            grid-column-start: 13;
+            grid-column-end: span 6;
+            grid-row-start: 17;
+            grid-row-end: span 7;
+        }
+
+        :nth-child(11) {
+            grid-column-start: 13;
+            grid-column-end: span 6;
+            grid-row-start: 25;
+            grid-row-end: span 4;
+        }
+
+        :nth-child(12) {
+            grid-column-start: 20;
+            grid-column-end: span 10;
+            grid-row-start: 21;
+            grid-row-end: span 8;
+        }
+
+        :nth-child(13) {
+            grid-column-start: 31;
+            grid-column-end: span 10;
+            grid-row-start: 18;
+            grid-row-end: span 11;
+        }
+
+        :nth-child(14) {
+            grid-column-start: $grid-row-first;
+            grid-column-end: span 6;
+            grid-row-start: $grid-row-last + 1;
+            grid-row-end: span 7;
+        }
+
+        :nth-child(15) {
+            grid-column-start: 8;
+            grid-column-end: span 11;
+            grid-row-start: $grid-row-last + 1;
+            grid-row-end: span 7;
+        }
+
+        :nth-child(16) {
+            grid-column-start: 20;
+            grid-column-end: span 10;
+            grid-row-start: $grid-row-last + 1;
+            grid-row-end: span 11;
+        }
+
+        :nth-child(17) {
+            grid-column-start: 31;
+            grid-column-end: span 10;
+            grid-row-start: $grid-row-last + 1;
+            grid-row-end: span 9;
+        }
+
+        :nth-child(18) {
+            grid-column-start: 1;
+            grid-column-end: span 11;
+            grid-row-start: $grid-row-last + 9;
+            grid-row-end: span 7;
+        }
+
+        :nth-child(19) {
+            grid-column-start: 13;
+            grid-column-end: span 6;
+            grid-row-start: $grid-row-last + 9;
+            grid-row-end: span 7;
+        }
+
+        :nth-child(20) {
+            grid-column-start: 20;
+            grid-column-end: span 10;
+            grid-row-start: $grid-row-last + 13;
+            grid-row-end: span 7;
+        }
+
+        :nth-child(21) {
+            grid-column-start: 31;
+            grid-column-end: span 10;
+            grid-row-start: $grid-row-last + 11;
+            grid-row-end: span 6;
+        }
+
+        :nth-child(22) {
+            grid-column-start: 1;
+            grid-column-end: span 11;
+            grid-row-start: $grid-row-last + 17;
+            grid-row-end: span 12;
+        }
+
+        :nth-child(23) {
+            grid-column-start: 13;
+            grid-column-end: span 6;
+            grid-row-start: $grid-row-last + 17;
+            grid-row-end: span 7;
+        }
+
+        :nth-child(24) {
+            grid-column-start: 13;
+            grid-column-end: span 6;
+            grid-row-start: $grid-row-last + 25;
+            grid-row-end: span 4;
+        }
+
+        :nth-child(25) {
+            grid-column-start: 20;
+            grid-column-end: span 10;
+            grid-row-start: $grid-row-last + 21;
+            grid-row-end: span 8;
+        }
+
+        :nth-child(26) {
+            grid-column-start: 31;
+            grid-column-end: span 10;
+            grid-row-start: $grid-row-last + 18;
+            grid-row-end: span 11;
+        }
+        
+        :last-child {
+            //grid-column-end: 41;
+        }
+    }
 }
 
 .profile-employee {
@@ -34,255 +241,7 @@
     }
 }
 
-@supports (display: grid) {
-    $grid-column-first: 1;
-    $grid-column-last: 41;
-    $grid-row-first: 1;
-    $grid-row-last: 29;
 
-    .profile-people {
-        display: grid;
-        grid-template-columns: repeat(40, 2.5%);
-        grid-template-rows: 40px;
-        grid-auto-columns: 2.5%;
-        grid-auto-rows: 40px;
-    }
+.profile-people {
 
-    .profile-employee {
-        display: block;
-        position: relative;
-    
-    }
-
-    :first-child {
-        grid-column-start: 1;
-        grid-column-end: span 6;
-        grid-row-start: 1;
-        grid-row-end: span 7; 
-    }
-    
-    :nth-child(2) {
-        grid-column-start: 8;
-        grid-column-end: span 11;
-        grid-row-start: 1;
-        grid-row-end: span 7;
-    }
-
-    :nth-child(3) {
-        grid-column-start: 20;
-        grid-column-end: span 10;
-        grid-row-start: 1;
-        grid-row-end: span 11;
-    }
-
-    :nth-child(4) {
-        grid-column-start: 31;
-        grid-column-end: span 10;
-        grid-row-start: 1;
-        grid-row-end: span 9;
-    }
-
-    :nth-child(5) {
-        grid-column-start: 1;
-        grid-column-end: span 11;
-        grid-row-start: 9;
-        grid-row-end: span 7;
-    }
-
-    :nth-child(6) {
-        grid-column-start: 13;
-        grid-column-end: span 6;
-        grid-row-start: 9;
-        grid-row-end: span 7;
-    }
-
-    :nth-child(7) {
-        grid-column-start: 20;
-        grid-column-end: span 10;
-        grid-row-start: 13;
-        grid-row-end: span 7;
-    }
-
-    :nth-child(8) {
-        grid-column-start: 31;
-        grid-column-end: span 10;
-        grid-row-start: 11;
-        grid-row-end: span 6;
-    }
-
-    :nth-child(9) {
-        grid-column-start: 1;
-        grid-column-end: span 11;
-        grid-row-start: 17;
-        grid-row-end: span 12;
-    }
-
-    :nth-child(10) {
-        grid-column-start: 13;
-        grid-column-end: span 6;
-        grid-row-start: 17;
-        grid-row-end: span 7;
-    }
-
-    :nth-child(11) {
-        grid-column-start: 13;
-        grid-column-end: span 6;
-        grid-row-start: 25;
-        grid-row-end: span 4;
-    }
-
-    :nth-child(12) {
-        grid-column-start: 20;
-        grid-column-end: span 10;
-        grid-row-start: 21;
-        grid-row-end: span 8;
-    }
-
-    :nth-child(13) {
-        grid-column-start: 31;
-        grid-column-end: span 10;
-        grid-row-start: 18;
-        grid-row-end: span 11;
-    }
-
-    :nth-child(14) {
-        grid-column-start: $grid-row-first;
-        grid-column-end: span 6;
-        grid-row-start: $grid-row-last + 1;
-        grid-row-end: span 7;
-    }
-
-    :nth-child(15) {
-        grid-column-start: 8;
-        grid-column-end: span 11;
-        grid-row-start: $grid-row-last + 1;
-        grid-row-end: span 7;
-    }
-
-    :nth-child(16) {
-        grid-column-start: 20;
-        grid-column-end: span 10;
-        grid-row-start: $grid-row-last + 1;
-        grid-row-end: span 11;
-    }
-
-    :nth-child(17) {
-        grid-column-start: 31;
-        grid-column-end: span 10;
-        grid-row-start: $grid-row-last + 1;
-        grid-row-end: span 9;
-    }
-
-    :nth-child(18) {
-        grid-column-start: 1;
-        grid-column-end: span 11;
-        grid-row-start: $grid-row-last + 9;
-        grid-row-end: span 7;
-    }
-
-    :nth-child(19) {
-        grid-column-start: 13;
-        grid-column-end: span 6;
-        grid-row-start: $grid-row-last + 9;
-        grid-row-end: span 7;
-    }
-
-    :nth-child(20) {
-        grid-column-start: 20;
-        grid-column-end: span 10;
-        grid-row-start: $grid-row-last + 13;
-        grid-row-end: span 7;
-    }
-
-    :nth-child(21) {
-        grid-column-start: 31;
-        grid-column-end: span 10;
-        grid-row-start: $grid-row-last + 11;
-        grid-row-end: span 6;
-    }
-
-    :nth-child(22) {
-        grid-column-start: 1;
-        grid-column-end: span 11;
-        grid-row-start: $grid-row-last + 17;
-        grid-row-end: span 12;
-    }
-
-    :nth-child(23) {
-        grid-column-start: 13;
-        grid-column-end: span 6;
-        grid-row-start: $grid-row-last + 17;
-        grid-row-end: span 7;
-    }
-
-    :nth-child(24) {
-        grid-column-start: 13;
-        grid-column-end: span 6;
-        grid-row-start: $grid-row-last + 25;
-        grid-row-end: span 4;
-    }
-
-    :nth-child(25) {
-        grid-column-start: 20;
-        grid-column-end: span 10;
-        grid-row-start: $grid-row-last + 21;
-        grid-row-end: span 8;
-    }
-
-    :nth-child(26) {
-        grid-column-start: 31;
-        grid-column-end: span 10;
-        grid-row-start: $grid-row-last + 18;
-        grid-row-end: span 11;
-    }
-
-    
-
-
-/*
-    :nth-child(15) {
-        grid-column-start: 1;
-        grid-column-end: 18;
-        grid-row-start: 59;
-        grid-row-end: 73;
-    }
-
-    :nth-child(16) {
-        grid-column-start: 19;
-        grid-column-end: 32;
-        grid-row-start: 59;
-        grid-row-end: 67;
-    }
-
-    :nth-child(17) {
-        grid-column-start: 19;
-        grid-column-end: 41;
-        grid-row-start: 68;
-        grid-row-end: 80;
-    }
-
-    :nth-child(18) {
-        grid-column-start: 1;
-        grid-column-end: 18;
-        grid-row-start: 74;
-        grid-row-end: 90;
-    }
-
-    :nth-child(19) {
-        grid-column-start: 19;
-        grid-column-end: 27;
-        grid-row-start: 81;
-        grid-row-end: 90;
-    }
-
-    :nth-child(20) {
-        grid-column-start: 28;
-        grid-column-end: 41;
-        grid-row-start: 81;
-        grid-row-end: 90;
-    }*/
-
-    :last-child {
-        //grid-column-end: 41;
-    }
 }
