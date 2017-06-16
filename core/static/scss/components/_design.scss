@@ -1,28 +1,16 @@
 .design-projects {
-    display: grid;
-    grid-template-columns: repeat(40, 2.5%);
-    grid-template-rows: repeat(90, 40px);
-    //grid-column-gap: 40px;
-    //grid-row-gap: 40px;
 
-    .project {
+    margin-bottom: $spacing-base;
+    @include display(flex);
+    @include flex-wrap(wrap);
+
+    .project, .design-nav {
         overflow: hidden;
-
-        &:nth-child(odd) {
-            background-color: blue;
-        }
-
-        &:nth-child(even) {
-            background-color: red;
-        }
+        width: 25%;
+        height: 400px;
     }
 
     .design-nav {
-        grid-column-start: 1;
-        grid-column-end: 9;
-        grid-row-start: 1;
-        grid-row-end: 8;
-
         padding: 40px;
         background: $dark-gray;
         color: white;
@@ -30,138 +18,176 @@
         > ul {
             @include resetList;
         }
+
+        a {
+            color: white;
+
+            &.is-active {
+                color: $green;
+                font-family: $font-family-heading;
+                &::after {
+                    content: " >";
+                }
+            }
+        }
     }
 
-    :nth-child(2) {
-        grid-column-start: 10;
-        grid-column-end: 27;
-        grid-row-start: 1;
-        grid-row-end: 14;
-    }
 
-    :nth-child(3) {
-        grid-column-start: 28;
-        grid-column-end: 41;
-        grid-row-start: 1;
-        grid-row-end: 14;
-    }
+    @supports (display: grid) {
+        display: grid;
+        grid-template-columns: repeat(40, 2.5%);
+        grid-template-rows: 40px;
+        grid-auto-columns: 2.5%;
+        grid-auto-rows: 40px;
 
-    :nth-child(4) {
-        grid-column-start: 1;
-        grid-column-end: 9;
-        grid-row-start: 9;
-        grid-row-end: 23;
-    }
+        .design-nav {
+            grid-column-start: 1;
+            grid-column-end: 9;
+            grid-row-start: 1;
+            grid-row-end: 8;
 
-    :nth-child(5) {
-        grid-column-start: 10;
-        grid-column-end: 25;
-        grid-row-start: 15;
-        grid-row-end: 23;
-    }
+            width: auto;
+            height: auto;
+        }
 
-    :nth-child(6) {
-        grid-column-start: 26;
-        grid-column-end: 41;
-        grid-row-start: 15;
-        grid-row-end: 28;
-    }
+        .project {
+            width: auto;
+            height: auto;
+        }
+    
 
-    :nth-child(7) {
-        grid-column-start: 1;
-        grid-column-end: 25;
-        grid-row-start: 24;
-        grid-row-end: 36;
-    }
+        :nth-child(2) {
+            grid-column-start: 10;
+            grid-column-end: 27;
+            grid-row-start: 1;
+            grid-row-end: 14;
+        }
 
-    :nth-child(8) {
-        grid-column-start: 26;
-        grid-column-end: 41;
-        grid-row-start: 29;
-        grid-row-end: 45;
-    }
+        :nth-child(3) {
+            grid-column-start: 28;
+            grid-column-end: 41;
+            grid-row-start: 1;
+            grid-row-end: 14;
+        }
 
-    :nth-child(9) {
-        grid-column-start: 1;
-        grid-column-end: 16;
-        grid-row-start: 37;
-        grid-row-end: 45;
-    }
+        :nth-child(4) {
+            grid-column-start: 1;
+            grid-column-end: 9;
+            grid-row-start: 9;
+            grid-row-end: 23;
+        }
 
-    :nth-child(10) {
-        grid-column-start: 17;
-        grid-column-end: 25;
-        grid-row-start: 37;
-        grid-row-end: 45;
-    }
+        :nth-child(5) {
+            grid-column-start: 10;
+            grid-column-end: 25;
+            grid-row-start: 15;
+            grid-row-end: 23;
+        }
 
-    :nth-child(11) {
-        grid-column-start: 1;
-        grid-column-end: 14;
-        grid-row-start: 46;
-        grid-row-end: 58;
-    }
+        :nth-child(6) {
+            grid-column-start: 26;
+            grid-column-end: 41;
+            grid-row-start: 15;
+            grid-row-end: 28;
+        }
 
-    :nth-child(12) {
-        grid-column-start: 15;
-        grid-column-end: 32;
-        grid-row-start: 46;
-        grid-row-end: 58;
-    }
+        :nth-child(7) {
+            grid-column-start: 1;
+            grid-column-end: 25;
+            grid-row-start: 24;
+            grid-row-end: 36;
+        }
 
-    :nth-child(13) {
-        grid-column-start: 33;
-        grid-column-end: 41;
-        grid-row-start: 46;
-        grid-row-end: 55;
-    }
+        :nth-child(8) {
+            grid-column-start: 26;
+            grid-column-end: 41;
+            grid-row-start: 29;
+            grid-row-end: 45;
+        }
 
-    :nth-child(14) {
-        grid-column-start: 33;
-        grid-column-end: 41;
-        grid-row-start: 56;
-        grid-row-end: 67;
-    }
+        :nth-child(9) {
+            grid-column-start: 1;
+            grid-column-end: 16;
+            grid-row-start: 37;
+            grid-row-end: 45;
+        }
 
-    :nth-child(15) {
-        grid-column-start: 1;
-        grid-column-end: 18;
-        grid-row-start: 59;
-        grid-row-end: 73;
-    }
+        :nth-child(10) {
+            grid-column-start: 17;
+            grid-column-end: 25;
+            grid-row-start: 37;
+            grid-row-end: 45;
+        }
 
-    :nth-child(16) {
-        grid-column-start: 19;
-        grid-column-end: 32;
-        grid-row-start: 59;
-        grid-row-end: 67;
-    }
+        :nth-child(11) {
+            grid-column-start: 1;
+            grid-column-end: 14;
+            grid-row-start: 46;
+            grid-row-end: 58;
+        }
 
-    :nth-child(17) {
-        grid-column-start: 19;
-        grid-column-end: 41;
-        grid-row-start: 68;
-        grid-row-end: 80;
-    }
+        :nth-child(12) {
+            grid-column-start: 15;
+            grid-column-end: 32;
+            grid-row-start: 46;
+            grid-row-end: 58;
+        }
 
-    :nth-child(18) {
-        grid-column-start: 1;
-        grid-column-end: 18;
-        grid-row-start: 74;
-        grid-row-end: 90;
-    }
+        :nth-child(13) {
+            grid-column-start: 33;
+            grid-column-end: 41;
+            grid-row-start: 46;
+            grid-row-end: 55;
+        }
 
-    :nth-child(19) {
-        grid-column-start: 19;
-        grid-column-end: 27;
-        grid-row-start: 81;
-        grid-row-end: 90;
-    }
+        :nth-child(14) {
+            grid-column-start: 33;
+            grid-column-end: 41;
+            grid-row-start: 56;
+            grid-row-end: 67;
+        }
 
-    :nth-child(20) {
-        grid-column-start: 28;
-        grid-column-end: 41;
-        grid-row-start: 81;
-        grid-row-end: 90;
+        :nth-child(15) {
+            grid-column-start: 1;
+            grid-column-end: 18;
+            grid-row-start: 59;
+            grid-row-end: 73;
+        }
+
+        :nth-child(16) {
+            grid-column-start: 19;
+            grid-column-end: 32;
+            grid-row-start: 59;
+            grid-row-end: 67;
+        }
+
+        :nth-child(17) {
+            grid-column-start: 19;
+            grid-column-end: 41;
+            grid-row-start: 68;
+            grid-row-end: 80;
+        }
+
+        :nth-child(18) {
+            grid-column-start: 1;
+            grid-column-end: 18;
+            grid-row-start: 74;
+            grid-row-end: 90;
+        }
+
+        :nth-child(19) {
+            grid-column-start: 19;
+            grid-column-end: 27;
+            grid-row-start: 81;
+            grid-row-end: 90;
+        }
+
+        :nth-child(20) {
+            grid-column-start: 28;
+            grid-column-end: 41;
+            grid-row-start: 81;
+            grid-row-end: 90;
+        }
     }
+    
 }

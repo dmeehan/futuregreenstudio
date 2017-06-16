@@ -2,25 +2,25 @@
     font-family: $font-family-heading;
     @include resetList();
     @include display(flex);
-    @include align-items(center);
+    @include align-items(center);    
+}
 
-    li {
-        font-size: 0.875rem;
-        text-transform: uppercase;
+.pagination-item {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    &:after {
+        font-family: $font-family-base;
+        content: "|";
+        padding: 0 $spacing-small/2;
+    }
+
+    &:last-child {
         &:after {
-            font-family: $font-family-base;
-            content: "|";
-            padding: 0 $spacing-small/2;
-        }
-
-        &:last-child {
-            &:after {
-                content: "";
-            }
-        }
-
-        a {
-            color: white;
+            content: "";
         }
     }
+}
+
+.pagination-link {
+    //color: white;
 }

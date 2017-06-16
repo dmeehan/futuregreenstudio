@@ -18,10 +18,8 @@
     </section>
     <section class="profile-people">
         {% for employee in employees %}
-            <div class="modal-anchor js-modal-anchor profile-employee">
-                 <button type="button" class="modal-trigger js-modal-glance-trigger">
-                 {% image page.image fill-400x400 %}
-                 </button>
+        {% image employee.image width-1000 as img %}
+            <div class="js-modal-anchor profile-employee" style="background-image: url({{ img.url }})">
                  <div class="modal js-modal">
                      <div class="modal-glance profile-employee-glance">
                         <h3 class="modal-title">{{ employee.title }}</h3>
@@ -36,8 +34,9 @@
                             </div>
                             <button type="button" class="modal-close js-modal-close"><span>Close</span></button>
                         </header>
-                        
+                        <article>
                         {{ employee.bio|richtext }}
+                        </article>
                      </div>
                 </div>
             </div>
@@ -71,20 +70,12 @@
     <script>
         $(document).ready(function(){
             $('body').on('click', '.js-modal-detail-trigger', function(){
-                $('.js-modal-anchor').removeClass('is-released');
-                $('.js-modal').removeClass('is-visible is-expanded');
-                $(this).closest('.js-modal-anchor').addClass('is-released');
-                $(this).closest('.js-modal').addClass('is-visible is-expanded');
-            });
-
-            $('body').on('click', '.js-modal-glance-trigger', function(){
-                $('.js-modal-anchor').removeClass('is-released');
-                $('.js-modal').removeClass('is-visible is-expanded');
-                $(this).next('.js-modal').addClass('is-visible');
+                $('.js-modal').removeClass('is-expanded');
+                $(this).closest('.js-modal').addClass('is-expanded');
             });
 
             $('body').on('click', '.js-modal-close', function(){
-                $(this).closest('.js-modal').removeClass('is-visible is-expanded');
+                $(this).closest('.js-modal').removeClass('is-expanded');
             });
         });
     </script>

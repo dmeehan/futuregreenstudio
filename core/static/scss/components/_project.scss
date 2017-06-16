@@ -29,6 +29,21 @@
     .modal-subtitle {
         font-size: 1.125rem;
     }
+
+    &.is-disabled {
+        opacity: 0.3;
+
+        &:hover {
+            .modal {
+                display: none;
+            }
+        }
+
+    }
+
+    &.is-empty {
+        background-color: $green;
+    }
     
 
 }

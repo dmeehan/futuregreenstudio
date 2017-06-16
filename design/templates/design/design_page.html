@@ -11,13 +11,15 @@
             <h1 class="section-title">{{ page.title }}</h1>
             <ul>
             {% for category in page.project_categories.all %}
-                <li>{{ category.name }}</li>
+                <li><a class="js-category-sort" data-category="{{ category|cut:' '|cut:'/' }}" href="{% pageurl page %}?category={{ category }}">{{ category.name }}</a></li>
             {% endfor %}
+                <li><a class="js-category-sort" data-category="all" href="{% pageurl page %}?category={{ category }}">All Projects</a></li>
             </ul>
         </nav>
-        {% for project in page.get_children %}
+        {% for project in projects %}
         {% image project.specific.main_image width-1000 as img %}
-        <section class="project" style="background-image: url({{ img.url }})">
+        <section class="project" style="background-image: url({{ img.url }})" 
+            data-categories="all  {% for category in project.categories.all %}{{ category|cut:' '|cut:'/' }} {% endfor %}">
             <div href="{{ project.specific.url }}" class="modal js-modal">
                  <div class="modal-glance profile-employee-glance">
                     <h3 class="modal-title">{{ project.specific.title }}</h3>
@@ -29,6 +31,51 @@
             </div>
         </section>
         {% endfor %}
+        {% for i in placeholder_count %}
+            <!--<section class="project is-empty">
+            &#160;
+            </section>-->
+        {% endfor %}
     </div>
+    <ul class="pagination">
+      {% if projects.has_previous %}
+        <li class="pagination-item"><a class="pagination-link" href="?page={{ projects.previous_page_number }}"><i class="fa fa-angle-left"></i>&#160;Prev</a></li>
+      {% endif %}
+      {% if projects.paginator.num_pages > 1 %}
+      {% for page_num in projects.paginator.page_range %}
+        <li class="pagination-item" {% if page_num == projects.number %}class="is-active"{% endif %}><a class="pagination-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
+      {% endfor %}
+      {% endif %}
+      {% if projects.has_next %}
+        <li class="pagination-item"><a class="pagination-link" href="?page={{ projects.next_page_number }}">Next&#160;<i class="fa fa-angle-right"></i></a></li>
+      {% endif %}
+    </ul>
 </main>
+{% endblock %}
+{% block extra_js %}    
+    <script>
+        $('.js-category-sort').on('click', function(event){
+
+            event.preventDefault();
+
+            var category = $(this).data('category');
+            $projects = $('.project');
+
+            $('.js-category-sort').removeClass('is-active');
+            $(this).addClass('is-active');
+            
+            $projects.each(function() {
+                var categories = $(this).data('categories');
+                console.log(categories);
+                $(this).addClass('is-disabled');
+                if (categories.indexOf(category) >=0 ) {
+                    console.log('disable');
+                    $(this).removeClass('is-disabled');
+                }
+            });
+
+            
+
+        });
+    </script>
 {% endblock %}

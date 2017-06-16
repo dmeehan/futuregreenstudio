@@ -1,6 +1,5 @@
 .modal {
     @include transition(opacity 0.25s ease-in-out);
-    opacity: 0;
     position: absolute;
     background-color: $green;
     margin: 1rem;
@@ -8,6 +7,8 @@
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: 1;
+    opacity: 0;
 
     &.is-visible {
         @include transition(opacity 0.5s ease-in-out);
@@ -23,18 +24,31 @@
         @include display(flex);
         @include align-items(center);
         @include justify-content(center);
+        position: fixed;
+        z-index: 997;
         margin: 0;
         background-color: transparentize($green, 0.3);
-        position: fixed;
+        
+        opacity: 1;
+        
 
         .modal-detail {
-            @include transition(opacity 3s ease-in-out);
+            @include transition(opacity 0.5s ease-in-out);
             opacity: 1;
         }
 
         .modal-glance {
-            @include transition(opacity 0.5s ease-in-out);
-            opacity: 0;
+            //@include transition(opacity 0.5s ease-in-out);
+            //opacity: 0;
+            display: none;
+        }
+
+        &:hover {
+            opacity: 1;
+            .modal-glance {
+                //opacity: 0;
+                display: none;
+            }
         }
     }
 }
@@ -49,6 +63,7 @@
 
 .modal-glance {
     @include transition(opacity 0.5s ease-in-out);
+    display: block;
     opacity: 0;
     padding: $spacing-base;
 
@@ -56,10 +71,14 @@
         color: white;
     }
 
-    a {
+    a, button {
         color: $dark-gray;
         text-transform: uppercase;
         font-size: 0.875rem;
+        outline: none;
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
     }
 }
 
@@ -80,11 +99,16 @@
 }
 
 .modal-detail {
-    @include transition(opacity 3s ease-in-out);
-    background-color: white;
-    opacity: 0;
+    @include display(flex);
+    @include flex-direction(column);
+    @include transition(opacity 0.5s ease-in-out);
     width: 60%;
     padding: 2.5rem;
+    opacity: 0;
+    background-color: white;
+    max-height: 95vh;
+    overflow-y: auto;
+
 
     .rich-text {
         padding-top: $spacing-base;
@@ -93,6 +117,7 @@
     }
 
     > header {
+        @include flex(none);
         @include display(flex);
         @include align-items(flex-start);
 
@@ -107,6 +132,11 @@
             color: $color-font-base;
             font-size: 3rem;
         }
+    }
+
+    > article {
+        @include flex(1);
+        overflow-y: auto;
     }
 }
 
@@ -145,17 +175,13 @@
     
     &::before {
         content: "";
-        //top: 0;
         background: $dark-gray;
-        //top: 9px;
         transform: rotate(135deg);
     }
 
     &::after {
         content: "";
-        //bottom: 0;
         background: $dark-gray;
-        //bottom: 9px;
         transform: rotate(-135deg);
     }
 }
