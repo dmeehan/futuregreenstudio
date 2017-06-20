@@ -68,6 +68,7 @@ class ProjectPageTag(TaggedItemBase):
     content_object = ParentalKey('ProjectPage', related_name='tagged_items')
 
 
+@register_snippet
 class Collaborator(Orderable):
     page = ParentalKey('ProjectPage', related_name='collaborators', blank=True, null=True)
     name = models.CharField(max_length=255)
@@ -81,6 +82,7 @@ class Collaborator(Orderable):
     def __str__(self):
         return self.name
 
+@register_snippet
 class Client(Orderable):
     page = ParentalKey('ProjectPage', related_name='clients', blank=True, null=True)
     name = models.CharField(max_length=255)
