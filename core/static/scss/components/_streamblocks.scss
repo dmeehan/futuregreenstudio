@@ -82,23 +82,10 @@
 .block-item_list, .block-numbered_item_list {
     > ul {
         @include resetList;
-        @include display(flex);
-        @include flex-wrap(wrap);
 
         > li {
-            @include flex(1 1 50%);
+            
             padding-bottom: $spacing-base;
-
-            &:nth-child(odd) {
-                padding-right: 1.75rem;
-            }
-
-            &:nth-child(even) {
-                padding-left: 1.75rem;
-            }
-
-
-
         }
     }
 
@@ -109,6 +96,25 @@
     :last-child {
         padding-bottom: 0;
         margin-bottom: 0;
+    }
+
+    @media(min-width: $bp-horiz-medium) {
+        > ul {
+            @include display(flex);
+            @include flex-wrap(wrap);
+
+            > li {
+                @include flex(1 1 50%);
+
+                &:nth-child(odd) {
+                    padding-right: 1.75rem;
+                }
+
+                &:nth-child(even) {
+                    padding-left: 1.75rem;
+                }
+            }
+        }
     }
 }
 

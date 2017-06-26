@@ -1,21 +1,19 @@
 .modal {
     @include transition(opacity 0.25s ease-in-out);
     position: absolute;
-    background-color: $green;
-    margin: 1rem;
-    top: 0;
+    background-color: transparentize($green, 0.15);
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 1;
-    opacity: 0;
+    
 
     &.is-visible {
-        @include transition(opacity 0.5s ease-in-out);
+        @include transition(all 0.5s ease-in-out);
         opacity: 1;
 
         .modal-glance {
-            @include transition(opacity 0.5s ease-in-out);
+            @include transition(all 0.5s ease-in-out);
             opacity: 1;
         }
     }
@@ -25,16 +23,22 @@
         @include align-items(center);
         @include justify-content(center);
         position: fixed;
-        z-index: 997;
+        top: 0;
+        z-index: 9999;
         margin: 0;
         background-color: transparentize($green, 0.3);
-        
         opacity: 1;
         
-
         .modal-detail {
-            @include transition(opacity 0.5s ease-in-out);
+            @include transition(all 0.5s ease-in-out);
             opacity: 1;
+            width: 95%;
+            height: auto;
+            //padding: 2.5rem;
+
+            @media(min-width: $bp-horiz-medium) {
+                width: 60%;
+            }
         }
 
         .modal-glance {
@@ -51,6 +55,13 @@
             }
         }
     }
+
+    @media(min-width: $bp-horiz-medium) {
+        top: 0;
+        opacity: 0;
+        margin: 1rem;
+        background-color: $green;
+    }
 }
 
 .modal-anchor {
@@ -62,10 +73,9 @@
 }
 
 .modal-glance {
-    @include transition(opacity 0.5s ease-in-out);
+    @include transition(all 0.5s ease-in-out);
     display: block;
-    opacity: 0;
-    padding: $spacing-base;
+    padding: $spacing-small;
 
     .modal-title, .modal-subtitle {
         color: white;
@@ -79,6 +89,11 @@
         background-color: transparent;
         padding: 0;
         margin: 0;
+    }
+
+    @media(min-width: $bp-horiz-medium) {
+        opacity: 0;
+        padding: $spacing-base;
     }
 }
 
@@ -101,20 +116,15 @@
 .modal-detail {
     @include display(flex);
     @include flex-direction(column);
-    @include transition(opacity 0.5s ease-in-out);
-    width: 60%;
-    padding: 2.5rem;
+    @include transition(all 0.5s ease-in-out);
+    width: 0;
+    padding: 0;
     opacity: 0;
+    height: 0;
     background-color: white;
     max-height: 95vh;
     overflow-y: auto;
 
-
-    .rich-text {
-        padding-top: $spacing-base;
-        columns: auto 2;
-        column-gap: 3rem;
-    }
 
     > header {
         @include flex(none);

@@ -1,20 +1,22 @@
 .footer-contact {
     @include display(flex);
     @include justify-content(center);
-
+    @include flex-wrap(wrap);
     font-size: 0.75rem;
     padding: 0;
     margin: 0;
 
-    li {
-        border-left: 1px solid;
-        border-color: $dark-gray;
+    > li {
+        line-height: 1.125;
+        list-style: none; 
         padding: 0 0.5rem;
-        line-height: 1.25;
-        list-style: none;
+        border-right: 1px solid;
+        border-color: $dark-gray;
+        white-space: nowrap;
+        margin-bottom: 0.25rem;
 
-        &:first-child {
-            border-left: 0;
+        &:last-child {
+            border-right: 0;
         }
     }
 

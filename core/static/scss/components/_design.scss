@@ -6,8 +6,12 @@
 
     .project-tile, .design-nav {
         overflow: hidden;
-        width: 25%;
-        height: 400px;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .project-tile {
+        height: 300px;
     }
 
     .design-nav {
@@ -33,161 +37,347 @@
     }
 
 
-    @supports (display: grid) {
-        display: grid;
-        grid-template-columns: repeat(40, 2.5%);
-        grid-template-rows: 40px;
-        grid-auto-columns: 2.5%;
-        grid-auto-rows: 40px;
-
-        .design-nav {
-            grid-column-start: 1;
-            grid-column-end: 9;
-            grid-row-start: 1;
-            grid-row-end: 8;
-
-            width: auto;
+    @media(min-width: $bp-horiz-large) {
+        .project-tile, .design-nav {
+            width: 33%;
             height: auto;
         }
 
         .project-tile {
-            width: auto;
-            height: auto;
-        }
-    
-
-        :nth-child(2) {
-            grid-column-start: 10;
-            grid-column-end: 27;
-            grid-row-start: 1;
-            grid-row-end: 14;
+            padding-bottom: 60%;
         }
 
-        :nth-child(3) {
-            grid-column-start: 28;
-            grid-column-end: 41;
-            grid-row-start: 1;
-            grid-row-end: 14;
-        }
+        
+        @supports (display: grid) {
+            display: grid;
+            grid-template-columns: repeat(40, 2.5%);
+            grid-template-rows: 23px;
+            grid-auto-columns: 2.5%;
+            grid-auto-rows: 23px;
 
-        :nth-child(4) {
-            grid-column-start: 1;
-            grid-column-end: 9;
-            grid-row-start: 9;
-            grid-row-end: 23;
-        }
+            @media(min-width: $bp-horiz-large) {
+                grid-template-rows: 31px;
+                grid-auto-rows: 31px;
+            }
 
-        :nth-child(5) {
-            grid-column-start: 10;
-            grid-column-end: 25;
-            grid-row-start: 15;
-            grid-row-end: 23;
-        }
+            .design-nav {
+                grid-column-start: 1;
+                grid-column-end: 14;
+                grid-row-start: 1;
+                grid-row-end: 11;
 
-        :nth-child(6) {
-            grid-column-start: 26;
-            grid-column-end: 41;
-            grid-row-start: 15;
-            grid-row-end: 28;
-        }
+                width: auto;
+                height: auto;
+                margin-bottom: 0;
+            }
 
-        :nth-child(7) {
-            grid-column-start: 1;
-            grid-column-end: 25;
-            grid-row-start: 24;
-            grid-row-end: 36;
-        }
+            .project-tile {
+                padding-bottom: 0;
+                width: auto;
+                height: auto;
+                margin-bottom: 0;
+            }
+        
 
-        :nth-child(8) {
-            grid-column-start: 26;
-            grid-column-end: 41;
-            grid-row-start: 29;
-            grid-row-end: 45;
-        }
+            :nth-child(2) {
+                grid-column-start: 15;
+                grid-column-end: 41;
+                grid-row-start: 1;
+                grid-row-end: 17;
+            }
 
-        :nth-child(9) {
-            grid-column-start: 1;
-            grid-column-end: 16;
-            grid-row-start: 37;
-            grid-row-end: 45;
-        }
+            :nth-child(3) {
+                grid-column-start: 1;
+                grid-column-end: 14;
+                grid-row-start: 12;
+                grid-row-end: 26;
+            }
 
-        :nth-child(10) {
-            grid-column-start: 17;
-            grid-column-end: 25;
-            grid-row-start: 37;
-            grid-row-end: 45;
-        }
+            :nth-child(4) {
+                grid-column-start: 15;
+                grid-column-end: 24;
+                grid-row-start: 18;
+                grid-row-end: 26;
+            }
 
-        :nth-child(11) {
-            grid-column-start: 1;
-            grid-column-end: 14;
-            grid-row-start: 46;
-            grid-row-end: 58;
-        }
+            :nth-child(5) {
+                grid-column-start: 25;
+                grid-column-end: 41;
+                grid-row-start: 18;
+                grid-row-end: 31;
+            }
 
-        :nth-child(12) {
-            grid-column-start: 15;
-            grid-column-end: 32;
-            grid-row-start: 46;
-            grid-row-end: 58;
-        }
+            :nth-child(6) {
+                grid-column-start: 1;
+                grid-column-end: 24;
+                grid-row-start: 27;
+                grid-row-end: 37;
+            }
 
-        :nth-child(13) {
-            grid-column-start: 33;
-            grid-column-end: 41;
-            grid-row-start: 46;
-            grid-row-end: 55;
-        }
+            :nth-child(7) {
+                grid-column-start: 25;
+                grid-column-end: 41;
+                grid-row-start: 32;
+                grid-row-end: 46;
+            }
 
-        :nth-child(14) {
-            grid-column-start: 33;
-            grid-column-end: 41;
-            grid-row-start: 56;
-            grid-row-end: 67;
-        }
+            :nth-child(8) {
+                grid-column-start: 1;
+                grid-column-end: 16;
+                grid-row-start: 38;
+                grid-row-end: 46;
+            }
 
-        :nth-child(15) {
-            grid-column-start: 1;
-            grid-column-end: 18;
-            grid-row-start: 59;
-            grid-row-end: 73;
-        }
+            :nth-child(9) {
+                grid-column-start: 17;
+                grid-column-end: 24;
+                grid-row-start: 38;
+                grid-row-end: 46;
+            }
 
-        :nth-child(16) {
-            grid-column-start: 19;
-            grid-column-end: 32;
-            grid-row-start: 59;
-            grid-row-end: 67;
-        }
+            :nth-child(10) {
+                grid-column-start: 1;
+                grid-column-end: 19;
+                grid-row-start: 47;
+                grid-row-end: 56;
+            }
 
-        :nth-child(17) {
-            grid-column-start: 19;
-            grid-column-end: 41;
-            grid-row-start: 68;
-            grid-row-end: 80;
-        }
+            :nth-child(11) {
+                grid-column-start: 20;
+                grid-column-end: 41;
+                grid-row-start: 47;
+                grid-row-end: 56;
+            }
 
-        :nth-child(18) {
-            grid-column-start: 1;
-            grid-column-end: 18;
-            grid-row-start: 74;
-            grid-row-end: 90;
-        }
+            :nth-child(12) {
+                grid-column-start: 1;
+                grid-column-end: 24;
+                grid-row-start: 57;
+                grid-row-end: 71;
+            }
 
-        :nth-child(19) {
-            grid-column-start: 19;
-            grid-column-end: 27;
-            grid-row-start: 81;
-            grid-row-end: 90;
-        }
+            :nth-child(13) {
+                grid-column-start: 25;
+                grid-column-end: 41;
+                grid-row-start: 57;
+                grid-row-end: 66;
+            }
 
-        :nth-child(20) {
-            grid-column-start: 28;
-            grid-column-end: 41;
-            grid-row-start: 81;
-            grid-row-end: 90;
+            :nth-child(14) {
+                grid-column-start: 25;
+                grid-column-end: 41;
+                grid-row-start: 67;
+                grid-row-end: 79;
+            }
+
+            :nth-child(15) {
+                grid-column-start: 1;
+                grid-column-end: 24;
+                grid-row-start: 72;
+                grid-row-end: 87;
+            }
+
+            :nth-child(16) {
+                grid-column-start: 25;
+                grid-column-end: 41;
+                grid-row-start: 80;
+                grid-row-end: 98;
+            }
+
+            :nth-child(17) {
+                grid-column-start: 1;
+                grid-column-end: 11;
+                grid-row-start: 88;
+                grid-row-end: 98;
+            }
+
+            :nth-child(18) {
+                grid-column-start: 12;
+                grid-column-end: 24;
+                grid-row-start: 88;
+                grid-row-end: 98;
+            }
+
+            :nth-child(19) {
+                grid-column-start: 1;
+                grid-column-end: 27;
+                grid-row-start: 99;
+                grid-row-end: 110;
+            }
+
+            :nth-child(20) {
+                grid-column-start: 28;
+                grid-column-end: 41;
+                grid-row-start: 99;
+                grid-row-end: 110;
+            }
         }
     }
-    
+
+
+    @media(min-width: 1366px) {
+        .project-tile, .design-nav {
+            width: 25%;
+            height: 400px;
+        }
+
+        @supports (display: grid) {
+            display: grid;
+            grid-template-columns: repeat(40, 2.5%);
+            grid-template-rows: 40px;
+            grid-auto-columns: 2.5%;
+            grid-auto-rows: 40px;
+
+            .design-nav {
+                grid-column-start: 1;
+                grid-column-end: 9;
+                grid-row-start: 1;
+                grid-row-end: 8;
+
+                width: auto;
+                height: auto;
+                margin-bottom: 0;
+            }
+
+            .project-tile {
+                width: auto;
+                height: auto;
+                margin-bottom: 0;
+            }
+        
+
+            :nth-child(2) {
+                grid-column-start: 10;
+                grid-column-end: 27;
+                grid-row-start: 1;
+                grid-row-end: 14;
+            }
+
+            :nth-child(3) {
+                grid-column-start: 28;
+                grid-column-end: 41;
+                grid-row-start: 1;
+                grid-row-end: 14;
+            }
+
+            :nth-child(4) {
+                grid-column-start: 1;
+                grid-column-end: 9;
+                grid-row-start: 9;
+                grid-row-end: 23;
+            }
+
+            :nth-child(5) {
+                grid-column-start: 10;
+                grid-column-end: 25;
+                grid-row-start: 15;
+                grid-row-end: 23;
+            }
+
+            :nth-child(6) {
+                grid-column-start: 26;
+                grid-column-end: 41;
+                grid-row-start: 15;
+                grid-row-end: 28;
+            }
+
+            :nth-child(7) {
+                grid-column-start: 1;
+                grid-column-end: 25;
+                grid-row-start: 24;
+                grid-row-end: 36;
+            }
+
+            :nth-child(8) {
+                grid-column-start: 26;
+                grid-column-end: 41;
+                grid-row-start: 29;
+                grid-row-end: 45;
+            }
+
+            :nth-child(9) {
+                grid-column-start: 1;
+                grid-column-end: 16;
+                grid-row-start: 37;
+                grid-row-end: 45;
+            }
+
+            :nth-child(10) {
+                grid-column-start: 17;
+                grid-column-end: 25;
+                grid-row-start: 37;
+                grid-row-end: 45;
+            }
+
+            :nth-child(11) {
+                grid-column-start: 1;
+                grid-column-end: 14;
+                grid-row-start: 46;
+                grid-row-end: 58;
+            }
+
+            :nth-child(12) {
+                grid-column-start: 15;
+                grid-column-end: 32;
+                grid-row-start: 46;
+                grid-row-end: 58;
+            }
+
+            :nth-child(13) {
+                grid-column-start: 33;
+                grid-column-end: 41;
+                grid-row-start: 46;
+                grid-row-end: 55;
+            }
+
+            :nth-child(14) {
+                grid-column-start: 33;
+                grid-column-end: 41;
+                grid-row-start: 56;
+                grid-row-end: 67;
+            }
+
+            :nth-child(15) {
+                grid-column-start: 1;
+                grid-column-end: 18;
+                grid-row-start: 59;
+                grid-row-end: 73;
+            }
+
+            :nth-child(16) {
+                grid-column-start: 19;
+                grid-column-end: 32;
+                grid-row-start: 59;
+                grid-row-end: 67;
+            }
+
+            :nth-child(17) {
+                grid-column-start: 19;
+                grid-column-end: 41;
+                grid-row-start: 68;
+                grid-row-end: 80;
+            }
+
+            :nth-child(18) {
+                grid-column-start: 1;
+                grid-column-end: 18;
+                grid-row-start: 74;
+                grid-row-end: 90;
+            }
+
+            :nth-child(19) {
+                grid-column-start: 19;
+                grid-column-end: 27;
+                grid-row-start: 81;
+                grid-row-end: 90;
+            }
+
+            :nth-child(20) {
+                grid-column-start: 28;
+                grid-column-end: 41;
+                grid-row-start: 81;
+                grid-row-end: 90;
+            }
+        }
+    }
 }

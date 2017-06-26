@@ -29,7 +29,7 @@
     font-size: 0.875rem;
     text-transform: uppercase;
     font-weight: bold;
-    padding: 1rem 0 0 0;
+    padding: $spacing-small 0 0 0;
 }
 
 .article-title {
@@ -38,12 +38,46 @@
     font-weight: bold;
 }
 
-.section-image {
+/*.section-image {
     display: block;
     width: 100%;
     img {
         width: 100%;
         height: auto;
+    }
+}*/
+
+.section-image {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 60%;
+    display: block;
+
+    img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -9999px;
+        right: -9999px;
+        margin: auto;
+        max-height: 100%;
+        width: auto;
+    }
+
+    @media(min-width: $bp-horiz-medium) {
+        position: static;
+        width: 100%;
+        padding-bottom: 0;
+        overflow: auto;
+        
+        img {
+            position: static;
+            width: 100%;
+            height: auto;
+            max-height: none;
+            min-width: 0;
+            margin: 0;
+        }
     }
 }
 
@@ -61,18 +95,29 @@
 
 .contact-contactinfo {
     @include resetList;
-    columns: auto 2;
     font-family: "KievitWeb W07 Bold";
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-weight: bold;
 
     a {
         color: $color-font-base;
     }
+
+    @media(min-width: $bp-horiz-xlarge) {
+        columns: auto 2;
+    }
 }
 
 .contact-signup {
-    padding: 0 $spacing-base*2;
+    margin-top: $spacing-base;
+
+    @media(min-width: $bp-horiz-large) {
+        margin-top: 0;
+    }
+
+    @media(min-width: $bp-horiz-xlarge) {
+        padding: 0 $spacing-base*2;
+    }
 }
 
 .fabrication-fabrication-title {

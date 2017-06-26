@@ -17,7 +17,9 @@
     }
 
     .modal-glance {
-        padding: 40px;
+        @media(min-width: $bp-horiz-xlarge) {
+            padding: 40px;
+        }
     }
 
     .modal-title {
@@ -54,10 +56,12 @@
         @include flex-direction(column);
 
         h1 {
+            order: 1;
             color: $green;
         }
 
         h2 {
+            order: 1;
             font-size: 1rem;
             font-family: $font-family-base;
             color: $green;
@@ -65,14 +69,31 @@
         }
 
         .link-back {
-            margin-top: auto;
+            order: 0;
+            margin-bottom: $spacing-small;
         }
+
+        @media(min-width: $bp-horiz-xlarge) {
+            .link-back {
+                order: 1;
+                margin-top: auto;
+                margin-bottom: 0;
+            }
+
+            h1 {
+                order: 0;
+            }
+
+            h2 {
+                order: 0;
+            }
+        }
+
     }
 
     > article {
+        margin-bottom: $spacing-base;
         .rich-text {
-            columns: auto 2;
-            column-gap: 2.5rem;
             p {
                 &:first-child {
                     margin-top: 0;
@@ -80,8 +101,28 @@
             }
         }
 
-        padding: 0 3rem;
-        
+        @media(min-width: $bp-horiz-medium) {
+            .rich-text {
+                columns: auto 2;
+                column-gap: 2.5rem;
+            }
+        }
+
+        @media(min-width: $bp-horiz-xlarge) {
+            margin-bottom: 0;
+            padding: 0 3rem;
+
+            .rich-text {
+                columns: auto 1;
+            }
+        }
+
+        @media(min-width: 1440px) {
+            .rich-text {
+                columns: auto 2;
+                column-gap: 2.5rem;
+            }
+        }
     }
 }
 

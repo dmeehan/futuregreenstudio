@@ -1,7 +1,6 @@
 body {
     margin: 0 auto;
-    padding: 0 2rem;
-    //background: gray;
+    padding: 0 $spacing-base;
     max-width: $bp-horiz-max;
 
 
@@ -22,10 +21,53 @@ body {
 
         @media (min-width: $bp-horiz-large) {
             > section {
+                //@include display(flex);
+                @include clearfix;
+                margin-bottom: $spacing-base*2;
+
+                > article {
+                    width: 75%;
+                    padding: 0 3rem 0 0;
+                    margin: 0 0 0 0;
+                    float: left;
+
+                    &:first-child {
+                        margin: 0 0 0 0;
+                    }
+
+                    &:last-child {
+                        margin: 0 0 0 0;
+                    }
+
+                    &:only-child {
+                        width: auto;
+                        margin: 0 auto;
+                    }
+                }
+
+                > aside, > header {
+                    width: 25%;
+                    margin: 0 0 0 0;
+                    float: left;
+
+                    &:first-child {
+                        width: 75%;
+                    }
+
+                    &:last-child {
+                        
+                    }
+                }
+            }
+        }
+
+        @media (min-width: $bp-horiz-xlarge) {
+            > section {
                 @include display(flex);
                 margin-bottom: $spacing-base*2;
 
                 > article {
+                    float: none;
                     width: 50%;
                     padding: 0 3rem 0 0;
 
@@ -38,12 +80,18 @@ body {
                     }
 
                     &:only-child {
+                        width: 50%;
                         margin: 0 auto;
                     }
                 }
 
                 > aside, > header {
+                    float: none;
                     width: 25%;
+
+                    &:first-child {
+                        width: 25%;
+                    }
                 }
             }
         }
@@ -56,6 +104,10 @@ body {
 
     @media (min-width: $bp-horiz-large) {
         padding: 0 3rem;
+    }
+
+    @media (min-width: $bp-horiz-max) {
+        padding: 0;
     }
 
     &.body--home {
