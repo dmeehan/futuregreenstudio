@@ -6,3 +6,12 @@
         padding-right: 0.25rem;
     }
 }
+
+.link-more {
+    font-family: $font-family-heading;
+
+    &::after {
+        content: ">";
+        padding-left: 0.25rem;
+    }
+}
