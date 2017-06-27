@@ -202,12 +202,12 @@
 
         > li {
             @include transition(opacity 2s ease-in-out);
-            background: $medium-gray;
             width: 100%;
             height: 100vh;
             position: absolute;
             overflow: hidden;
             opacity: 1;
+            visibility: visible;
 
             .slideshow-caption {
                 position: absolute;
@@ -219,7 +219,17 @@
                 text-align: center;
             }
 
+            a {
+                position: absolute;
+                z-index: 98;
+                display: block;
+                background-color: transparent;
+                width: 100%;
+                height: 100vh;
+            }
+
             img {
+                display: block;
                 min-height:100vh;
                 min-width:100%;
                 height:auto;
@@ -239,8 +249,13 @@
             }
 
             &.is-hidden {
-                @include transition(opacity 2s ease-in-out);
+                @include transition(all 2s ease-in-out);
                 opacity: 0;
+                visibility: hidden;
+
+                a {
+                    //display: none;
+                }
             }
         }
     }
