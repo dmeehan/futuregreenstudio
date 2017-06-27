@@ -11,7 +11,7 @@
     background: $color-primary;
     width: 100%;
     //max-width: 480px;
-    padding: 32px; 
+    padding: $spacing-base; 
     z-index: 9998;
 
     h2 {
@@ -29,12 +29,13 @@
 
    @media (min-height: $bp-vert-medium) {
         @include flex-direction(column);
-        padding: 3rem 2.5rem 2.5rem 2.5rem;
+        //padding: 3rem 2.5rem 2.5rem 2.5rem;
         
    }
 
    .logo {
         position: static;
+        margin-bottom: 1rem;
    }
 
    @media (min-width: $bp-horiz-medium) {
@@ -43,14 +44,19 @@
         }
 
         max-width: 375px;
+        padding: 3rem 2.5rem 2.5rem 2.5rem;
    }
+}
+
+.nav-header {
+    width: 100%;
 }
 
 .nav-toggle {
     @include transition(all 0.5s ease-in-out);
     z-index: 9999;
     position: fixed;
-    top: 52px;
+    top: 28px;
     right: $spacing-base;
     margin: 0;
     display: block;

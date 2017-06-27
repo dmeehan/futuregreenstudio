@@ -9,7 +9,11 @@ body {
         @include justify-content(center);
         background: transparent;
         width: 100%;
-        padding: 3rem 0;
+        padding: $spacing-base 0;
+
+        @media (min-width: $bp-horiz-medium) {
+            padding: $spacing-base*2 0;
+        }
     } 
 
 
