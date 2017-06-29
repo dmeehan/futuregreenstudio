@@ -67,9 +67,13 @@
     [dir="rtl"] & {
         float: right;
     }
+
+
     img {
         display: block;
     }
+
+
     &.slick-loading img {
         display: none;
     }
@@ -145,15 +149,62 @@ $slick-opacity-not-active: 0.00 !default;
 
 /* Slider */
 
-.slick-list {
+/*.slick-slide {
     .slick-loading & {
         &::before {
             font-family: FontAwesome;
-            content: '';
+            content: '\f1ce';
             @include animation(fa-spin 1s infinite linear);
         }
     }
 }
+
+.slick-list {
+    .slick-loading & {
+        background-color: pink;
+        &::before {
+            font-family: FontAwesome;
+            content: '\f1ce';
+            @include animation(fa-spin 1s infinite linear);
+        }
+    }
+}
+
+.slick-slide {
+    .slick-loading {
+        padding-bottom: 38%;
+        &::before {
+            font-family: FontAwesome;
+            content: '\f1ce';
+            @include animation(fa-spin 1s infinite linear);
+        }
+    }
+}*/
+
+/*.slick-slide {
+    position: relative;
+    &::before {
+        position: absolute;
+        z-index: 999999;
+        top: 50%;
+        left: 50%;
+        font-family: FontAwesome;
+        font-size: 3rem;
+        color: $light-gray;
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+        content: '\f1ce';
+        @include animation(fa-spin 1s infinite linear);
+    }
+
+    &.slick-active, &.slick-current {
+        //&::before {
+            //content: '';
+        //}
+    }
+}*/
+
 
 /* Icons */
 @if $slick-font-family == "slick" {

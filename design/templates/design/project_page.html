@@ -65,6 +65,40 @@
                 </ul>
             </div>
             {% endif %} 
+            {% if page.website or page.twitter or page.facebook or page.instagram %}
+            <div class="project-meta-links">
+                {% if page.website %}
+                <a class="link-external" target="_blank" href="{{ page.website }}">
+                    Project Website
+                </a>
+                {% endif %} 
+                {% if page.twitter or page.facebook or page.instagram %}
+                <ul class="social">
+                    {% if page.twitter %}
+                    <li class="social-twitter">
+                        <a class="social-link" target="_blank" href="http://www.twitter.com/{{ settings.home.firminformation.twitter }}">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    {% endif %} 
+                    {% if page.facebook %}
+                    <li class="social-facebook">
+                        <a class="social-link" target="_blank" href="{{ settings.home.firminformation.facebook }}">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    {% endif %} 
+                    {% if page.instagram %}
+                    <li class="social-instagram">
+                        <a class="social-link" target="_blank" href="http://www.instagram.com/{{ settings.home.firminformation.instagram }}">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </li>
+                    {% endif %} 
+                </ul>
+                {% endif %} 
+            </div>
+            {% endif %} 
         </aside>
     </section>
     <section class="section-slideshow project-slideshow">

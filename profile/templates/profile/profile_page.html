@@ -18,7 +18,7 @@
     </section>
     <section class="profile-people">
         {% for employee in employees %}
-        {% image employee.image width-1000 as img %}
+        {% image employee.image fill-800x800 as img %}
             <div class="js-modal-anchor profile-employee" style="background-image: url({{ img.url }})">
                  <div class="modal js-modal">
                      <div class="modal-glance profile-employee-glance">

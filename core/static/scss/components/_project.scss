@@ -98,6 +98,11 @@
                 &:first-child {
                     margin-top: 0;
                 }
+
+                &:last-child {
+                    margin-bottom: 0;
+                    padding-bottom: 0;
+                }
             }
         }
 
@@ -127,6 +132,9 @@
 }
 
 .project-meta {
+    @include display(flex);
+    @include flex-direction(column);
+
     ul, p {
         @include resetList;
         font-size: 0.875rem;
@@ -149,5 +157,16 @@
 
     &-date {
         margin-bottom: 0;
+    }
+
+    .project-meta-links {
+        margin-top: auto;
+
+        .social {
+            margin-top: $spacing-small/2;
+            li {
+                padding-right: $spacing-small/2;
+            }
+        }
     }
 }

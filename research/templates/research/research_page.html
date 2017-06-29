@@ -34,7 +34,7 @@
                 {{ project.description|richtext }}
             </article>
             <aside class="project-meta">
-                {% if project.related_links %}
+                {% if project.related_links.all %}
                 <h3>Related Links:</h3>
                 <ul class="link-list project-links">
                     {% for link in project.related_links.all %}
