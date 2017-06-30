@@ -1,13 +1,7 @@
 .modal {
     @include transition(opacity 0.25s ease-in-out);
-    position: absolute;
-    background-color: transparentize($green, 0.15);
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
+    background-color: $green;
     
-
     &.is-visible {
         @include transition(all 0.5s ease-in-out);
         opacity: 1;
@@ -24,10 +18,14 @@
         @include justify-content(center);
         position: fixed;
         top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         z-index: 9999;
         margin: 0;
         background-color: transparentize($green, 0.3);
         opacity: 1;
+        overflow: auto;
         
         .modal-detail {
             @include transition(all 0.5s ease-in-out);
@@ -57,8 +55,13 @@
     }
 
     @media(min-width: $bp-horiz-medium) {
+        position: absolute;
         top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         opacity: 0;
+        z-index: 9;
         margin: 1rem;
         background-color: $green;
     }
@@ -117,7 +120,7 @@
     @include display(flex);
     @include flex-direction(column);
     @include transition(all 0.5s ease-in-out);
-    width: 0;
+    //width: 0;
     padding: 0;
     opacity: 0;
     height: 0;
@@ -145,7 +148,7 @@
     }
 
     > article {
-        @include flex(1);
+        @include flex(0 1 auto);
         overflow-y: auto;
     }
 }

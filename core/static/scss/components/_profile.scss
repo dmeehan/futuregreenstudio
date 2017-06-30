@@ -10,7 +10,7 @@
 
 .profile-employee {
     position: relative;
-    height: 300px;
+    //height: 300px;
     margin-bottom: 2rem;
 
     img {
@@ -54,7 +54,7 @@
 }
 
 .profile-people {
-    @media(min-width: $bp-horiz-large) {
+    @media(min-width: $bp-horiz-medium) {
         @include display(flex);
         
         .profile-employee {
@@ -70,9 +70,14 @@
 
             display: grid;
             grid-template-columns: repeat(30, 3.33%);
-            grid-template-rows: 31px;
+            grid-template-rows: 23px;
             grid-auto-columns: 2.5%;
-            grid-auto-rows: 31px;
+            grid-auto-rows: 23px;
+
+            @media(min-width: $bp-horiz-large) {
+                grid-template-rows: 31px;
+                grid-auto-rows: 31px;
+            }
 
             .profile-employee {
                 display: block;
@@ -81,9 +86,13 @@
 
                 .modal {
                     margin: $spacing-small;
+
+                    &.is-expanded {
+                        margin: 0;
+                    }
                     
                     .modal-glance {
-                        padding: $spacing-small;
+                        //padding: $spacing-small;
                     }
                 }
             }

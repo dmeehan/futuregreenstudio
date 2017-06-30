@@ -19,7 +19,9 @@
     <section class="profile-people">
         {% for employee in employees %}
         {% image employee.image fill-800x800 as img %}
-            <div class="js-modal-anchor profile-employee" style="background-image: url({{ img.url }})">
+            <div class="js-modal-anchor profile-employee">
+                <div class="tile-image" style="background-image: url({{ img.url }})">
+                </div>
                  <div class="modal js-modal">
                      <div class="modal-glance profile-employee-glance">
                         <h3 class="modal-title">{{ employee.title }}</h3>

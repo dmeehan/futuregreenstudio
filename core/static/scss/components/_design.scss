@@ -11,7 +11,7 @@
     }
 
     .project-tile {
-        height: 300px;
+        //height: 300px;
     }
 
     .design-nav {
@@ -37,7 +37,7 @@
     }
 
 
-    @media(min-width: $bp-horiz-large) {
+    @media(min-width: $bp-horiz-medium) {
         .project-tile, .design-nav {
             width: 33%;
             height: auto;
