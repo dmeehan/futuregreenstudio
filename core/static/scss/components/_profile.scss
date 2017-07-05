@@ -54,7 +54,7 @@
 }
 
 .profile-people {
-    @media(min-width: $bp-horiz-medium) {
+    @media(min-width: $bp-horiz-large) {
         @include display(flex);
         
         .profile-employee {

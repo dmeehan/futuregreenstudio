@@ -54,7 +54,7 @@
         }
     }
 
-    @media(min-width: $bp-horiz-medium) {
+    @media(min-width: $bp-horiz-large) {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -65,7 +65,7 @@
         background-color: $green;
     }
 
-    @media(min-width: $bp-horiz-medium) {
+    @media(min-width: $bp-horiz-large) {
         margin: 1rem;
     }
 }
@@ -97,7 +97,7 @@
         margin: 0;
     }
 
-    @media(min-width: $bp-horiz-medium) {
+    @media(min-width: $bp-horiz-large) {
         opacity: 0;
         
     }
