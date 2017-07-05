@@ -59,7 +59,7 @@
         @include flex-wrap(wrap);
 
         .profile-employee {
-            width: calc(50% - $spacing-small);
+            width: calc(50% - #{$spacing-small});
             &:nth-child(odd) {
                 margin-right: $spacing-small;
             }
@@ -72,7 +72,7 @@
 
     @media(min-width: $bp-horiz-large) {
         .profile-employee {
-            width: calc(33.33% - $spacing-small);
+            width: calc(33.33% - #{$spacing-small});
         }
 
         @supports (display: grid) {
