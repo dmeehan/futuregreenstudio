@@ -54,6 +54,15 @@
 }
 
 .profile-people {
+    @media(min-width: $bp-horiz-medium) {
+        @include display(flex);
+
+        .profile-employee {
+            @include flex(0 0 50%);
+            margin-bottom: 0;
+        }
+    }
+
     @media(min-width: $bp-horiz-large) {
         @include display(flex);
         
