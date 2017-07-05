@@ -60,13 +60,18 @@
 
         .profile-employee {
             @include flex(0 0 50%);
-            margin-bottom: 0;
+            //margin-bottom: 0;
+            &:nth-child(odd) {
+                margin-right: 0.5rem;
+            }
+
+            &:nth-child(even) {
+                margin-left: 0.5rem;
+            }
         }
     }
 
     @media(min-width: $bp-horiz-large) {
-        @include display(flex);
-        
         .profile-employee {
             @include flex(0 0 33%);
             margin-bottom: 0;
