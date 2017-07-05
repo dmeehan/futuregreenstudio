@@ -484,14 +484,14 @@
             :nth-child(23) {
                 grid-column-start: 12;
                 grid-column-end: span 7;
-                grid-row-start: $grid-row-last + 16;
+                grid-row-start: $grid-row-last + 17;
                 grid-row-end: span 6;
             }
 
             :nth-child(24) {
                 grid-column-start: 12;
                 grid-column-end: span 7;
-                grid-row-start: $grid-row-last + 24;
+                grid-row-start: $grid-row-last + 25;
                 grid-row-end: span 5;
             }
 
