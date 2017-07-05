@@ -62,8 +62,11 @@
         right: 0;
         opacity: 0;
         z-index: 9;
-        margin: 1rem;
         background-color: $green;
+    }
+
+    @media(min-width: $bp-horiz-medium) {
+        margin: 1rem;
     }
 }
 
@@ -96,7 +99,11 @@
 
     @media(min-width: $bp-horiz-medium) {
         opacity: 0;
-        padding: $spacing-base;
+        
+    }
+
+    @media(min-width: $bp-horiz-large) {
+        padding: $spacing-base; 
     }
 }
 
@@ -106,14 +113,22 @@
 }
 
 .modal-title {
-    font-size: 1.125rem;
+    font-size: 1rem;
     text-transform: uppercase;
     margin-bottom: .5rem;
+
+    @media(min-width: $bp-horiz-large) {
+        font-size: 1.125rem;
+    }
 }
 
 .modal-subtitle {
-    font-size: 1.125rem;
+    font-size: 1rem;
     margin-bottom: .5rem;
+
+    @media(min-width: $bp-horiz-large) {
+        font-size: 1.125rem;
+    }
 }
 
 .modal-detail {

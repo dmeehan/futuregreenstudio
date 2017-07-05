@@ -15,7 +15,7 @@
     }
 
     .design-nav {
-        padding: 40px;
+        padding: $spacing-small;
         background: $dark-gray;
         color: white;
 
@@ -123,13 +123,13 @@
 
             :nth-child(8) {
                 grid-column-start: 1;
-                grid-column-end: 16;
+                grid-column-end: 12;
                 grid-row-start: 38;
                 grid-row-end: 46;
             }
 
             :nth-child(9) {
-                grid-column-start: 17;
+                grid-column-start: 13;
                 grid-column-end: 24;
                 grid-row-start: 38;
                 grid-row-end: 46;
@@ -214,6 +214,11 @@
         }
     }
 
+    @media(min-width: $bp-horiz-large) {
+        .design-nav { 
+            padding: 40px;
+        }
+    }
 
     @media(min-width: 1366px) {
         .project-tile, .design-nav {
