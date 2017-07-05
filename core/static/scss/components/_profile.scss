@@ -83,9 +83,9 @@
 
             display: grid;
             grid-template-columns: repeat(30, 3.33%);
-            grid-template-rows: 23px;
+            grid-template-rows: 31px;
             grid-auto-columns: 2.5%;
-            grid-auto-rows: 23px;
+            grid-auto-rows: 31px;
 
             @media(min-width: $bp-horiz-large) {
                 grid-template-rows: 31px;
@@ -96,7 +96,8 @@
                 display: block;
                 position: relative;
                 height: auto;
-                margin-bottom: 0;
+                width: auto;
+                margin: 0 0 0 0;
 
                 .modal {
                     margin: $spacing-small;
