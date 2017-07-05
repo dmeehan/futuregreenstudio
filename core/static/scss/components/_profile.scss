@@ -56,6 +56,7 @@
 .profile-people {
     @media(min-width: $bp-horiz-medium) {
         @include display(flex);
+        @include flex-wrap(wrap);
 
         .profile-employee {
             @include flex(0 0 50%);
