@@ -98,11 +98,12 @@
     }
 
     @media(min-width: $bp-horiz-large) {
+        padding: 1rem; 
         opacity: 0;
         
     }
 
-    @media(min-width: $bp-horiz-large) {
+    @media(min-width: $bp-horiz-xlarge) {
         padding: $spacing-base; 
     }
 }
