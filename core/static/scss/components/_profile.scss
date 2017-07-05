@@ -448,14 +448,14 @@
 
             :nth-child(18) {
                 grid-column-start: 1;
-                grid-column-end: span 11;
+                grid-column-end: span 10;
                 grid-row-start: $grid-row-last + 9;
                 grid-row-end: span 7;
             }
 
             :nth-child(19) {
-                grid-column-start: 13;
-                grid-column-end: span 6;
+                grid-column-start: 12;
+                grid-column-end: span 7;
                 grid-row-start: $grid-row-last + 9;
                 grid-row-end: span 7;
             }
@@ -476,21 +476,21 @@
 
             :nth-child(22) {
                 grid-column-start: 1;
-                grid-column-end: span 11;
+                grid-column-end: span 10;
                 grid-row-start: $grid-row-last + 17;
                 grid-row-end: span 12;
             }
 
             :nth-child(23) {
-                grid-column-start: 13;
-                grid-column-end: span 6;
+                grid-column-start: 12;
+                grid-column-end: span 7;
                 grid-row-start: $grid-row-last + 17;
                 grid-row-end: span 7;
             }
 
             :nth-child(24) {
-                grid-column-start: 13;
-                grid-column-end: span 6;
+                grid-column-start: 12;
+                grid-column-end: span 7;
                 grid-row-start: $grid-row-last + 25;
                 grid-row-end: span 4;
             }
