@@ -31,6 +31,18 @@
                     <li><a href="{{ publication.specific.url }}">{{ publication.specific.title }}</a></li>
                 {% endfor %}
                 </ul>
+                {% if publications.count > 5 %}
+                <div class="expander">
+                    <button type="button" class="link-more expander-trigger">More</button>
+                    <div class="expander-content">
+                        <ul class="press-publications link-list">
+                        {% for publication in publications|slice:"5:" %}
+                            <li><a href="{{ publication.specific.url }}">{{ publication.specific.title }}</a></li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
             </div>
             {% endif %}
             {% if page.awards %}
