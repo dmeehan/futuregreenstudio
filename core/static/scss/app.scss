@@ -168,7 +168,15 @@
         &:after {
             margin-left: $spacing-small/3;
             font-family: FontAwesome;
-            content: "\f14c";
+            content: "\f08e";
+        }
+    }
+
+    .press-award {
+        padding-top: 0.5rem;
+
+        &:first-child {
+            padding-top: 0;
         }
     }
 }
