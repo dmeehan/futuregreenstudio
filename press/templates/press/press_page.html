@@ -69,10 +69,10 @@
     </section>
     <ul class="pagination">
       {% if newsitems.has_next %}
-        <li><a href="?page={{ newsitems.next_page_number }}"><i class="fa fa-angle-left"></i>&#160;Older</a></li>
+        <li class="pagination-item"><a href="?page={{ newsitems.next_page_number }}"><i class="fa fa-angle-left"></i>&#160;Older</a></li>
       {% endif %}
       {% if newsitems.has_previous %}
-        <li><a href="?page={{ newsitems.previous_page_number }}">Newer&#160;<i class="fa fa-angle-right"></i></a></li>
+        <li class="pagination-item"><a href="?page={{ newsitems.previous_page_number }}">Newer&#160;<i class="fa fa-angle-right"></i></a></li>
       {% endif %}
       <!--
       {% for page_num in newsitems.paginator.page_range %}
