@@ -6,8 +6,8 @@
 
 {% block content %}
 <main>
-    <div class="design-projects">
-        <nav class="design-nav">
+    <div class="design-projects mosaic">
+        <nav class="design-nav mosaic-tile">
             <h1 class="section-title">{{ page.title }}</h1>
             <ul>
             {% for category in page.project_categories.all %}
@@ -18,7 +18,7 @@
         </nav>
         {% for project in projects %}
         {% image project.specific.main_image width-1000 as img %}
-        <section class="project-tile" 
+        <section class="project-tile mosaic-tile" 
             data-categories="all  {% for category in project.categories.all %}{{ category|cut:' '|cut:'/' }} {% endfor %}">
             <div class="tile-image" style="background-image: url({{ img.url }})"></div>
             <div href="{{ project.specific.url }}" class="modal js-modal">

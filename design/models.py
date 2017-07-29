@@ -26,7 +26,7 @@ class DesignPage(Page):
     parent_page_types = ['home.HomePage']
 
     def get_context(self, request):
-        pagination_num = 19
+        pagination_num = 25
         context = super(DesignPage, self).get_context(request)
         
         category = request.GET.get('category')
