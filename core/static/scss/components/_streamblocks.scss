@@ -163,7 +163,7 @@
     padding: 0;
     padding-bottom: $spacing-base;
 
-    :last-child {
+    &:last-child {
         padding-bottom: 0;
         margin-bottom: 0;
     }
