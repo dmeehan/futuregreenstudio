@@ -170,6 +170,10 @@
             font-family: FontAwesome;
             content: "\f08e";
         }
+
+        &:hover {
+            color: $green;
+        }
     }
 
     .press-award {
