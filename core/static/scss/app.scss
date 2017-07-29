@@ -165,11 +165,11 @@
     a {
         color: white;
 
-        &:after {
+        /*&:after {
             margin-left: $spacing-small/3;
             font-family: FontAwesome;
             content: "\f061";
-        }
+        }*/
 
         &:hover {
             color: $green;
