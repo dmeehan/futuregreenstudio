@@ -143,10 +143,12 @@
 
 .block-pullquote {
     blockquote {
-        font-size: 2.5em;
-        font-family: $font-family-emphasis;
-        color: $light-gray;
-        font-style: italic;
+        padding: $spacing-base*1.5 0;
+        margin: 0;
+        font-size: 1.5rem;
+        font-family: $font-family-heading;
+        color: $green;
+        font-style: normal;
 
         &::before {
             content: "\201C";
@@ -164,7 +166,6 @@
 
 
 .block-project {
-    @include clearfix;
     margin-bottom: $spacing-base;
     font-size: 0.875rem;
 
@@ -172,9 +173,15 @@
         margin-bottom: $spacing-small/2;
     }
 
+    .block-project-image {
+        @include flex(none);
+        //width: 50%;
+        //max-width: 200px;
+        padding-bottom: 1rem;
+    }
+
     img {
-        float: left;
-        padding-right: 1rem;
+        width: 100%;
     }
 
     p {
@@ -193,6 +200,14 @@
     :last-child {
         padding-bottom: 0;
         margin-bottom: 0;
+    }
+
+    @media (min-width: $bp-horiz-medium) {
+        @include display(flex);
+        .block-project-image {
+            width: 200px;
+            padding-right: 1rem;
+        }
     }
 }
 

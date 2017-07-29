@@ -27,7 +27,7 @@
             <div class="press-publications">
                 <h2 class="article-title">Publications</h2>
                 <ul class="press-publications link-list">
-                {% for publication in publications %}
+                {% for publication in publications|slice:":5" %}
                     <li><a href="{{ publication.specific.url }}">{{ publication.specific.title }}</a></li>
                 {% endfor %}
                 </ul>

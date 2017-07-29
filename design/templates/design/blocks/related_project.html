@@ -1,6 +1,11 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 <div class="block-project">
-    <a href="{{ value.url }}">{% image value.main_image width-200 %}
+    <div class="block-project-image">
+        {% image value.main_image fill-800x304 as img %}
+        <a href="{{ value.url }}"><img src="{{ img.url }}" /></a>
+    </div>
+    <div class="block-project-content">
     <h5><a href="{{ value.url }}">{{ value.title }}</a></h5>
     {{ value.description|richtext|truncatewords_html:20 }}
+    </div>
 </div>
