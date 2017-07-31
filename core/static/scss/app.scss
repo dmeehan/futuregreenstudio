@@ -2,6 +2,7 @@
 @import "base/base";
 
 @import "components/design";
+@import "components/expander";
 @import "components/footer";
 @import "components/links";
 @import "components/logo";
@@ -154,7 +155,7 @@
 .press-awards {
     h3 {
         font-size: 1rem;
-        margin-bottom: 0;
+        margin-bottom: .25rem;
         padding-bottom: 0;
         padding-top: $spacing-base;
     }
@@ -178,7 +179,8 @@
     }
 
     .press-award {
-        padding-bottom: 0.5rem;
+        line-height: 1.1;
+        padding-bottom: 0.25rem;
 
         &:last-child {
             padding-top: 0;

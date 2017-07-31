@@ -54,7 +54,7 @@
 }
 
 .profile-people {
-    @media(min-width: $bp-horiz-medium) {
+    /*@media(min-width: $bp-horiz-medium) {
         @include display(flex);
         @include flex-wrap(wrap);
 
@@ -537,6 +537,7 @@
             }
         }
     }
+    */
 }
 
 

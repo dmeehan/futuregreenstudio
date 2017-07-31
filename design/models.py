@@ -103,7 +103,8 @@ class ProjectPage(Page):
     location = models.CharField(blank=True,
         max_length=255, help_text='Project location')
     description = RichTextField(blank=True)
-    date = models.DateField("Project date")
+    date = models.CharField(blank=True,
+        max_length=255, help_text='Project Date / Season')
     size = models.CharField(blank=True,
         max_length=255, help_text='Project size')
 
@@ -148,12 +149,15 @@ class ProjectPage(Page):
 class ProjectPageGalleryImage(Orderable):
     page = ParentalKey(ProjectPage, related_name='gallery_images')
     image = models.ForeignKey(
-        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+'
-    )
+        'wagtailimages.Image', blank=True, null=True, on_delete=models.PROTECT, related_name='+',
+        help_text='Slideshow image. Include either one image or one video per slideshow item.')
+    video = models.URLField(blank=True,
+        help_text='URL from a video streaming service such as Vimeo. Video will take precedence over an image if both are included.')
     caption = models.CharField(blank=True, max_length=250)
 
     panels = [
         ImageChooserPanel('image'),
+        FieldPanel('video'),
         FieldPanel('caption'),
     ]
 

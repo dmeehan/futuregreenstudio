@@ -16,10 +16,10 @@
             {{ page.about_text|richtext }}
         </article>
     </section>
-    <section class="profile-people">
+    <section class="mosaic profile-people">
         {% for employee in employees %}
         {% image employee.image fill-800x800 as img %}
-            <div class="js-modal-anchor profile-employee">
+            <div class="mosaic-tile profile-employee js-modal-anchor ">
                 <div class="tile-image" style="background-image: url({{ img.url }})">
                 </div>
                  <div class="modal js-modal">

@@ -17,7 +17,7 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, MultiFie
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
 
-from core.blocks import CaptionedImageBlock, MarkdownBlock
+from core.blocks import CaptionedImageBlock, MarkdownBlock, CarouselBlock
 
 class Award(models.Model):
     page = ParentalKey('press.PressPage', related_name='awards')
@@ -42,7 +42,8 @@ class PressStreamBlock(StreamBlock):
     subheading = CharBlock(icon="title", classname="title")
     text = RichTextBlock(icon="pilcrow")
     image = ImageChooserBlock(template='press/blocks/image.html')
-    image_gallery = ListBlock(CaptionedImageBlock(), icon="image", label="Slideshow")
+    image_gallery = ListBlock(CaptionedImageBlock(), icon="image", label="Image Slideshow")
+    #image_or_video_gallery = ListBlock(CarouselBlock(), icon="image", label="Image or Video Slideshow")
     video = EmbedBlock()
     project = PageChooserBlock(target_model='design.ProjectPage', template='design/blocks/related_project.html')
     pullquote = BlockQuoteBlock()

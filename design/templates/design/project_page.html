@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
 
 {% block body_class %}body--design{% endblock %}
 
@@ -21,7 +21,7 @@
         <aside class="project-meta">
             {% if page.date %}
             <div class="project-meta-date">
-                <h3>{{ page.date|date:"M Y" }}</h3>
+                <h3>{{ page.date }}</h3>
             </div>
             {% endif %}
             {% if page.size %}
@@ -105,8 +105,14 @@
         <div class="slideshow js-slideshow">
         {% for item in page.gallery_images.all %}
             <div>
+                {% if item.video %}
+                <div class="responsive-object">
+                    {% embed item.video %}
+                </div>
+                {% else %}
                 {% image item.image fill-1600x904 as img %}
                 <img data-lazy="{{ img.url }}" />
+                {% endif %}
             </div>
         {% endfor %}
         </div>

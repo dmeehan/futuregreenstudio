@@ -11,9 +11,19 @@
             <h1 class="section-title">{{ page.title }}</h1>
             <ul>
             {% for category in page.project_categories.all %}
-                <li><a class="js-category-sort" data-category="{{ category|cut:' '|cut:'/' }}" href="{% pageurl page %}?category={{ category }}">{{ category.name }}</a></li>
+                <li><a data-category="{{ category|cut:' '|cut:'/' }}" 
+                        href="{% pageurl page %}?category={{ category }}"
+                        {% if search_category == category.name %}class="is-active"{% endif %}>
+                    {{ category.name }}</a>
+                </li>
             {% endfor %}
-                <li><a class="js-category-sort" data-category="all" href="{% pageurl page %}?category={{ category }}">All Projects</a></li>
+                <li>
+                    <a data-category="all" 
+                        href="{% pageurl page %}"
+                        {% if not search_category %}class="is-active"{% endif %}>
+                        All Projects
+                    </a>
+                </li>
             </ul>
         </nav>
         {% for project in projects %}
