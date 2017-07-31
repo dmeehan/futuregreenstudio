@@ -1,0 +1,32 @@
+.expander {
+    .expander-input {
+        display: none;
+
+        &:checked {
+            + .expander-trigger {
+                margin-bottom: 0;
+                padding-bottom: 0;
+                span {
+                    display: none;
+                }
+
+                &:before {
+                    content: "Less";
+                }
+
+                + .expander-content {
+                    display: block;
+                }
+            }
+        }
+    }
+
+
+    .expander-trigger {
+        color: $green;
+    }
+
+    .expander-content {
+        display: none;
+    }
+}
