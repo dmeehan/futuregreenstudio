@@ -1,7 +1,7 @@
 .modal {
     @include transition(opacity 0.25s ease-in-out);
     background-color: $green;
-    
+
     &.is-visible {
         @include transition(all 0.5s ease-in-out);
         opacity: 1;
@@ -23,18 +23,19 @@
         right: 0;
         z-index: 9999;
         margin: 0;
-        background-color: transparentize($green, 0.3);
+        background-color: transparent;
         opacity: 1;
         overflow: auto;
-        
+
         .modal-detail {
             @include transition(all 0.5s ease-in-out);
             opacity: 1;
             width: 95%;
             height: auto;
-            //padding: 2.5rem;
+            background-color: white;
+            mix-blend-mode: normal;
 
-            @media(min-width: $bp-horiz-medium) {
+            @media(min-width: $bp-horiz-large) {
                 width: 60%;
             }
         }
@@ -52,6 +53,18 @@
                 display: none;
             }
         }
+
+        + .modal-overlay {
+            display: block;
+            position: fixed;
+            z-index: 9998;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: $green;
+            mix-blend-mode: multiply;
+        }
     }
 
     @media(min-width: $bp-horiz-large) {
@@ -68,6 +81,10 @@
     @media(min-width: $bp-horiz-large) {
         margin: 1rem;
     }
+}
+
+.modal-overlay {
+    display: none;
 }
 
 .modal-anchor {
