@@ -36,6 +36,10 @@
             mix-blend-mode: normal;
 
             @media(min-width: $bp-horiz-large) {
+                width: 80%;
+            }
+
+            @media(min-width: $bp-horiz-xlarge) {
                 width: 60%;
             }
         }
