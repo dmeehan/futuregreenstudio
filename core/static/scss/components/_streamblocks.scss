@@ -85,7 +85,7 @@
 
         > li {
             
-            padding-bottom: $spacing-base;
+            padding-bottom: $spacing-base*2;
         }
     }
 
@@ -104,7 +104,7 @@
             @include flex-wrap(wrap);
 
             > li {
-                @include flex(1 1 50%);
+                @include flex(0 1 50%);
 
                 &:nth-child(odd) {
                     padding-right: 1.75rem;

@@ -54,6 +54,7 @@
     overflow: hidden;
     padding-bottom: 75%;
     display: block;
+    padding-top: 0;
 
     img {
         position: absolute;
@@ -197,6 +198,13 @@
 
 .research-intro {
     color: $color-font-base;
+    line-height: 1.5;
+}
+
+.research-publications {
+    .article-title {
+        color: $color-font-base;
+    }
 }
 
 .research {
@@ -214,8 +222,13 @@
     }
 
     h2 {
-        font-size: 2.5em;
-        margin-bottom: 2.5rem;
+        font-size: 2em;
+        margin-bottom: 2rem;
+
+        @media (min-width: $bp-horiz-medium) {
+            font-size: 2.5em;
+            margin-bottom: 2.5rem;
+        }
     }
 
     h3 {

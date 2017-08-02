@@ -1,4 +1,8 @@
 .mosaic {
+    .mosaic-tile {
+        position: relative;
+    }
+
     @media(min-width: $bp-horiz-medium) {
         @include display(flex);
         @include flex-wrap(wrap);

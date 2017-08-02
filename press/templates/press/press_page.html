@@ -7,7 +7,10 @@
 {% block content %}
 <main class="press">
     <section>
-        <aside><h1 class="section-title">{{ page.title }}</h1></aside>
+        <aside>
+            <h1 class="section-title">{{ page.title }}</h1>
+            
+        </aside>
         <article>
             <h2 class="article-title">News</h2>
             {% for newsitem in newsitems %}
@@ -21,6 +24,18 @@
             {% empty %}
                 <p>No entries found.</p>
             {% endfor %}
+            <ul class="pagination">
+              {% if newsitems.has_next %}
+                <li class="pagination-item"><a href="?page={{ newsitems.next_page_number }}"><i class="fa fa-angle-left"></i>&#160;Older</a></li>
+              {% endif %}
+              {% if newsitems.has_previous %}
+                <li class="pagination-item"><a href="?page={{ newsitems.previous_page_number }}">Newer&#160;<i class="fa fa-angle-right"></i></a></li>
+              {% endif %}
+              <!--
+              {% for page_num in newsitems.paginator.page_range %}
+                <li {% if page_num == newsitems.number %}class="is-active"{% endif %}><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+              {% endfor %}-->
+            </ul>
         </article>
         <aside>
             {% if publications %}
@@ -67,17 +82,6 @@
             {% endif %}
         </aside>
     </section>
-    <ul class="pagination">
-      {% if newsitems.has_next %}
-        <li class="pagination-item"><a href="?page={{ newsitems.next_page_number }}"><i class="fa fa-angle-left"></i>&#160;Older</a></li>
-      {% endif %}
-      {% if newsitems.has_previous %}
-        <li class="pagination-item"><a href="?page={{ newsitems.previous_page_number }}">Newer&#160;<i class="fa fa-angle-right"></i></a></li>
-      {% endif %}
-      <!--
-      {% for page_num in newsitems.paginator.page_range %}
-        <li {% if page_num == newsitems.number %}class="is-active"{% endif %}><a href="?page={{ page_num }}">{{ page_num }}</a></li>
-      {% endfor %}-->
-    </ul>
+    
 </main>
 {% endblock %}

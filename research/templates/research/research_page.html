@@ -11,6 +11,18 @@
         <article>
             <h2 class="article-title research-intro">{{ page.intro }}</h2>
         </article>
+        
+        <aside>
+            <div class="research-publications">
+                <h2 class="article-title">Publications</h2>
+                <ul class="link-list">
+                {% for publication in publications %}
+                    <li><a href="{{ publication.specific.url }}">{{ publication.specific.title }}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+        </aside>
+        
     </section>
     {% for project in projects %}
         <section class="section-slideshow project-slideshow">

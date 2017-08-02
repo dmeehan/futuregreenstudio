@@ -12,6 +12,8 @@ from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
+from press.models import PublicationPage
+
 
 class ResearchPage(Page):
     intro = models.TextField()
@@ -29,6 +31,8 @@ class ResearchPage(Page):
         
         all_projects = ResearchProjectPage.objects.live().child_of(self)
 
+        publications = PublicationPage.objects.live()[:2]
+
         paginator = Paginator(all_projects, pagination_num)
 
         page = request.GET.get('page')
@@ -43,6 +47,7 @@ class ResearchPage(Page):
 
         # make the variable 'projects' available on the template
         context['projects'] = projects
+        context['publications'] = publications
         
         return context
 

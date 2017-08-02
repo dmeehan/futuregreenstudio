@@ -32,13 +32,13 @@
             data-categories="all  {% for category in project.categories.all %}{{ category|cut:' '|cut:'/' }} {% endfor %}">
             <div class="tile-image" style="background-image: url({{ img.url }})"></div>
             <div href="{{ project.specific.url }}" class="modal js-modal">
-                 <div class="modal-glance profile-employee-glance">
+                 <a class="modal-glance profile-employee-glance" href="{{ project.specific.url }}">
                     <h3 class="modal-title">{{ project.specific.title }}</h3>
                     {% if project.specific.location %}
                     <h4 class="modal-subtitle">{{ project.specific.location }}</h4>
                     {% endif %}
-                    <a class="link-more" href="{{ project.specific.url }}">More</a>
-                 </div>
+                    <button type="button" class="link-more">More</button>
+                 </a>
             </div>
         </section>
         {% endfor %}

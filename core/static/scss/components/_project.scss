@@ -17,18 +17,18 @@
     }
 
     .modal-glance {
-        @media(min-width: $bp-horiz-xlarge) {
+        /*@media(min-width: $bp-horiz-xlarge) {
             padding: 40px;
-        }
+        }*/
     }
 
     .modal-title {
-        font-family: $font-family-heading;
-        font-size: 1.25rem;
+        //font-family: $font-family-heading;
+        //font-size: 1.25rem;
     }
 
     .modal-subtitle {
-        font-size: 1.125rem;
+        //font-size: 1.125rem;
     }
 
     &.is-disabled {

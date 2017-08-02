@@ -15,11 +15,12 @@
     z-index: 9998;
 
     h2 {
-        width: 100%;
+        font-family: $font-family-base;
+        max-width: 300px;
         color: white;
-        font-weight: bold;
+        font-weight: normal;
         padding-right: 5rem;
-        font-size: 1.25rem;
+        font-size: 1.125rem;
     }
 
     .social-link {
@@ -54,6 +55,7 @@
 
 .nav-toggle {
     @include transition(all 0.5s ease-in-out);
+    @include transform(scale(0.85));
     z-index: 9999;
     position: fixed;
     top: 28px;
@@ -116,6 +118,7 @@
         }
 
       + .nav-toggle {
+            @include transform(scale(0.75));
             span {
                 background: $dark-gray;
                 left: -100%;
