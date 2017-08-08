@@ -33,9 +33,9 @@ class DesignPage(Page):
 
         if category:
             context['search_category'] = category
-            all_projects = ProjectPage.objects.live().child_of(self).filter(categories__name=category).order_by('-date')
+            all_projects = ProjectPage.objects.live().child_of(self).filter(categories__name=category)
         else:
-            all_projects = ProjectPage.objects.live().child_of(self).order_by('-date')
+            all_projects = ProjectPage.objects.live().child_of(self)
 
         paginator = Paginator(all_projects, pagination_num) # Show 19 projects per page
 
