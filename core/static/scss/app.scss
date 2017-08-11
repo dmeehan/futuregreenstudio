@@ -271,8 +271,8 @@
         overflow: hidden;
 
         > li {
-            @include transition(opacity 2s ease-in-out);
-            @include transition(visibility 2s ease-in-out);
+            @include transition(all 2s ease-in-out);
+            //@include transition(visibility 2s ease-in-out);
             width: 100%;
             height: 100vh;
             position: absolute;
@@ -360,7 +360,7 @@
             }*/
 
             &.is-hidden {
-                @include transition(opacity 2s ease-in-out);
+                @include transition(all 2s ease-in-out);
                 @include transition(visibility 2s ease-in-out);
                 opacity: 0;
                 visibility: hidden;
