@@ -330,7 +330,7 @@
             }
 
             img {
-                display: block;
+                //display: block;
                 width: 100vw;
                 height: 100vh;
                 object-fit: cover;
@@ -361,7 +361,7 @@
 
             &.is-hidden {
                 @include transition(all 2s ease-in-out);
-                @include transition(visibility 2s ease-in-out);
+                //@include transition(visibility 2s ease-in-out);
                 opacity: 0;
                 visibility: hidden;
 
