@@ -319,7 +319,7 @@
                 }
             }*/
 
-            @supports object-fit {
+            @supports object-fit: cover {
                 a {
                     position: fixed;
                     width: 100vw;
