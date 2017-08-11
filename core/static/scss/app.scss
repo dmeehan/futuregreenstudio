@@ -271,7 +271,7 @@
         overflow: hidden;
 
         > li {
-            @include transition(all 2s ease-in-out);
+            @include transition(opcacity 2s ease-in-out);
             width: 100%;
             height: 100vh;
             position: absolute;
@@ -289,7 +289,7 @@
                 text-align: center;
             }
 
-            a {
+            /*a {
                 position: absolute;
                 z-index: 98;
                 display: block;
@@ -316,10 +316,31 @@
                 &[src] {
                     //opacity: 1;
                 }
+            }*/
+
+            a {
+                display: block;
+                position: fixed; 
+                  top: -50%; 
+                  left: -50%; 
+                  width: 200%; 
+                  height: 200%;
+            }
+
+            img {
+                position: absolute; 
+              top: 0; 
+              left: 0; 
+              right: 0; 
+              bottom: 0; 
+              margin: auto; 
+              min-width: 50%;
+              min-height: 50%;
+              overflow-x: hidden;
             }
 
             &.is-hidden {
-                @include transition(all 2s ease-in-out);
+                @include transition(opacity 2s ease-in-out);
                 opacity: 0;
                 visibility: hidden;
 
