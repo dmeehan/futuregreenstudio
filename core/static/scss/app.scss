@@ -319,23 +319,23 @@
                 }
             }*/
 
-            @supports object-fit: cover {
-                a {
-                    position: fixed;
-                    width: 100vw;
-                    height: 100vh;
-                    z-index: 98;
-                    display: block;
-                    background-color: transparent;
-                }
-
-                img {
-                    display: block;
-                    width: 100vw;
-                    height: 100vh;
-                    object-fit: cover;
-                }
+            
+            a {
+                position: fixed;
+                width: 100vw;
+                height: 100vh;
+                z-index: 98;
+                display: block;
+                background-color: transparent;
             }
+
+            img {
+                display: block;
+                width: 100vw;
+                height: 100vh;
+                object-fit: cover;
+            }
+            
             
 
             /*a {
