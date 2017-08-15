@@ -4,10 +4,15 @@
 
 {% block body_class %}body--profile{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+  integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+  crossorigin=""/>
+{% endblock %}
+
 {% block content %}
 <main class="contact">
-    <section class="section-image">
-        {% image page.image fill-1600x608 %}
+    <section class="section-map" id="js-map">
     </section>
     <section class="content-section">
         <aside><h1 class="section-title">{{ page.title }}</h1></aside>
@@ -71,4 +76,46 @@
                 </li>
             </ul>
         </footer>
-        {% endblock %}
+{% endblock %}
+{% block extra_js %}
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+      integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+      crossorigin=""></script>
+    <script>
+          var map = L.map('js-map', {
+            center: [40.6734578,-74.0121125],
+            zoom: 13,
+            scrollWheelZoom: false,
+            touchZoom: false,
+            dragging: false,
+            tap: true,
+            doubleClickZoom: false,
+            boxZoom: false,
+            keyboard: false,
+            zoomControl: false
+          });
+
+          // Prep the background tile layer
+          var tileUrl = 'http://api.tiles.mapbox.com/v3/mnegret.i9i0hhj2/{z}/{x}/{y}.png';
+          //var tileUrl = 'http://api.tiles.mapbox.com/v3/dmeehan.map-t3op9nm9/{z}/{x}/{y}.png';
+
+          var tileAttribution = 'Data &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors, Design &copy; MapBox';
+
+          // Add the tile layer
+          var streets = L.tileLayer(tileUrl, {
+              attribution: tileAttribution,
+          }).addTo(map);
+
+          //map.setZoom(13, { animate: true} );
+
+          // add a marker in the given location, attach some popup content to it
+          L.circleMarker([40.6734578,-74.0121125],  {
+            color: '#fffff',
+            fillColor: '#eeff00',
+            opacity: 1,
+            fillOpacity: 1,
+            radius: 8,
+            weight: 2
+          }).addTo(map)
+    </script>
+{% endblock %}

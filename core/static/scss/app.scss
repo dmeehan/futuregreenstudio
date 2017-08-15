@@ -84,6 +84,16 @@
     }
 }
 
+.section-map {
+    padding-top: 0;
+    padding-bottom: 56%;
+
+    @media(min-width: $bp-horiz-medium) {
+        padding-bottom: 38%;
+    }
+    
+}
+
 .tile-image {
     position: relative;
     overflow: hidden;
