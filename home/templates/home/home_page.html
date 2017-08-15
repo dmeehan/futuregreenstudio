@@ -36,8 +36,7 @@
             var $firstImg = $firstSlide.find('img');
             var $secondImg = $secondSlide.find('img');
 
-            //var hasObjectFit = ('objectFit' in document.documentElement.style);
-            var hasObjectFit = false;
+            var hasObjectFit = ('objectFit' in document.documentElement.style);
 
             // load the first two images in the slideshow
             $firstImg.attr('src', $firstImg.data('src'));
@@ -49,7 +48,6 @@
               $secondImg.parent().css('backgroundImage', 'url(' + $secondImg.data('src') + ')').addClass('compat-object-fit');
             }
             
-
             // show the first slide
             $firstSlide.removeClass('is-hidden');
 
