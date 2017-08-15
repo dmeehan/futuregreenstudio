@@ -85,10 +85,11 @@
 }
 
 .section-map {
-    padding-top: 0;
+    padding-top: 0 !important;
     padding-bottom: 56%;
 
     @media(min-width: $bp-horiz-medium) {
+        padding-top: 0;
         padding-bottom: 38%;
     }
     
