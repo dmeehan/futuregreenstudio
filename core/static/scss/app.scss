@@ -297,16 +297,26 @@
                 z-index: 98;
                 display: block;
                 background-color: transparent;
+
+                img {
+                    width: 100vw;
+                    height: 100vh;
+                    object-fit: cover;
+                }
+
+                &.compat-object-fit {
+                   background-size: cover;
+                   background-position: center center;
+
+                   img { 
+                        opacity: 0;
+                   }
+                }
             }
 
-            img {
-                //display: block;
-                width: 100vw;
-                height: 100vh;
-                object-fit: cover;
-            }
+            
 
-            @supports not(object-fit: cover) {
+            /*@supports not(object-fit: cover) {
 
                 a {
                     position: absolute;
@@ -329,7 +339,7 @@
                     left:-9999px; right:-9999px;
                     margin:auto;
                 }
-            }
+            }*/
             
             
 

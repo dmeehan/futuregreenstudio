@@ -36,9 +36,18 @@
             var $firstImg = $firstSlide.find('img');
             var $secondImg = $secondSlide.find('img');
 
+            //var hasObjectFit = ('objectFit' in document.documentElement.style);
+            var hasObjectFit = false;
+
             // load the first two images in the slideshow
-            $firstImg.attr('src', $firstImg.data('src'));
-            $secondImg.attr('src', $secondImg.data('src'));
+            if (hasObjectFit) {
+              $firstImg.attr('src', $firstImg.data('src'));
+              $secondImg.attr('src', $secondImg.data('src'));
+            } else {
+              $firstImg.parent().css('backgroundImage', 'url(' + $firstImg.data('src') + ')').addClass('compat-object-fit');
+              $secondImg.parent().css('backgroundImage', 'url(' + $secondImg.data('src') + ')').addClass('compat-object-fit');
+            }
+            
 
             // show the first slide
             $firstSlide.removeClass('is-hidden');
@@ -47,7 +56,11 @@
               // load the next unloaded image
               var $nextImgToLoad = $slideshow.find('img:not([src])').first();
               if ($nextImgToLoad.length) {
-                $nextImgToLoad.attr('src', $nextImgToLoad.data('src'))
+                if (hasObjectFit) {
+                  $nextImgToLoad.attr('src', $nextImgToLoad.data('src'))
+                } else {
+                  $nextImgToLoad.parent().css('backgroundImage', 'url(' + $nextImgToLoad.data('src') + ')').addClass('compat-object-fit');
+                }
               };
 
               // show the next slide
