@@ -40,10 +40,11 @@
             var hasObjectFit = false;
 
             // load the first two images in the slideshow
-            if (hasObjectFit) {
-              $firstImg.attr('src', $firstImg.data('src'));
-              $secondImg.attr('src', $secondImg.data('src'));
-            } else {
+            $firstImg.attr('src', $firstImg.data('src'));
+            $secondImg.attr('src', $secondImg.data('src'));
+            
+            // if the browser does not support object fit, add the image as a background image and add a class to apply proper style
+            if (!hasObjectFit) {
               $firstImg.parent().css('backgroundImage', 'url(' + $firstImg.data('src') + ')').addClass('compat-object-fit');
               $secondImg.parent().css('backgroundImage', 'url(' + $secondImg.data('src') + ')').addClass('compat-object-fit');
             }
@@ -56,11 +57,11 @@
               // load the next unloaded image
               var $nextImgToLoad = $slideshow.find('img:not([src])').first();
               if ($nextImgToLoad.length) {
-                if (hasObjectFit) {
-                  $nextImgToLoad.attr('src', $nextImgToLoad.data('src'))
-                } else {
+                $nextImgToLoad.attr('src', $nextImgToLoad.data('src'))
+                // if the browser does not support object fit, add the image as a background image and add a class to apply proper style
+                if (!hasObjectFit) {
                   $nextImgToLoad.parent().css('backgroundImage', 'url(' + $nextImgToLoad.data('src') + ')').addClass('compat-object-fit');
-                }
+                } 
               };
 
               // show the next slide
