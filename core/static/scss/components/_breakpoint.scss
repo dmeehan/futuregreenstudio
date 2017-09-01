@@ -1,0 +1,40 @@
+/**
+ * These values will not show up in content, but can be 
+ * queried by JavaScript to know which breakpoint is active.
+ * Add or remove as many breakpoints as you like.
+ */
+
+$bp-horiz-small: 320px;
+$bp-horiz-medium: 768px;
+$bp-horiz-large: 1024px;
+$bp-horiz-xlarge: 1280px;
+$bp-horiz-max: 1600px;
+
+body:before {
+  content: "small";
+  display: none; /* Prevent from displaying. */
+}
+
+@media (min-width: $bp-horiz-medium) {
+  body:before {
+    content: "medium";
+  }
+}
+
+@media (min-width: $bp-horiz-large) {
+  body:before {
+    content: "large";
+  }
+}
+
+@media (min-width: $bp-horiz-xlarge) {
+  body:before {
+    content: "xlarge";
+  }
+}
+
+@media (min-width: $bp-horiz-max) {
+  body:before {
+    content: "max";
+  }
+}

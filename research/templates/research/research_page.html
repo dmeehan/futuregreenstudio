@@ -59,10 +59,10 @@
     {% endfor %}
     <ul class="pagination">
       {% if projects.has_next %}
-        <li><a href="?page={{ projects.next_page_number }}"><i class="fa fa-angle-left"></i>&#160;Older</a></li>
+        <li class="pagination-item"><a href="?page={{ projects.next_page_number }}"><i class="fa fa-angle-left"></i>&#160;Older</a></li>
       {% endif %}
       {% if projects.has_previous %}
-        <li><a href="?page={{ projects.previous_page_number }}">Newer&#160;<i class="fa fa-angle-right"></i></a></li>
+        <li class="pagination-item"><a href="?page={{ projects.previous_page_number }}">Newer&#160;<i class="fa fa-angle-right"></i></a></li>
       {% endif %}
       <!--
       {% for page_num in projects.paginator.page_range %}

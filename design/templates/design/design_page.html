@@ -8,7 +8,7 @@
 <main>
     <div class="design-projects mosaic">
         <nav class="design-nav mosaic-tile">
-            <h1 class="section-title">{{ page.title }}</h1>
+            <h1 class="section-title">{{ page.title }} {{ placeholder_count }}</h1>
             <ul>
             {% for category in page.project_categories.all %}
                 <li><a data-category="{{ category|cut:' '|cut:'/' }}" 
@@ -27,13 +27,17 @@
             </ul>
         </nav>
         {% for project in projects %}
-        {% image project.specific.main_image width-1000 as img %}
+        {% if project.specific.list_image != None %}
+            {% image project.specific.list_image fill-800x800 as img %}
+        {% else %}
+            {% image project.specific.main_image fill-800x800 as img %}
+        {% endif %}
         <section class="project-tile mosaic-tile" 
             data-categories="all  {% for category in project.categories.all %}{{ category|cut:' '|cut:'/' }} {% endfor %}">
             <div class="tile-image" style="background-image: url({{ img.url }})"></div>
             <div href="{{ project.specific.url }}" class="modal js-modal">
                  <a class="modal-glance profile-employee-glance" href="{{ project.specific.url }}">
-                    <h3 class="modal-title">{{ project.specific.title }}</h3>
+                    <h3 class="modal-title">{{ project.specific.title }}  {{ project.specfic.main_image }}</h3>
                     {% if project.specific.location %}
                     <h4 class="modal-subtitle">{{ project.specific.location }}</h4>
                     {% endif %}
@@ -42,12 +46,8 @@
             </div>
         </section>
         {% endfor %}
-        {% for i in placeholder_count %}
-            <!--<section class="project is-empty">
-            &#160;
-            </section>-->
-        {% endfor %}
     </div>
+    {% if projects.has_previous or projects.has_next %}
     <ul class="pagination">
       {% if projects.has_previous %}
         <li class="pagination-item"><a class="pagination-link" href="?page={{ projects.previous_page_number }}"><i class="fa fa-angle-left"></i>&#160;Prev</a></li>
@@ -61,6 +61,7 @@
         <li class="pagination-item"><a class="pagination-link" href="?page={{ projects.next_page_number }}">Next&#160;<i class="fa fa-angle-right"></i></a></li>
       {% endif %}
     </ul>
+    {% endif %}
 </main>
 {% endblock %}
 {% block extra_js %}    
@@ -84,9 +85,40 @@
                     $(this).removeClass('is-disabled');
                 }
             });
+        });
+    </script>
 
-            
+    <script>
+        var $mosaic = $('.mosaic');
+        var placeholders = {};
+        var placeholder_html = '<section class="project-tile mosaic-tile is-placeholder"></section>';
+        placeholders.createPlaceholders = function () {
+            // remove existing placeholders
+            $('.mosaic-tile.is-placeholder').remove();
 
+            // get screen size and set placeholder count appropriately
+            if (breakpoint.value == 'large') {
+              placeholders.value = {{ placeholder_count_large }};
+            }
+            else if (breakpoint.value == 'xlarge' || breakpoint.value == 'max') {
+              placeholders.value = {{ placeholder_count_xlarge }};
+            } 
+            else {
+                placeholders.value = 0;
+            }
+
+            // create placeholders
+            for (i = 0; i < placeholders.value; i++) { 
+                $mosaic.append(placeholder_html);
+            }
+        };
+
+        $(window).resize(function () {
+            placeholders.createPlaceholders();
+        });
+        
+        $(document).ready(function() {
+            placeholders.createPlaceholders();
         });
     </script>
 {% endblock %}

@@ -49,11 +49,15 @@ class DesignPage(Page):
             # If page is out of range (e.g. 9999), deliver last page of results.
             projects = paginator.page(paginator.num_pages)
 
-        placeholder_count = range(pagination_num - projects.object_list.count())
+        placeholders_xlarge = 4 - ((projects.object_list.count() + 1) % 4)
+        placeholders_large = 3 - ((projects.object_list.count() + 1) % 3)
+        placeholder_count_xlarge = 0 if placeholders_xlarge == 4 else placeholders_xlarge
+        placeholder_count_large = 0 if placeholders_large == 3 else placeholders_large
 
         # make the variable 'projects' available on the template
         context['projects'] = projects
-        context['placeholder_count'] = placeholder_count
+        context['placeholder_count_xlarge'] = placeholder_count_xlarge
+        context['placeholder_count_large'] = placeholder_count_large
 
         return context
 
@@ -100,6 +104,10 @@ class ProjectPage(Page):
     main_image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.PROTECT, related_name='+'
     )
+    list_image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+',
+        blank=True, null=True
+    )
     location = models.CharField(blank=True,
         max_length=255, help_text='Project location')
     description = RichTextField(blank=True)
@@ -123,6 +131,7 @@ class ProjectPage(Page):
 
     content_panels = Page.content_panels + [
         ImageChooserPanel('main_image'),
+        ImageChooserPanel('list_image'),
         FieldPanel('date'),
         FieldPanel('size'),
         FieldPanel('location'),

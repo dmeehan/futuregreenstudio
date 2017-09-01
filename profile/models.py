@@ -78,8 +78,15 @@ class ProfilePage(Page):
         context = super(ProfilePage, self).get_context(request)
         employees = EmployeePage.objects.live().child_of(self)
 
+        placeholders_xlarge = 4 - (employees.count() % 4)
+        placeholders_large = 3 - (employees.count() % 3)
+        placeholder_count_xlarge = 0 if placeholders_xlarge == 4 else placeholders_xlarge
+        placeholder_count_large = 0 if placeholders_large == 3 else placeholders_large
+
         # make the variable 'employees' available on the template
         context['employees'] = employees
+        context['placeholder_count_xlarge'] = placeholder_count_xlarge
+        context['placeholder_count_large'] = placeholder_count_large
 
         return context
 

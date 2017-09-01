@@ -29,6 +29,24 @@
                 <h3>{{ page.size }}</h3>
             </div>
             {% endif %}
+            {% if page.collaborators.all %}
+            <div class="project-meta-collaborators">
+                <h3>Collaborator{{ page.collaborators.count|pluralize }}:</h3>
+                <ul>
+                {% for collaborator in page.collaborators.all %}
+                    <li>
+                        {% if collaborator.url %}
+                            <a href="{{ collaborator.url }}">
+                        {% endif %}
+                        {{ collaborator.name }}
+                        {% if collaborator.url %}
+                            </a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
             {% if page.clients.all %}
             <div class="project-meta-clients">
                 <h3>Client{{ page.clients.count|pluralize }}:</h3>
@@ -47,24 +65,6 @@
                 </ul>
             </div>
             {% endif %}
-            {% if page.collaborators.all %}
-            <div class="project-meta-collaborators">
-                <h3>Collaborator{{ page.collaborators.count|pluralize }}:</h3>
-                <ul>
-                {% for collaborator in page.collaborators.all %}
-                    <li>
-                        {% if collaborator.url %}
-                            <a href="{{ collaborator.url }}">
-                        {% endif %}
-                        {{ collaborator.name }}
-                        {% if collaborator.url %}
-                            </a>
-                        {% endif %}
-                    </li>
-                {% endfor %}
-                </ul>
-            </div>
-            {% endif %} 
             {% if page.website or page.twitter or page.facebook or page.instagram %}
             <div class="project-meta-links">
                 {% if page.website %}
@@ -110,7 +110,7 @@
                     {% embed item.video %}
                 </div>
                 {% else %}
-                {% image item.image fill-1600x904 as img %}
+                {% image item.image fill-1600x900 as img %}
                 <img data-lazy="{{ img.url }}" />
                 {% endif %}
             </div>

@@ -82,5 +82,38 @@
             });
         });
     </script>
+    <script>
+        var $mosaic = $('.mosaic');
+        var placeholders = {};
+        var placeholder_html = '<section class="profile-employee mosaic-tile is-placeholder"></section>';
+        placeholders.createPlaceholders = function () {
+            // remove existing placeholders
+            $('.mosaic-tile.is-placeholder').remove();
+
+            // get screen size and set placeholder count appropriately
+            if (breakpoint.value == 'large') {
+              placeholders.value = {{ placeholder_count_large }};
+            }
+            else if (breakpoint.value == 'xlarge' || breakpoint.value == 'max') {
+              placeholders.value = {{ placeholder_count_xlarge }};
+            } 
+            else {
+                placeholders.value = 0;
+            }
+
+            // create placeholders
+            for (i = 0; i < placeholders.value; i++) { 
+                $mosaic.append(placeholder_html);
+            }
+        };
+
+        $(window).resize(function () {
+            placeholders.createPlaceholders();
+        });
+        
+        $(document).ready(function() {
+            placeholders.createPlaceholders();
+        });
+    </script>
 {% endblock %}
 
