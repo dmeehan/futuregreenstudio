@@ -26,7 +26,7 @@ class DesignPage(Page):
     parent_page_types = ['home.HomePage']
 
     def get_context(self, request):
-        pagination_num = 25
+        pagination_num = 48
         context = super(DesignPage, self).get_context(request)
         
         category = request.GET.get('category')
@@ -37,7 +37,7 @@ class DesignPage(Page):
         else:
             all_projects = ProjectPage.objects.live().child_of(self)
 
-        paginator = Paginator(all_projects, pagination_num) # Show 19 projects per page
+        paginator = Paginator(all_projects, pagination_num)
 
         page = request.GET.get('page')
         try:
