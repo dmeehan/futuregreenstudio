@@ -369,12 +369,6 @@ $slick-opacity-not-active: 0.00 !default;
     }
 }
 
-@-webkit-keyframes sk-rotateplane {
-  0% { -webkit-transform: perspective(120px) }
-  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
-  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
-}
-
 @include keyframes(sk-rotateplane) {
   0% { 
     @include transform(perspective(120px) rotateX(0deg) rotateY(0deg));
@@ -396,6 +390,7 @@ $slick-opacity-not-active: 0.00 !default;
         width: 40px;
         height: 40px;
         background-color: $light-gray;
+    }
 }
 
 .slick-slider .slick-list { 
