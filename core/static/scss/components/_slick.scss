@@ -389,8 +389,6 @@ $slick-opacity-not-active: 0.00 !default;
 }
 
 .slick-slider {
-    position: relative;
-    //background: url(loader.gif);
     &::before {
         content: '';
         position: absolute;
@@ -411,7 +409,7 @@ $slick-opacity-not-active: 0.00 !default;
 
 .slick-slider.slick-initialized {
     &::before {
-        display: none;
+        //display: none;
     }
 }
 .slick-slider.slick-initialized .slick-list { 
