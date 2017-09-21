@@ -40,7 +40,7 @@ class Award(models.Model):
 class PressStreamBlock(StreamBlock):
     heading = CharBlock(icon="title", classname="title")
     subheading = CharBlock(icon="title", classname="title")
-    text = RichTextBlock(icon="pilcrow")
+    text = RichTextBlock(icon="pilcrow", features=['bold', 'italic', 'ul', 'ol', 'link'])
     image = ImageChooserBlock(template='press/blocks/image.html')
     image_gallery = ListBlock(CaptionedImageBlock(), icon="image", label="Image Slideshow")
     #image_or_video_gallery = ListBlock(CarouselBlock(), icon="image", label="Image or Video Slideshow")

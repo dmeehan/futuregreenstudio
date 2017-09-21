@@ -110,7 +110,7 @@ class ProjectPage(Page):
     )
     location = models.CharField(blank=True,
         max_length=255, help_text='Project location')
-    description = RichTextField(blank=True)
+    description = RichTextField(features=['bold', 'italic', 'ul', 'ol', 'link'])
     date = models.CharField(blank=True,
         max_length=255, help_text='Project Date / Season')
     size = models.CharField(blank=True,

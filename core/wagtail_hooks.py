@@ -4,7 +4,7 @@ from django.utils.html import format_html
 from wagtail.wagtailcore import hooks
 
 
-@hooks.register('insert_editor_css')
+'''@hooks.register('insert_editor_css')
 def editor_css():
     return format_html(
         '<link rel="stylesheet" href="{}">',
@@ -45,3 +45,4 @@ def editor_js():
 #@hooks.register('construct_main_menu')
 #def hide_snippets_menu_item(request, menu_items):
 #  menu_items[:] = [item for item in menu_items if item.name != 'snippets']
+'''

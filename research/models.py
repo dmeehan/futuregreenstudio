@@ -62,7 +62,7 @@ class ResearchProjectPageTag(TaggedItemBase):
 
 class ResearchProjectPage(Page):
     date = models.DateField("Project date")
-    description = RichTextField(blank=True)
+    description = RichTextField(features=['bold', 'italic', 'ul', 'ol', 'link'])
     tags = ClusterTaggableManager(through=ResearchProjectPageTag, blank=True)
 
     content_panels = Page.content_panels + [

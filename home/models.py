@@ -1,9 +1,11 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.db import models
+from django import forms
 
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, PageChooserPanel
 from wagtail.wagtailcore.models import Page, Orderable
+from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
 from wagtail.contrib.settings.models import BaseSetting, register_setting
@@ -51,7 +53,20 @@ class FirmInformation(BaseSetting):
         FieldPanel('instagram'),
     ]
 
+@register_setting
+class Mapbox(BaseSetting):
+    map_tile_url = models.URLField()
+    
+    panels = [
+        FieldPanel('map_tile_url'),
+    ]
+
 class HomePageGalleryItem(Orderable):
+    THEME_CHOICES = (
+        ('dark', 'Dark'),
+        ('light', 'Light'),
+    )
+    
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -66,12 +81,14 @@ class HomePageGalleryItem(Orderable):
         related_name='+',
         help_text='Add if you want this item to link to a page on this site.'
     )
-    caption = models.CharField(max_length=255, blank=True)
+    caption = RichTextField(features=['bold', 'italic'])
+    theme = models.CharField(max_length=255, choices=THEME_CHOICES, default='dark')
     page = ParentalKey('home.HomePage', related_name='slideshow_images')
 
     panels = [
         ImageChooserPanel('image'),
         FieldPanel('caption'),
+        FieldPanel('theme'),
         PageChooserPanel('link_page'),
     ]
 

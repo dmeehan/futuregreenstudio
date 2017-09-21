@@ -12,6 +12,7 @@
     
 
     .logo-link {
+        @include transition(all 2s ease-in-out);
         display: inline-block;
         width: 168px;
         padding-bottom: 30px;

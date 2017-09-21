@@ -289,17 +289,15 @@
             height: 100vh;
             position: absolute;
             overflow: hidden;
-            opacity: 1;
-            visibility: visible;
+            opacity: 0;
+            visibility: hidden;
 
             .slideshow-caption {
                 position: absolute;
                 color: white;
-                font-weight: bold;
-                bottom: 40px;
-                left: 0;
-                right: 0;
-                text-align: center;
+                font-size: 1.625rem;
+                top: calc(50% + 2.5rem);
+                left: 4rem;
             }
             
             a {
@@ -367,12 +365,96 @@
                     //display: none;
                 }
             }
+
+            &.is-active {
+                @include transition(all 2s ease-in-out);
+                //@include transition(visibility 2s ease-in-out);
+                opacity: 1;
+                visibility: visible;
+
+                a {
+                    //display: none;
+                }
+            }
+        }
+    }
+
+    .slideshow-nav {
+        @include display(flex);
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 50%;
+        left: 4rem;
+        z-index: 999999;
+
+        .slideshow-nav-item {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            > button {
+                @include transition(all 2s ease-in-out);
+                display: block;
+                margin: 0;
+                margin-right: .625rem;
+                padding: 0;
+                background-color: white;
+                height: .75rem;
+                width: .75rem;
+                border-radius: 50%;
+                outline: none;
+                
+                span {
+                    display: none;
+                }
+
+                &.is-active {
+                    @include transition(all 2s ease-in-out);
+                    background-color: $green;
+                }
+            }
+
+            
         }
     }
 
     .nav-toggle {
         span, &::before, &:after {
-            background: white;
+            background-color: $dark-gray;
+        }
+    }
+
+    &.theme-dark {
+        .nav-toggle {
+            span, &::before, &:after {
+                background-color: $dark-gray;
+            }
+        }
+
+        .logo {
+            .logo-link {
+                background-image: url("../../img/fgs_logo.png");
+            }
+        }
+    }
+
+    &.theme-light {
+        .nav-toggle {
+            span, &::before, &:after {
+                background-color: white;
+            }
+        }
+
+        .logo {
+            .logo-link {
+                background-image: url("../../img/fgs_logo_white.png");
+            }
+        }
+
+        .nav-toggle-trigger:checked + .nav-toggle {
+            span, &::before, &:after {
+                background-color: $dark-gray;
+            }
         }
     }
 }
