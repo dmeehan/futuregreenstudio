@@ -44,36 +44,53 @@
             var $secondSlide = $firstSlide.next();
             var $firstImg = $firstSlide.find('img');
             var $secondImg = $secondSlide.find('img');
-
-            //$('body').addClass('theme-' + $firstSlide.data('theme'));
-
             var hasObjectFit = ('objectFit' in document.documentElement.style);
 
+            function loadImage($img) {
+                $img.attr('src', $img.data('src'))
+                // if the browser does not support object fit, add the image as a background image and add a class to apply proper style
+                if (!hasObjectFit) {
+                  $img.parent().css('backgroundImage', 'url(' + $img.data('src') + ')').addClass('compat-object-fit');
+                }
+            }
+
+            function loadNextImage() {
+                // load the next unloaded image
+                var $nextImgToLoad = $slideshow.find('img:not([src])').first();
+                if ($nextImgToLoad.length) {
+                  loadImage($nextImgToLoad);
+                };
+            }
+
+            function loadRemainingImages() {
+              var $imgs = $slideshow.find('img:not([src])');
+
+              $imgs.each(function(){
+                console.log($(this).data('src'));
+                loadImage($(this));
+              });
+            }
+
+            loadImage($firstImg);
+            loadImage($secondImg);
+
             // load the first two images in the slideshow
-            $firstImg.attr('src', $firstImg.data('src'));
-            $secondImg.attr('src', $secondImg.data('src'));
+            //$firstImg.attr('src', $firstImg.data('src'));
+            //$secondImg.attr('src', $secondImg.data('src'));
             
             // if the browser does not support object fit, add the image as a background image and add a class to apply proper style
-            if (!hasObjectFit) {
-              $firstImg.parent().css('backgroundImage', 'url(' + $firstImg.data('src') + ')').addClass('compat-object-fit');
-              $secondImg.parent().css('backgroundImage', 'url(' + $secondImg.data('src') + ')').addClass('compat-object-fit');
-            }
+            //if (!hasObjectFit) {
+            //  $firstImg.parent().css('backgroundImage', 'url(' + $firstImg.data('src') + ')').addClass('compat-object-fit');
+            //  $secondImg.parent().css('backgroundImage', 'url(' + $secondImg.data('src') + ')').addClass('compat-object-fit');
+            //}
             
             // show the first slide
             $firstSlide.addClass('is-active');
             $('.js-slideshow-nav li:first button').addClass('is-active');
 
-            function nextSlide() {
-              // load the next unloaded image
-              var $nextImgToLoad = $slideshow.find('img:not([src])').first();
-              if ($nextImgToLoad.length) {
-                $nextImgToLoad.attr('src', $nextImgToLoad.data('src'))
-                // if the browser does not support object fit, add the image as a background image and add a class to apply proper style
-                if (!hasObjectFit) {
-                  $nextImgToLoad.parent().css('backgroundImage', 'url(' + $nextImgToLoad.data('src') + ')').addClass('compat-object-fit');
-                } 
-              };
 
+            function nextSlide() {
+              loadNextImage();
               // show the next slide
               var $currentSlide = $slideshow.find('li.is-active'); 
               var $nextSlide = $currentSlide.next().length ? $currentSlide.next() : $firstSlide;
@@ -101,6 +118,7 @@
 
             $('.js-pause-on-hover').hover(function(e){
                 clearInterval(timer);
+                loadRemainingImages();
             }, function(e){
                 timer = setInterval(nextSlide, 6000);
             });
