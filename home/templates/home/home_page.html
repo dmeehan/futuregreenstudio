@@ -71,8 +71,22 @@
               }
             }
 
-            loadImage($firstImg);
-            loadImage($secondImg);
+            function loadImages(num) {
+              $allImgs = $slideshow.find('img:not([src])');
+              if (typeof num !== 'undefined') {
+                $imgs = $allImgs.length < num ? $allImgs : $slideshow.find('img:not([src])').slice(0,num-1);
+              } else {
+                $imgs = $allImgs;
+              }
+
+              if ($imgs.length) {
+                $imgs.each(function(){
+                  loadImage($(this));
+                });
+              }
+            }
+
+            loadImages(4);
 
             // load the first two images in the slideshow
             //$firstImg.attr('src', $firstImg.data('src'));

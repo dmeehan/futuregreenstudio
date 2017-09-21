@@ -58,7 +58,7 @@
     //@include transform(scale(0.85));
     z-index: 9999;
     position: fixed;
-    top: 28px;
+    top: 30px;
     right: $spacing-base;
     margin: 0;
     display: block;
@@ -100,7 +100,7 @@
     }
 
     @media (min-width: $bp-horiz-medium) {
-        top: 58px;
+        top: 60px;
     }
 }
     

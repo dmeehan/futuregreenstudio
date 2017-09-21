@@ -295,10 +295,18 @@
             .slideshow-caption {
                 position: absolute;
                 color: white;
-                font-size: 1.875rem;
+                font-size: 1.5rem;
                 top: calc(50% + 2.5rem);
-                left: 4rem;
-                max-width: 40rem;
+                left: $spacing-base;
+                margin-right: $spacing-base;
+
+                @media (min-width: $bp-horiz-medium) {
+                    left: 4rem;
+                    max-width: 40rem;
+                    font-size: 1.875rem;
+                    margin-right: 0;
+                }
+
             }
             
             a {
@@ -386,8 +394,8 @@
         padding: 0;
         position: absolute;
         top: 50%;
-        left: 4rem;
-        z-index: 999999;
+        left: $spacing-base;
+        z-index: 999;
 
         .slideshow-nav-item {
             margin: 0;
@@ -413,9 +421,11 @@
                     @include transition(all 2s ease-in-out);
                     background-color: $green;
                 }
-            }
+            }  
+        }
 
-            
+        @media (min-width: $bp-horiz-medium) {
+            left: 4rem;
         }
     }
 
