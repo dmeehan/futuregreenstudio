@@ -64,11 +64,10 @@
 
             function loadRemainingImages() {
               var $imgs = $slideshow.find('img:not([src])');
-
-              $imgs.each(function(){
-                console.log($(this).data('src'));
-                loadImage($(this));
-              });
+              if ($imgs.length) {
+                $imgs.each(function(){
+                  loadImage($(this));
+                });
             }
 
             loadImage($firstImg);
