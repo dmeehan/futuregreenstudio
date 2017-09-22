@@ -299,6 +299,8 @@
                 top: calc(50% + 2.5rem);
                 left: $spacing-base;
                 margin-right: $spacing-base;
+                font-family:"KievitWeb W07 Medi";
+                text-shadow: 1px 1px 8px rgba(0,0,0,0.2);
 
                 @media (min-width: $bp-horiz-medium) {
                     left: 4rem;
