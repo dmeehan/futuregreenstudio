@@ -1,0 +1,14 @@
+<div class="slideshow js-slideshow">
+            {% for item in page.gallery_images.all %}
+                <div>
+                    {% if item.video %}
+                    <div class="responsive-object">
+                        {% embed item.video %}
+                    </div>
+                    {% else %}
+                    {% image item.image fill-1600x1200 as img %}
+                    <img src="{{ img.url }}" />
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>

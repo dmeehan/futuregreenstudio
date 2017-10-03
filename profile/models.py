@@ -63,6 +63,7 @@ class ProfilePage(Page):
         FieldPanel('about_text'),
         InlinePanel('clients', label="Clients"),
         InlinePanel('collaborators', label="Collaborators"),
+        InlinePanel('placeholder_images', label="Placeholder images"),
     ]
 
     subpage_types = ['profile.EmployeePage']
@@ -89,6 +90,16 @@ class ProfilePage(Page):
         context['placeholder_count_large'] = placeholder_count_large
 
         return context
+
+class ProfilePagePlaceholderImage(Orderable):
+    page = ParentalKey(ProfilePage, related_name='placeholder_images')
+    image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+',
+        help_text='Placeholder image.')
+
+    panels = [
+        ImageChooserPanel('image'),
+    ]
 
 '''class ProfilePageEmployee(Orderable, models.Model):
     page = ParentalKey(ProfilePage, related_name='profile_employees')

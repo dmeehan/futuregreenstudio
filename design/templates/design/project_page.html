@@ -101,21 +101,105 @@
             {% endif %} 
         </aside>
     </section>
-    <section class="section-slideshow project-slideshow">
-        <div class="slideshow js-slideshow">
+    {% if page.videos.all %}
+    <div class="project-videos">
+        {% for item in page.videos.all %}
+            <div class="responsive-object">
+                {% embed item.video %}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if page.gallery_images.all %}
+    <div class="project-mosaic">
         {% for item in page.gallery_images.all %}
-            <div>
+            {% image item.image fill-1160x1160 as img %}
+            <div class="project-mosaic-tile js-modal-show" 
+                 data-target="slideshow-item-{{ item.id }}">
+                 <div class="project-mosaic-tile-image" style="background-image: url({{ img.url }})">
+                     
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %} 
+</main>
+{% endblock %}
+{% if page.gallery_images.all %}
+{% block modal %}
+<div class="modal project-slideshow js-modal is-hidden">
+    <div class="modal-slideshow">
+        <button type="button" class="modal-close js-modal-close"><span>Close</span></button>
+        <button type="button" class="modal-slideshow-button modal-slideshow-button--prev js-slideshow-prev">
+            <span>Previous</span>
+        </button>
+        <div class="modal-slideshow-carousel">
+        {% for item in page.gallery_images.all %}
+            <div class="modal-slideshow-slide js-slideshow-slide" id="slideshow-item-{{ item.id }}">
                 {% if item.video %}
                 <div class="responsive-object">
                     {% embed item.video %}
                 </div>
                 {% else %}
-                {% image item.image fill-1600x900 as img %}
-                <img data-lazy="{{ img.url }}" />
+                {% image item.image height-1200 as img %}
+                <img src="{{ img.url }}" />
                 {% endif %}
             </div>
         {% endfor %}
         </div>
-    </section>
-</main>
+        <button type="button" class="modal-slideshow-button modal-slideshow-button--next js-slideshow-next">
+            <span>Next</span>
+        </button>
+    </div>
+</div>
+<div class="modal-overlay"></div>
+{% endblock %}
+{% endif %} 
+
+{% block extra_js %}
+    <script>
+        $(document).ready(function(){
+
+            $('body').on('click', '.js-modal-show', function(){
+                $('.js-modal').removeClass('is-hidden');
+                $('.js-modal').addClass('is-expanded');
+
+                $('.js-slideshow-slide').removeClass('is-hidden');
+
+                $target = $('#' + $(this).data('target'));
+                $target.prevAll().addClass('is-hidden');
+            });
+
+            $('body').on('click', '.js-modal-close', function(){
+                $('.js-modal').addClass('is-hidden');
+                $('.js-modal').removeClass('is-expanded');
+            });
+
+            $('body').on('click', '.js-slideshow-next', function(){
+                var $allSlides = $('.js-slideshow-slide');
+                var $hiddenSlides = $('.js-slideshow-slide.is-hidden');
+                var $visibleSlides = $('.js-slideshow-slide:not(.is-hidden)');
+
+                var isFirstSlide = $hiddenSlides.length == 0;
+                var isLastSlide = $visibleSlides.length == 1;
+
+                if (!isFirstSlide && !isLastSlide) {
+                    $hiddenSlides.last().next().addClass('is-hidden');
+                } else if (isFirstSlide) {
+                    $allSlides.first().addClass('is-hidden');
+                } else if (isLastSlide) {
+                    $allSlides.removeClass('is-hidden');
+                }
+            });
+
+             $('body').on('click', '.js-slideshow-prev', function(){
+                var $hiddenSlides = $('.js-slideshow-slide.is-hidden');
+                var isFirstSlide = $hiddenSlides.length == 0;
+            
+                if (!isFirstSlide) {
+                    $hiddenSlides.last().removeClass('is-hidden');
+                }
+            });
+        });
+    </script>
 {% endblock %}

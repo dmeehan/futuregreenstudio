@@ -12,6 +12,10 @@
         }
     }
 
+    &.is-hidden {
+        display: none;
+    }
+
     &.is-expanded {
         @include display(flex);
         @include align-items(center);
@@ -34,14 +38,6 @@
             height: auto;
             background-color: white;
             mix-blend-mode: normal;
-
-            @media(min-width: $bp-horiz-large) {
-                width: 80%;
-            }
-
-            @media(min-width: $bp-horiz-xlarge) {
-                width: 60%;
-            }
         }
 
         .modal-glance {
@@ -193,6 +189,98 @@
     > article {
         @include flex(0 1 auto);
         overflow-y: auto;
+    }
+}
+
+.modal-slideshow {
+    @include display(flex);
+    @include align-items(center);
+    width: calc(100% - 3rem);
+    height: calc(100vh - 3rem);
+    background-color: white;
+    overflow: hidden;
+
+    .modal-close {
+        position: absolute;
+        right: 3rem;
+        top: 3rem;
+    }
+    
+
+    @media(min-width: $bp-horiz-large) {
+        width: calc(100% - 4rem);
+        height: calc(100vh - 4rem);
+
+        .modal-close {
+            //right: 4rem;
+            //top: 4rem;
+        }
+    }
+
+    &-carousel {
+        @include flex(1);
+        @include display(flex);
+        @include align-items(center);
+        overflow: hidden;
+    }
+
+    &-button {
+        outline: none;
+        
+        span {
+            display: none;
+        }
+
+        &::before {
+            font-family: FontAwesome;
+            font-size: 3rem;
+        }
+
+        &--next {
+            padding: 0 1.5rem 0 3rem;
+            &::before {
+                content: '\f105';
+            }
+        }
+
+        &--prev {
+            padding: 0 3rem 0 1.5rem;
+            &::before {
+                content: '\f104';
+            }
+        }
+    }
+
+    &-slide {
+        @include flex(none);
+        @include display(flex);
+        @include align-items(center);
+        @include justify-content(center);
+        @include transition(all 0.25s ease-in-out);
+        width: 100%;
+        height: calc(100vh - 6rem);
+
+        @media(min-width: $bp-horiz-large) {
+            height: calc(100vh - 8rem);
+        }
+
+        img {
+            display: block;
+            width: auto;
+            height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .responsive-object {
+            width: 100%;
+        }
+
+        &.is-hidden {
+            @include transition(all 0.25s ease-in-out);
+            margin-left: -100%;
+        }
+
     }
 }
 

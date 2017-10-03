@@ -138,12 +138,15 @@
             </ul>
         </footer>
         {% endblock %}
+        {% block modal %}
+            {# Override this in templates to add a modal #}
+        {% endblock %}
         {% block js %}
         <script type="text/javascript" src="{% static "js/ui/breakpoint.js" %}"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
         <script>
         $(document).ready(function(){
-              $('.js-slideshow').slick({
+              $('.js-slick').slick({
                 infinite: false,
                 dots: false,
               });

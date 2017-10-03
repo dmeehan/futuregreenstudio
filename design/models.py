@@ -20,6 +20,7 @@ from wagtail.wagtailsnippets.models import register_snippet
 class DesignPage(Page):
     content_panels = Page.content_panels + [
         InlinePanel('project_categories', label="Project Categories"),
+        InlinePanel('placeholder_images', label="Placeholder images"),
     ]
 
     subpage_types = ['design.ProjectPage']
@@ -67,6 +68,16 @@ class DesignPage(Page):
         # You can only create one of these!
         return super(DesignPage, cls).can_create_at(parent) \
             and not cls.objects.exists()
+
+class DesignPagePlaceholderImage(Orderable):
+    page = ParentalKey(DesignPage, related_name='placeholder_images')
+    image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+',
+        help_text='Placeholder image.')
+
+    panels = [
+        ImageChooserPanel('image'),
+    ]
 
 class ProjectPageTag(TaggedItemBase):
     content_object = ParentalKey('ProjectPage', related_name='tagged_items')
@@ -139,7 +150,8 @@ class ProjectPage(Page):
         FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
         InlinePanel('clients', label="Clients"),
         InlinePanel('collaborators', label="Collaborators"),
-        InlinePanel('gallery_images', label="Gallery images"),
+        InlinePanel('gallery_images', label="Slideshow images"),
+        InlinePanel('videos', label="Videos"),
         MultiFieldPanel([
             FieldPanel('website'),
             FieldPanel('twitter'),
@@ -159,18 +171,22 @@ class ProjectPageGalleryImage(Orderable):
     page = ParentalKey(ProjectPage, related_name='gallery_images')
     image = models.ForeignKey(
         'wagtailimages.Image', blank=True, null=True, on_delete=models.PROTECT, related_name='+',
-        help_text='Slideshow image. Include either one image or one video per slideshow item.')
-    video = models.URLField(blank=True,
-        help_text='URL from a video streaming service such as Vimeo. Video will take precedence over an image if both are included.')
+        help_text='Slideshow image.')
     caption = models.CharField(blank=True, max_length=250)
 
     panels = [
         ImageChooserPanel('image'),
-        FieldPanel('video'),
         FieldPanel('caption'),
     ]
 
-from wagtail.wagtailsnippets.models import register_snippet
+class ProjectPageVideo(Orderable):
+    page = ParentalKey(ProjectPage, related_name='videos')
+    video = models.URLField(blank=True,
+        help_text='URL from a video streaming service such as Vimeo.')
+    panels = [
+        FieldPanel('video'),
+    ]
+
 
 class ProjectCategory(Orderable, models.Model):
     page = ParentalKey(DesignPage, related_name='project_categories')
