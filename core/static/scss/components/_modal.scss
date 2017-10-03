@@ -1,3 +1,14 @@
+@include keyframes(sk-rotateplane) {
+  0% { 
+    @include transform(perspective(120px) rotateX(0deg) rotateY(0deg));
+  } 50% { 
+    @include transform(perspective(120px) rotateX(-180.1deg) rotateY(0deg));
+  } 100% { 
+    @include transform(perspective(120px) rotateX(-180deg) rotateY(-179.9deg));
+  }
+}
+
+
 .modal {
     @include transition(opacity 0.25s ease-in-out);
     background-color: $green;
@@ -222,6 +233,20 @@
         @include display(flex);
         @include align-items(center);
         overflow: hidden;
+
+        /*&::before {
+            @include transform(translate3d(0, 0, 0));
+            @include transform(translate(-50%, -50%));
+            @include animation(sk-rotateplane 1.2s infinite ease-in-out);
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            background-color: $light-gray;
+            z-index: 1;
+        }*/
     }
 
     &-button {
@@ -257,6 +282,7 @@
         @include align-items(center);
         @include justify-content(center);
         @include transition(all 0.125s ease-in-out);
+        @include transform(translate3d(0, 0, 0));
         width: 100%;
         height: calc(100vh - 6rem);
 
@@ -277,6 +303,7 @@
         }
 
         &.is-hidden {
+            @include transform(translate3d(0, 0, 0));
             @include transition(all 0.125s ease-in-out);
             margin-left: -100%;
         }

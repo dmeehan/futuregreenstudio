@@ -128,7 +128,7 @@
 {% if page.gallery_images.all %}
 {% block modal %}
 <div class="modal project-slideshow js-modal is-hidden">
-    <div class="modal-slideshow">
+    <div class="modal-slideshow js-images">
         <button type="button" class="modal-close js-modal-close"><span>Close</span></button>
         <button type="button" class="modal-slideshow-button modal-slideshow-button--prev js-slideshow-prev">
             <span>Previous</span>
@@ -142,7 +142,7 @@
                 </div>
                 {% else %}
                 {% image item.image height-1200 as img %}
-                <img src="{{ img.url }}" />
+                <img data-src="{{ img.url }}" />
                 {% endif %}
             </div>
         {% endfor %}
@@ -158,7 +158,30 @@
 
 {% block extra_js %}
     <script>
+        function loadImage($img) {
+            $img.attr('src', $img.data('src'))
+        }
+
+        function loadNextImage($slideshow) {
+            // load the next unloaded image
+            var $nextImgToLoad = $slideshow.find('img:not([src])').first();
+            if ($nextImgToLoad.length) {
+              loadImage($nextImgToLoad);
+            };
+        }
+
+        function loadRemainingImages($slideshow) {
+          var $imgs = $slideshow.find('img:not([src])');
+          if ($imgs.length) {
+            $imgs.each(function(){
+              loadImage($(this));
+            });
+          }
+        }
+
         $(document).ready(function(){
+
+            loadNextImage($('.js-images'));
 
             $('body').on('click', '.js-modal-show', function(){
                 $('.js-modal').removeClass('is-hidden');
@@ -168,6 +191,9 @@
 
                 $target = $('#' + $(this).data('target'));
                 $target.prevAll().addClass('is-hidden');
+
+                loadImage($target.find('img'));
+                loadNextImage($('.js-images'));
             });
 
             $('body').on('click', '.js-modal-close', function(){
@@ -176,6 +202,7 @@
             });
 
             $('body').on('click', '.js-slideshow-next', function(){
+
                 var $allSlides = $('.js-slideshow-slide');
                 var $hiddenSlides = $('.js-slideshow-slide.is-hidden');
                 var $visibleSlides = $('.js-slideshow-slide:not(.is-hidden)');
@@ -184,12 +211,19 @@
                 var isLastSlide = $visibleSlides.length == 1;
 
                 if (!isFirstSlide && !isLastSlide) {
-                    $hiddenSlides.last().next().addClass('is-hidden');
+                    var $slideToHide = $hiddenSlides.last().next();
+                    $slideToHide.addClass('is-hidden');
                 } else if (isFirstSlide) {
-                    $allSlides.first().addClass('is-hidden');
+                    $slideToHide = $allSlides.first();
+                    $slideToHide.addClass('is-hidden');
                 } else if (isLastSlide) {
                     $allSlides.removeClass('is-hidden');
                 }
+
+                $slideToShow = $slideToHide.next();
+
+                loadNextImage($('.js-images'));
+                loadImage($slideToShow.find('img'));
             });
 
              $('body').on('click', '.js-slideshow-prev', function(){
@@ -197,7 +231,9 @@
                 var isFirstSlide = $hiddenSlides.length == 0;
             
                 if (!isFirstSlide) {
-                    $hiddenSlides.last().removeClass('is-hidden');
+                    $prevSlide = $hiddenSlides.last();
+                    $prevSlide.removeClass('is-hidden');
+                    loadImage($prevSlide.find('img'));
                 }
             });
         });
