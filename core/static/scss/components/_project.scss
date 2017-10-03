@@ -243,14 +243,10 @@
         //margin-left: 0;
     }
 
-    @media(min-width: $bp-horiz-xlarge) {
-        width: 75%;
-        margin-left: auto;
-        margin-right: 0;
-    }
+    
 
     @media(min-width: $bp-horiz-large) {
-        .project-mosaic-tile {
+        /*.project-mosaic-tile {
             width: calc(50% - 16px);
             margin-bottom: 32px;
 
@@ -261,7 +257,7 @@
             &:nth-child(even) {
                 margin-left: 16px;
             }
-        }
+        }*/
     }
 
 
@@ -446,6 +442,12 @@
 
             }
         }
+    }
+
+    @media(min-width: $bp-horiz-xlarge) {
+        width: 75%;
+        margin-left: auto;
+        margin-right: 0;
     }
 
     .project-mosaic-tile-image {
