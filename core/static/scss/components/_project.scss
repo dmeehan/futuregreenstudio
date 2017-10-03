@@ -238,9 +238,9 @@
 
 
     @media(min-width: $bp-horiz-large) {
-        width: 75%;
-        margin-right: auto;
-        margin-left: 0;
+        //width: 75%;
+        //margin-right: auto;
+        //margin-left: 0;
     }
 
     @media(min-width: $bp-horiz-xlarge) {
@@ -265,7 +265,7 @@
     }
 
 
-    @media(min-width: $bp-horiz-xlarge) {
+    @media(min-width: $bp-horiz-large) {
         .project-mosaic-tile {
             width: calc(50% - 20px);
             margin-bottom: 40px;
