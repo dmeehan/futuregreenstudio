@@ -289,9 +289,9 @@
             //grid-auto-rows: 40px;
 
             grid-template-columns: repeat(29, 3.44%);
-            grid-template-rows: 23px;
+            grid-template-rows: 33px;
             grid-auto-columns: 3.44%;
-            grid-auto-rows: 23px;
+            grid-auto-rows: 33px;
 
             @media(min-width: $bp-horiz-xlarge) {
                 grid-template-rows: 30px;
