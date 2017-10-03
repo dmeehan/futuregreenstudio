@@ -256,7 +256,7 @@
         @include display(flex);
         @include align-items(center);
         @include justify-content(center);
-        @include transition(all 0.25s ease-in-out);
+        @include transition(all 0.125s ease-in-out);
         width: 100%;
         height: calc(100vh - 6rem);
 
@@ -277,7 +277,7 @@
         }
 
         &.is-hidden {
-            @include transition(all 0.25s ease-in-out);
+            @include transition(all 0.125s ease-in-out);
             margin-left: -100%;
         }
 
