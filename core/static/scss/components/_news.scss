@@ -53,6 +53,10 @@
         }
     }
 
+    &.no-image {
+        background-color: white;
+    }
+
     @media(min-width: 700px) {
         width: calc(50% - 20px);
         position: relative;

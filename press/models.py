@@ -54,6 +54,10 @@ class PressStreamBlock(StreamBlock):
 
 class PressPage(RoutablePageMixin, Page):
 
+    placeholder_image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+', null=True, blank=True,
+        help_text='Press article placeholder image.')
+
     def get_context(self, request):
         context = super(PressPage, self).get_context(request)
         #publications = PublicationPage.objects.live().child_of(self)
@@ -83,6 +87,7 @@ class PressPage(RoutablePageMixin, Page):
 
     content_panels = Page.content_panels + [
         InlinePanel('featured_news', label="Featured News Items"),
+        ImageChooserPanel('placeholder_image'),
     ]
 
     parent_page_types = ['home.HomePage']

@@ -20,12 +20,13 @@
             {% if page.newsitems %}
             <div class="news-grid">
                 {% for item in page.newsitems %}
-                <section class="news-tile" {% if not item.specific.image %}class="no-image"{% endif %}>
+                <section class="news-tile {% if not item.specific.image %}no-image{% endif %}">
                     {% if item.specific.image %}
                     {% image item.specific.image fill-400x500 as img %}
                     <img src="{{ img.url }}" />
                     {% else %}
-                    <div class="news-tile-placeholder"></div>
+                    {% image page.placeholder_image fill-400x500 as img %}
+                    <img src="{{ img.url }}" />
                     {% endif %}
                     <div class="modal">
                          <a class="modal-glance" href="{% if item.specific.body %}{{ item.specific.url }}{% else %}{{ item.external_link }}{% endif %}"
@@ -41,15 +42,16 @@
                 </section>
                 {% endfor %}
             </div>
-            {% else %}
+            {% elif page.featured_news.all %}
             <div class="news-grid">
                 {% for item in page.featured_news.all %}
-                <section class="news-tile" {% if not item.specific.image %}class="no-image"{% endif %}>
+                <section class="news-tile {% if not item.specific.image %}no-image{% endif %}">
                     {% if item.news_item.specific.image %}
                     {% image item.news_item.specific.image fill-400x500 as img %}
                     <img src="{{ img.url }}" />
                     {% else %}
-                    <div class="news-tile-placeholder"></div>
+                    {% image page.placeholder_image fill-400x500 as img %}
+                    <img src="{{ img.url }}" />
                     {% endif %}
                     <div class="modal">
                          <a class="modal-glance" href="{% if item.news_item.specific.body %}{{ item.news_item.specific.url }}{% else %}{{ item.news_item.external_link }}{% endif %}"
@@ -59,6 +61,31 @@
                             <h3 class="news-tile-publication">{{ item.news_item.specific.publication_name }}</h3>
                             {% endif %}
                             <h3 class="news-tile-title">{{ item.news_item.specific.title }}</h3>
+                            <button type="button" class="modal-open"><span>More</span></button>
+                         </a>
+                    </div>
+                </section>
+                {% endfor %}
+            </div>
+            {% elif recent_newsitems %}
+            <div class="news-grid">
+                {% for item in recent_newsitems %}
+                <section class="news-tile {% if not item.specific.image %}no-image{% endif %}">
+                    {% if item.specific.image %}
+                    {% image item.specific.image fill-400x500 as img %}
+                    <img src="{{ img.url }}" />
+                    {% else %}
+                    {% image page.placeholder_image fill-400x500 as img %}
+                    <img src="{{ img.url }}" />
+                    {% endif %}
+                    <div class="modal">
+                         <a class="modal-glance" href="{% if item.specific.body %}{{ item.specific.url }}{% else %}{{ item.external_link }}{% endif %}"
+                         {% if not item.specific.body %} target="_blank" {% endif %}>
+                            <h4 class="news-tile-date">{{ item.specific.date|date:"F d, Y" }}</h4>
+                            {% if item.specific.publication_name %}
+                            <h3 class="news-tile-publication">{{ item.specific.publication_name }}</h3>
+                            {% endif %}
+                            <h3 class="news-tile-title">{{ item.specific.title }}</h3>
                             <button type="button" class="modal-open"><span>More</span></button>
                          </a>
                     </div>
