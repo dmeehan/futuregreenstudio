@@ -15,25 +15,23 @@ from wagtail.wagtailsnippets.models import register_snippet
 from modelcluster.fields import ParentalKey
 
 from press.models import Award
-
-@python_2_unicode_compatible 
+ 
 class ProfilePageClient(Orderable, models.Model):
     page = ParentalKey('profile.ProfilePage', related_name='clients')
     client = models.ForeignKey('design.Client', related_name='+')
 
-    def __str__(self):
-        return self.page.title + " -> " + self.client.name
+    #def __str__(self):
+    #    return self.page.title + " -> " + self.client.name
 
-@python_2_unicode_compatible 
+
 class ProfilePageCollaborator(Orderable, models.Model):
     page = ParentalKey('profile.ProfilePage', related_name='collaborators')
     collaborator = models.ForeignKey('design.Collaborator', related_name='+')
 
-    def __str__(self):
-        return self.page.title + " -> " + self.collaborator.name
+    #def __str__(self):
+    #    return self.page.title + " -> " + self.collaborator.name
 
 
-@python_2_unicode_compatible
 class EmployeePage(Page):
     job_title = models.CharField(max_length=255)
     bio = RichTextField(blank=True)
@@ -50,8 +48,8 @@ class EmployeePage(Page):
     subpage_types = []
     parent_page_types = ['profile.ProfilePage']
 
-    def __str__(self):
-        return self.name
+    #def __str__(self):
+    #    return self.name
 
 
 class ProfilePage(Page):
