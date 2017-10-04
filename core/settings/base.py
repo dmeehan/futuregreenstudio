@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.settings',
     'wagtail.contrib.wagtailstyleguide',
     'wagtail.contrib.modeladmin',
+    'wagtail.contrib.wagtailroutablepage',
 
     'compressor',
     'djsupervisor',

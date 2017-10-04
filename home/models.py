@@ -31,10 +31,10 @@ class FirmInformation(BaseSetting):
     fax = models.CharField(max_length=255, blank=True,
         help_text='Fax number to display on site.')
     twitter = models.CharField(
-        max_length=255, help_text='Twitter username, without the @')
-    facebook = models.URLField(
+        max_length=255, blank=True, help_text='Twitter username, without the @')
+    facebook = models.URLField(blank=True,
         help_text='Facebook page URL')
-    instagram = models.CharField(
+    instagram = models.CharField(blank=True,
         max_length=255, help_text='Instagram username, without the @')
     
     panels = [

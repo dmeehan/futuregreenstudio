@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags %}
+
+{% block body_class %}body--press{% endblock %}
+
+{% block content %}
+<main class="press">
+    <section>
+        <aside>
+            <h1 class="section-title">Press</h1>
+            <a class="link-back" href="{{ page.get_parent.url }}">Back</a>
+        </aside>
+        <article>
+            <h2 class="article-title">News</h2>
+            <div class="publication">
+                <h2>{{ page.title }}</h2>
+                {{ page.body }}
+            </div>
+        </article>
+        <aside>
+            <h2 class="article-title">News Archive</h2>
+            {% if recent_newsitems %}
+            <div class="news-recent">
+                <h3>Recent News</h3>
+                <ul class="link-list">
+                {% for item in recent_newsitems %}
+                    <li><a href="{% if item.specific.body %}{{ item.specific.url }}{% else %}{{ item.external_link }}{% endif %}" {% if not item.specific.body %} target="_blank" {% endif %}>{{ item.specific.title }}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            {% if archive_dates %}
+            <div class="news-monthly">
+                <h3>By Month</h3>
+                <ul class="link-list">
+                {% for date in archive_dates %}
+                    <li><a href="{% routablepageurl page.get_parent.specific "archive" date|date:"Y" date|date:"m"%}">{{ date|date:"F Y" }}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </aside>
+    </section>
+</main>
+{% endblock %}

@@ -13,7 +13,7 @@
             {% if item.link_page %}
             <a href="{{ item.link_page.url }}">
             {% endif %}
-             {% image item.image original as img %}
+             {% image item.image width-1920 as img %}
              <img data-src="{{ img.url }}" />
              {% if item.caption %}
                 <span class="slideshow-caption js-pause-on-hover">{{ item.caption|richtext }}</span>

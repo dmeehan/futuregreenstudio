@@ -28,13 +28,12 @@
                     {{ settings.home.firminformation.city }}, {{ settings.home.firminformation.state }} {{ settings.home.firminformation.zip_code }}
                 </li>
                 <li>
-                    <span>t.</span>
                     {{ settings.home.firminformation.phone }}
                 </li>
-                <li>
+                <!--<li>
                     <span>f.</span>
                     {{ settings.home.firminformation.fax }}
-                </li>
+                </li>-->
                 <li>
                     <a mailto="{{ settings.core.FirmInformation.email }}">
                         {{ settings.home.firminformation.email }}
@@ -59,21 +58,27 @@
 {% block footer %}
         <footer>
             <ul class="footer-social social">
+                {% if settings.home.firminformation.twitter %}
                 <li class="social-twitter">
-                    <a class="social-link" target="_blank" href="http://www.twitter.com/{{ settings.home.firminformation.twitter }}">
+                    <a class="social-link" href="http://www.twitter.com/{{ settings.home.firminformation.twitter }}" target="_blank">
                         <i class="fa fa-twitter"></i>
                     </a>
                 </li>
+                {% endif %}
+                {% if settings.home.firminformation.facebook %}
                 <li class="social-facebook">
-                    <a class="social-link" target="_blank" href="{{ settings.home.firminformation.facebook }}">
+                    <a class="social-link" href="{{ settings.home.firminformation.facebook }}" target="_blank">
                         <i class="fa fa-facebook"></i>
                     </a>
                 </li>
+                {% endif %}
+                {% if settings.home.firminformation.instagram %}
                 <li class="social-instagram">
-                    <a class="social-link" target="_blank" href="http://www.instagram.com/{{ settings.home.firminformation.instagram }}">
+                    <a class="social-link" href="http://www.instagram.com/{{ settings.home.firminformation.instagram }}" target="_blank">
                         <i class="fa fa-instagram"></i>
                     </a>
                 </li>
+                {% endif %}
             </ul>
         </footer>
 {% endblock %}

@@ -10,6 +10,7 @@
 @import "components/modal";
 @import "components/mosaic";
 @import "components/nav";
+@import "components/news";
 @import "components/pagination";
 @import "components/profile";
 @import "components/project";
@@ -296,16 +297,16 @@
                 position: absolute;
                 color: white;
                 font-size: 1.5rem;
-                top: calc(50% + 2.5rem);
+                top: calc(50% + 2rem);
                 left: $spacing-base;
                 margin-right: $spacing-base;
                 font-family:"KievitWeb W07 Medi";
-                text-shadow: 1px 1px 8px rgba(0,0,0,0.2);
+                //text-shadow: 1px 1px 8px rgba(0,0,0,0.2);
 
                 @media (min-width: $bp-horiz-medium) {
                     left: 4rem;
                     max-width: 40rem;
-                    font-size: 1.875rem;
+                    font-size: 1.6875rem;
                     margin-right: 0;
                 }
 
@@ -410,8 +411,8 @@
                 margin-right: .625rem;
                 padding: 0;
                 background-color: white;
-                height: .875rem;
-                width: .875rem;
+                height: .8125rem;
+                width: .8125rem;
                 border-radius: 50%;
                 outline: none;
                 

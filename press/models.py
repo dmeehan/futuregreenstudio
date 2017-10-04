@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+import calendar
 
 from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -15,7 +16,8 @@ from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailsearch import index
+
+from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 
 from core.blocks import CaptionedImageBlock, MarkdownBlock, CarouselBlock
 
@@ -50,38 +52,58 @@ class PressStreamBlock(StreamBlock):
     document = DocumentChooserBlock(icon="doc-full-inverse")
 
 
-class PressPage(Page):
+class PressPage(RoutablePageMixin, Page):
 
     def get_context(self, request):
         context = super(PressPage, self).get_context(request)
-        publications = PublicationPage.objects.live().child_of(self)
-        all_newsitems = NewsItemPage.objects.live().child_of(self).order_by('-date')
+        #publications = PublicationPage.objects.live().child_of(self)
+        #all_newsitems = NewsItemPage.objects.live().child_of(self).order_by('-date')
+        recent_newsitems = NewsItemPage.objects.live().child_of(self).order_by('-date')[:10]
+        archive_dates = NewsItemPage.objects.live().dates('date', 'month', order='DESC')
 
-        paginator = Paginator(all_newsitems, 3) # Show 3 news items per page
+        #paginator = Paginator(all_newsitems, 3) # Show 3 news items per page
 
-        page = request.GET.get('page')
-        try:
-            newsitems = paginator.page(page)
-        except PageNotAnInteger:
+        #page = request.GET.get('page')
+        #try:
+        #    newsitems = paginator.page(page)
+        #except PageNotAnInteger:
             # If page is not an integer, deliver first page.
-            newsitems = paginator.page(1)
-        except EmptyPage:
+        #    newsitems = paginator.page(1)
+        #except EmptyPage:
             # If page is out of range (e.g. 9999), deliver last page of results.
-            newsitems = paginator.page(paginator.num_pages)
+        #    newsitems = paginator.page(paginator.num_pages)
 
         # make the variable 'newsitems' available on the template
-        context['newsitems'] = newsitems
-        context['publications'] = publications
+        context['recent_newsitems'] = recent_newsitems
+        context['archive_dates'] = archive_dates
+        #context['publications'] = publications
 
         return context
     
 
     content_panels = Page.content_panels + [
-        InlinePanel('awards', label="Awards"),
+        InlinePanel('featured_news', label="Featured News Items"),
     ]
 
     parent_page_types = ['home.HomePage']
-    subpage_types = ['press.PublicationPage', 'press.NewsItemPage']
+    subpage_types = ['press.NewsItemPage']
+
+    def get_newsitems(self):
+        return NewsItemPage.objects.descendant_of(self).live().order_by('-date')
+
+    @route(r'^archive/(\d{4})/$')
+    @route(r'^archive/(\d{4})/(\d{2})/$')
+    @route(r'^archive/(\d{4})/(\d{2})/(\d{2})/$')
+    def archive(self, request, year, month=None, day=None, *args, **kwargs):
+        self.newsitems = self.get_newsitems().filter(date__year=year)
+        self.year = year
+        if month:
+            self.month = calendar.month_name[int(month)]
+            self.newsitems = self.newsitems.filter(date__month=month)
+        if day:
+            self.day = day
+            self.newsitems = self.newsitems.filter(date__day=day)
+        return Page.serve(self, request, *args, **kwargs)
 
     @classmethod
     def can_create_at(cls, parent):
@@ -97,7 +119,7 @@ class PublicationPage(Page):
         InlinePanel('related_links', label="Related Links"),
     ]
 
-    parent_page_types = ['press.PressPage']
+    parent_page_types = []
     subpage_types = []
 
     class Meta:
@@ -105,18 +127,41 @@ class PublicationPage(Page):
 
 class NewsItemPage(Page):
     date = models.DateField("Post date")
-    body = StreamField(PressStreamBlock())
+    image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+', null=True, blank=True,
+        help_text='Teaser image.')
+    external_link = models.URLField(null=True, blank=True, help_text='Link to article in external publication. Optional')
+    publication_name = models.CharField(max_length=255, null=True, blank=True)
+    body = StreamField(PressStreamBlock(required=False), blank=True, null=True, help_text='Content for FGS published articles. Optional')
 
     content_panels = Page.content_panels + [
         FieldPanel('date'),
+        ImageChooserPanel('image'),
+        FieldPanel('external_link'),
+        FieldPanel('publication_name'),
         StreamFieldPanel('body'),
-    ]
+    ]   
 
     parent_page_types = ['press.PressPage']
     subpage_types = []
 
     class Meta:
         verbose_name = "News Item"
+
+    def get_context(self, request):
+        context = super(NewsItemPage, self).get_context(request)
+        recent_newsitems = NewsItemPage.objects.live().order_by('-date')[:10]
+        archive_dates = NewsItemPage.objects.live().dates('date', 'month', order='DESC')
+
+        context['recent_newsitems'] = recent_newsitems
+        context['archive_dates'] = archive_dates
+
+        return context
+
+class FeaturedNewsItem(Orderable):
+    page = ParentalKey(PressPage, related_name='featured_news')
+    news_item = models.ForeignKey(NewsItemPage, related_name='+')
+
 
 class PublicationPageRelatedLink(Orderable):
     page = ParentalKey(PublicationPage, related_name='related_links')

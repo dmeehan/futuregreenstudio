@@ -112,9 +112,16 @@
     padding: $spacing-small;
     cursor: pointer;
     background-color: $green;
+    position: relative;
 
     .modal-title, .modal-subtitle {
         color: white;
+    }
+
+    .modal-open {
+        position: absolute;
+        bottom: $spacing-small;
+        right: $spacing-small;
     }
 
     a, button {
@@ -135,11 +142,23 @@
         bottom: 0;
         right: 0;
         left: 0;
+
+        .modal-open {
+            bottom: 1rem;
+            right: 1rem;
+        }
     }
 
     @media(min-width: $bp-horiz-xlarge) {
         padding: $spacing-base; 
+
+        .modal-open {
+            bottom: $spacing-base;
+            right: $spacing-base;
+        }
     }
+
+
 }
 
 .modal-title, .modal-subtitle {
@@ -334,7 +353,7 @@
         position: absolute;
         display: block;
         width: 100%;
-        height: 2px;
+        height: 3px;
         border-radius: 1px;
         background: $dark-gray;
         font-size: 0;
@@ -354,5 +373,42 @@
         content: "";
         background: $dark-gray;
         transform: rotate(-135deg);
+    }
+}
+
+.modal-open {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    display: block;
+    
+    span, &::before, &:after {
+        @include transition(all 0.25s ease-in-out);
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 3px;
+        border-radius: 1px;
+        background: $dark-gray;
+        font-size: 0;
+    }
+
+    span {
+        display: none;
+    }
+    
+    &::before {
+        content: "";
+        background: $dark-gray;
+        transform: rotate(0deg);
+    }
+
+    &::after {
+        content: "";
+        background: $dark-gray;
+        transform: rotate(90deg);
     }
 }

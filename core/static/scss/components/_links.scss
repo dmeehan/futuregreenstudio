@@ -16,10 +16,11 @@
     }
 }
 
-.link-external {
+.link-external, a[target="_blank"]:not(.social-link) {
     &::after {
         font-family: FontAwesome;
         content: "\f08e";
-        padding-left: 0.25rem;
+        padding-left: 0.5rem;
+        font-size: .75em;
     }
 }

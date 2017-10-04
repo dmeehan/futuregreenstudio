@@ -210,6 +210,7 @@
     .project-mosaic-tile {
         position: relative;
         margin-bottom: $spacing-base;
+        cursor: pointer;
 
         img {
             width: 100%;
