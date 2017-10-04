@@ -20,7 +20,7 @@
             {% if page.newsitems %}
             <div class="news-grid">
                 {% for item in page.newsitems %}
-                <section class="news-tile {% if item.specific.image == None %}no-image{% endif %}">
+                <section class="news-tile">
                     {% if item.specific.image %}
                     {% image item.specific.image fill-400x500 as img %}
                     <img src="{{ img.url }}" />
@@ -45,7 +45,7 @@
             {% elif page.featured_news.all %}
             <div class="news-grid">
                 {% for item in page.featured_news.all %}
-                <section class="news-tile {% if item.specific.image == None %}no-image{% endif %}">
+                <section class="news-tile">
                     {% if item.news_item.specific.image %}
                     {% image item.news_item.specific.image fill-400x500 as img %}
                     <img src="{{ img.url }}" />
@@ -70,7 +70,7 @@
             {% elif recent_newsitems %}
             <div class="news-grid">
                 {% for item in recent_newsitems %}
-                <section class="news-tile {% if item.specific.image == None %}no-image{% endif %}">
+                <section class="news-tile">
                     {% if item.specific.image %}
                     {% image item.specific.image fill-400x500 as img %}
                     <img src="{{ img.url }}" />
