@@ -65,6 +65,28 @@
                 </ul>
             </div>
         </article>
+        <aside>
+            {% if awards %}
+            <div class="profile-awards">
+                <h2 class="article-title">Awards</h2>
+                {% for award in awards %}
+                    {% ifchanged award.date|date:"Y" %}
+                        <h3>{{ award.date|date:"Y" }}</h3>
+                    {% endifchanged %}
+                    <div class="press-award">
+                    {% if award.url %}
+                        <a href="{{ award.url }}" _target="blank">
+                    {% endif %}
+                    {{ award.name }}
+                    {% if award.url %}
+                        </a>
+                    {% endif %}
+                    <br />
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </aside>
     </section>
 </main>
 {% endblock %}

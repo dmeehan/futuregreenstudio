@@ -14,6 +14,8 @@ from wagtail.wagtailsnippets.models import register_snippet
 
 from modelcluster.fields import ParentalKey
 
+from press.models import Award
+
 
 class ProfilePageClient(Orderable, models.Model):
     page = ParentalKey('profile.ProfilePage', related_name='clients')
@@ -78,6 +80,7 @@ class ProfilePage(Page):
     def get_context(self, request):
         context = super(ProfilePage, self).get_context(request)
         employees = EmployeePage.objects.live().child_of(self)
+        awards = Award.objects.all().order_by('-date')
 
         placeholders_xlarge = 4 - (employees.count() % 4)
         placeholders_large = 3 - (employees.count() % 3)
@@ -86,6 +89,7 @@ class ProfilePage(Page):
 
         # make the variable 'employees' available on the template
         context['employees'] = employees
+        context['awards'] = awards
         context['placeholder_count_xlarge'] = placeholder_count_xlarge
         context['placeholder_count_large'] = placeholder_count_large
 

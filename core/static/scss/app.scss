@@ -171,7 +171,7 @@
     margin-bottom: 0;
 }
 
-.press-awards {
+.press-awards, .profile-awards {
     h3 {
         font-size: 1rem;
         margin-bottom: .25rem;
@@ -203,6 +203,16 @@
 
         &:last-child {
             padding-top: 0;
+        }
+    }
+}
+
+.profile-awards {
+    a {
+        color: $color-font-base;
+
+        &:hover {
+            color: $green;
         }
     }
 }
