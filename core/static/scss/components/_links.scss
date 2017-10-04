@@ -16,7 +16,7 @@
     }
 }
 
-.link-external, a[target="_blank"]:not(.social-link) {
+.link-external, a[target="_blank"]:not(.social-link):not(.modal-glance) {
     &::after {
         font-family: FontAwesome;
         content: "\f08e";

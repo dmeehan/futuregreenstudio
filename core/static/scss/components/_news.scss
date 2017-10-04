@@ -3,21 +3,37 @@
 .news-grid {
     @include display(flex);
     @include flex-wrap(wrap);
+    
     padding-top: $spacing-base;
 }
 
 
 .news-tile {
-    width: calc(50% - 20px);
     position: relative;
-    margin-bottom: 40px;
+    width: 100%;
+    margin-bottom: $spacing-base;
 
-    &:nth-child(odd) {
-        margin-right: 20px;
-    }
+    .modal {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 9;
+        opacity: 1;
+        margin: 1rem;
+        background-color: transparentize($green, 0.1);
 
-    &:nth-child(even) {
-        margin-left: 20px;
+
+        .modal-glance {
+            opacity: 1;
+            padding: 1rem; 
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
     }
 
     img {
@@ -27,7 +43,7 @@
         width: 100%;
     }
 
-    &:hover {
+    &:hover, &.no-image {
         .modal {
             opacity: 1;
 
@@ -35,6 +51,32 @@
                 opacity: 1;
             }
         }
+    }
+
+    @media(min-width: 700px) {
+        width: calc(50% - 20px);
+        position: relative;
+        margin-bottom: 40px;
+
+        &:nth-child(odd) {
+            margin-right: 20px;
+        }
+
+        &:nth-child(even) {
+            margin-left: 20px;
+        }
+    }
+
+    @media(min-width: $bp-horiz-large) {
+        .modal {
+            opacity: 0;
+            background-color: $green;
+
+            .modal-glance {
+                opacity: 0;
+            }
+        }
+
     }
 
     .news-tile-date {
@@ -86,4 +128,8 @@
             padding-bottom: 1rem;
         }
     }
+}
+
+.news-item-placeholder {
+
 }

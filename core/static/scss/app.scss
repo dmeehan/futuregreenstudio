@@ -26,6 +26,11 @@
 .link-list {
     @include resetList;
     margin-bottom: $spacing-small;
+
+    > li {
+        line-height: 1.25;
+        padding-bottom: .25rem;
+    }
 }
 
 .section-title {

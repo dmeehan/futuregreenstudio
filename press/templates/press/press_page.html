@@ -20,10 +20,12 @@
             {% if page.newsitems %}
             <div class="news-grid">
                 {% for item in page.newsitems %}
-                <section class="news-tile">
+                <section class="news-tile" {% if not item.specific.image %}class="no-image"{% endif %}>
                     {% if item.specific.image %}
                     {% image item.specific.image fill-400x500 as img %}
                     <img src="{{ img.url }}" />
+                    {% else %}
+                    <div class="news-tile-placeholder"></div>
                     {% endif %}
                     <div class="modal">
                          <a class="modal-glance" href="{% if item.specific.body %}{{ item.specific.url }}{% else %}{{ item.external_link }}{% endif %}"
@@ -42,10 +44,12 @@
             {% else %}
             <div class="news-grid">
                 {% for item in page.featured_news.all %}
-                <section class="news-tile">
+                <section class="news-tile" {% if not item.specific.image %}class="no-image"{% endif %}>
                     {% if item.news_item.specific.image %}
                     {% image item.news_item.specific.image fill-400x500 as img %}
                     <img src="{{ img.url }}" />
+                    {% else %}
+                    <div class="news-tile-placeholder"></div>
                     {% endif %}
                     <div class="modal">
                          <a class="modal-glance" href="{% if item.news_item.specific.body %}{{ item.news_item.specific.url }}{% else %}{{ item.news_item.external_link }}{% endif %}"
