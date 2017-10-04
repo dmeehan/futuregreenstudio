@@ -84,7 +84,7 @@ class ProjectPageTag(TaggedItemBase):
 
 
 @register_snippet
-class Collaborator(Orderable):
+class Collaborator(index.Indexed, Orderable):
     page = ParentalKey('ProjectPage', related_name='collaborators', blank=True, null=True)
     name = models.CharField(max_length=255)
     url = models.URLField(null=True, blank=True)
@@ -97,8 +97,15 @@ class Collaborator(Orderable):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering  = ['-name',]
+
+    search_fields = [
+        index.SearchField('name', partial_match=True),
+    ]
+
 @register_snippet
-class Client(Orderable):
+class Client(index.Indexed, Orderable):
     page = ParentalKey('ProjectPage', related_name='clients', blank=True, null=True)
     name = models.CharField(max_length=255)
     url = models.URLField(null=True, blank=True)
@@ -110,6 +117,13 @@ class Client(Orderable):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering  = ['-name',]
+
+    search_fields = [
+        index.SearchField('name', partial_match=True),
+    ]
 
 class ProjectPage(Page):    
     main_image = models.ForeignKey(

@@ -17,13 +17,14 @@ from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
+from wagtail.wagtailsearch import index
 
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 
 from core.blocks import CaptionedImageBlock, MarkdownBlock, CarouselBlock
 
 @register_snippet
-class Award(models.Model):
+class Award(index.Indexed, models.Model):
     name = models.CharField(max_length=255)
     date = models.DateField("Award date")
     url = models.URLField(null=True, blank=True)
@@ -39,6 +40,10 @@ class Award(models.Model):
 
     class Meta:
         ordering  = ['-date',]
+
+    search_fields = [
+        index.SearchField('name', partial_match=True),
+    ]
 
 class PressStreamBlock(StreamBlock):
     heading = CharBlock(icon="title", classname="title")
