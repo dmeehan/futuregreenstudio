@@ -16,13 +16,14 @@ from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailsnippets.models import register_snippet
 
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 
 from core.blocks import CaptionedImageBlock, MarkdownBlock, CarouselBlock
 
+@register_snippet
 class Award(models.Model):
-    page = ParentalKey('press.PressPage', related_name='awards')
     name = models.CharField(max_length=255)
     date = models.DateField("Award date")
     url = models.URLField(null=True, blank=True)
