@@ -151,12 +151,12 @@
         text-transform: uppercase;
     }
 
-    &-size, &-clients {
+    &-size, &-clients, &-date {
         margin-bottom: $spacing-base;
     }
 
     &-date {
-        margin-bottom: 0;
+        //margin-bottom: 0;
     }
 
     .project-meta-collaborators {

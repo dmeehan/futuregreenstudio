@@ -26,12 +26,13 @@
             {% endif %}
             {% if page.size %}
             <div class="project-meta-size">
-                <h3>{{ page.size }}</h3>
+                <h3>Size</h3>
+                <p>{{ page.size }}</p>
             </div>
             {% endif %}
             {% if page.collaborators.all %}
             <div class="project-meta-collaborators">
-                <h3>Collaborator{{ page.collaborators.count|pluralize }}:</h3>
+                <h3>Collaborator{{ page.collaborators.count|pluralize }}</h3>
                 <ul>
                 {% for collaborator in page.collaborators.all %}
                     <li>
@@ -49,7 +50,7 @@
             {% endif %}
             {% if page.clients.all %}
             <div class="project-meta-clients">
-                <h3>Client{{ page.clients.count|pluralize }}:</h3>
+                <h3>Client{{ page.clients.count|pluralize }}</h3>
                 <ul>
                 {% for client in page.clients.all %}
                     <li>
