@@ -98,7 +98,7 @@ class Collaborator(index.Indexed, Orderable):
         return self.name
 
     class Meta:
-        ordering  = ['-name',]
+        ordering  = ['name',]
 
     search_fields = [
         index.SearchField('name', partial_match=True),
@@ -119,7 +119,7 @@ class Client(index.Indexed, Orderable):
         return self.name
 
     class Meta:
-        ordering  = ['-name',]
+        ordering  = ['name',]
 
     search_fields = [
         index.SearchField('name', partial_match=True),
