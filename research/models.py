@@ -7,12 +7,13 @@ from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
 from taggit.models import TaggedItemBase
 
-from wagtail.wagtailcore.fields import RichTextField
+from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailcore.models import Page, Orderable
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
-from press.models import PublicationPage
+#from press.models import PublicationPage
+from core.blocks import BasicStreamBlock
 
 
 class ResearchPage(Page):
@@ -31,7 +32,7 @@ class ResearchPage(Page):
         
         all_projects = ResearchProjectPage.objects.live().child_of(self)
 
-        publications = PublicationPage.objects.live()[:2]
+        #publications = PublicationPage.objects.live()[:2]
 
         paginator = Paginator(all_projects, pagination_num)
 
@@ -47,7 +48,7 @@ class ResearchPage(Page):
 
         # make the variable 'projects' available on the template
         context['projects'] = projects
-        context['publications'] = publications
+        #context['publications'] = publications
         
         return context
 
@@ -61,14 +62,29 @@ class ResearchProjectPageTag(TaggedItemBase):
     content_object = ParentalKey('ResearchProjectPage', related_name='tagged_items')
 
 class ResearchProjectPage(Page):
+    main_image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+',
+        null=True
+    )
+    list_image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+',
+        blank=True, null=True
+    )
     date = models.DateField("Project date")
+    subtitle = StreamField(BasicStreamBlock(required=False), blank=True)
     description = RichTextField(features=['bold', 'italic', 'ul', 'ol', 'link'])
+    additional_details = StreamField(BasicStreamBlock(required=False), blank=True)
     tags = ClusterTaggableManager(through=ResearchProjectPageTag, blank=True)
 
     content_panels = Page.content_panels + [
+        ImageChooserPanel('main_image'),
+        ImageChooserPanel('list_image'),
         FieldPanel('date'),
         FieldPanel('description'),
+        StreamFieldPanel('subtitle'),
+        StreamFieldPanel('additional_details'),
         InlinePanel('gallery_images', label="Images"),
+        InlinePanel('videos', label="Videos"),
         InlinePanel('related_links', label="Related Links"),
     ]
 
@@ -88,6 +104,14 @@ class ResearchProjectPageGalleryImage(Orderable):
     panels = [
         ImageChooserPanel('image'),
         FieldPanel('caption'),
+    ]
+
+class ResearchProjectPageVideo(Orderable):
+    page = ParentalKey(ResearchProjectPage, related_name='videos')
+    video = models.URLField(blank=True,
+        help_text='URL from a video streaming service such as Vimeo.')
+    panels = [
+        FieldPanel('video'),
     ]
 
 class ResearchProjectPageRelatedLinks(Orderable):

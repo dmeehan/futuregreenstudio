@@ -73,6 +73,10 @@
             margin-bottom: $spacing-small;
         }
 
+        .project-subtitle {
+            order: 1;
+        }
+
         @media(min-width: $bp-horiz-xlarge) {
             .link-back {
                 order: 1;
@@ -85,6 +89,10 @@
             }
 
             h2 {
+                order: 0;
+            }
+
+            .project-subtitle {
                 order: 0;
             }
         }
@@ -131,6 +139,23 @@
     }
 }
 
+.project-subtitle {
+    .block-subheading {
+        font-size: .875rem;
+        color: $green;
+        margin-bottom: 0;
+        padding-bottom: 0;
+
+        &:last-child {
+            padding-bottom: $spacing-base;
+        }
+
+        + .block-text {
+            padding-top: $spacing-base;
+        }
+    }
+}
+
 .project-meta {
     @include display(flex);
     @include flex-direction(column);
@@ -151,12 +176,22 @@
         text-transform: uppercase;
     }
 
-    &-size, &-clients, &-date {
+    &-size, &-clients, &-date, &-additional {
         margin-bottom: $spacing-base;
     }
 
     &-date {
         //margin-bottom: 0;
+    }
+
+    &-additional {
+        .block-subheading {
+            font-family: $font-family-heading;
+            font-size: 0.875rem;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            text-transform: uppercase;
+        }
     }
 
     .project-meta-collaborators {

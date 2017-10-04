@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
+
+{% block body_class %}body--design{% endblock %}
+
+{% block content %}
+<main class="project">
+    <section class="section-image project-image">
+        {% image page.main_image fill-1600x608 %}
+    </section>
+    <section class="project-content">
+        <header>
+            <h1 class="article-title">{{ page.title }}</h1>
+            {% if page.subtitle %}
+            <div class="project-subtitle">
+            {{ page.subtitle }}
+            </div>
+            {% endif %}
+            <a class="link-back" href="{{ page.get_parent.url }}">Research</a>
+        </header>
+        <article>
+            {{ page.description|richtext }}
+        </article>
+        <aside class="project-meta">
+            {% if page.date %}
+            <div class="project-meta-date">
+                <h3>{{ page.date }}</h3>
+            </div>
+            {% endif %}
+            {% if page.additional_details %}
+            <div class="project-meta-additional">
+            {{ page.additional_details }}
+            </div>
+            {% endif %}
+            {% if page.related_links.all %}
+            <div class="project-meta-related">
+                <h3>Related Links:</h3>
+                <ul class="link-list project-links">
+                    {% for link in page.related_links.all %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+             {% endif %}
+        </aside>
+    </section>
+    {% if page.videos.all %}
+    <div class="project-videos">
+        {% for item in page.videos.all %}
+            <div class="responsive-object">
+                {% embed item.video %}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if page.gallery_images.all %}
+    <div class="project-mosaic">
+        {% for item in page.gallery_images.all %}
+            {% image item.image fill-1160x1160 as img %}
+            <div class="project-mosaic-tile js-modal-show" 
+                 data-target="slideshow-item-{{ item.id }}">
+                 <div class="project-mosaic-tile-image" style="background-image: url({{ img.url }})">
+                     
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %} 
+</main>
+{% endblock %}
+{% if page.gallery_images.all %}
+{% block modal %}
+<div class="modal project-slideshow js-modal is-hidden">
+    <div class="modal-slideshow js-images">
+        <button type="button" class="modal-close js-modal-close"><span>Close</span></button>
+        <button type="button" class="modal-slideshow-button modal-slideshow-button--prev js-slideshow-prev">
+            <span>Previous</span>
+        </button>
+        <div class="modal-slideshow-carousel">
+        {% for item in page.gallery_images.all %}
+            <div class="modal-slideshow-slide js-slideshow-slide" id="slideshow-item-{{ item.id }}">
+                {% if item.video %}
+                <div class="responsive-object">
+                    {% embed item.video %}
+                </div>
+                {% else %}
+                {% image item.image height-1200 as img %}
+                <img data-src="{{ img.url }}" />
+                {% endif %}
+            </div>
+        {% endfor %}
+        </div>
+        <button type="button" class="modal-slideshow-button modal-slideshow-button--next js-slideshow-next">
+            <span>Next</span>
+        </button>
+    </div>
+</div>
+<div class="modal-overlay"></div>
+{% endblock %}
+{% endif %} 
+
+{% block extra_js %}
+    <script>
+        function loadImage($img) {
+            $img.attr('src', $img.data('src'))
+        }
+
+        function loadNextImage($slideshow) {
+            // load the next unloaded image
+            var $nextImgToLoad = $slideshow.find('img:not([src])').first();
+            if ($nextImgToLoad.length) {
+              loadImage($nextImgToLoad);
+            };
+        }
+
+        function loadRemainingImages($slideshow) {
+          var $imgs = $slideshow.find('img:not([src])');
+          if ($imgs.length) {
+            $imgs.each(function(){
+              loadImage($(this));
+            });
+          }
+        }
+
+        $(document).ready(function(){
+
+            loadNextImage($('.js-images'));
+
+            $('body').on('click', '.js-modal-show', function(){
+                $('.js-modal').removeClass('is-hidden');
+                $('.js-modal').addClass('is-expanded');
+
+                $('.js-slideshow-slide').removeClass('is-hidden');
+
+                $target = $('#' + $(this).data('target'));
+                $target.prevAll().addClass('is-hidden');
+
+                loadImage($target.find('img'));
+                loadNextImage($('.js-images'));
+            });
+
+            $('body').on('click', '.js-modal-close', function(){
+                $('.js-modal').addClass('is-hidden');
+                $('.js-modal').removeClass('is-expanded');
+            });
+
+            $('body').on('click', '.js-slideshow-next', function(){
+
+                var $allSlides = $('.js-slideshow-slide');
+                var $hiddenSlides = $('.js-slideshow-slide.is-hidden');
+                var $visibleSlides = $('.js-slideshow-slide:not(.is-hidden)');
+
+                var isFirstSlide = $hiddenSlides.length == 0;
+                var isLastSlide = $visibleSlides.length == 1;
+
+                if (!isFirstSlide && !isLastSlide) {
+                    var $slideToHide = $hiddenSlides.last().next();
+                    $slideToHide.addClass('is-hidden');
+                } else if (isFirstSlide) {
+                    $slideToHide = $allSlides.first();
+                    $slideToHide.addClass('is-hidden');
+                } else if (isLastSlide) {
+                    $allSlides.removeClass('is-hidden');
+                }
+
+                $slideToShow = $slideToHide.next();
+
+                loadNextImage($('.js-images'));
+                loadImage($slideToShow.find('img'));
+            });
+
+             $('body').on('click', '.js-slideshow-prev', function(){
+                var $hiddenSlides = $('.js-slideshow-slide.is-hidden');
+                var isFirstSlide = $hiddenSlides.length == 0;
+            
+                if (!isFirstSlide) {
+                    $prevSlide = $hiddenSlides.last();
+                    $prevSlide.removeClass('is-hidden');
+                    loadImage($prevSlide.find('img'));
+                }
+            });
+        });
+    </script>
+{% endblock %}
