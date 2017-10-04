@@ -16,7 +16,7 @@ from modelcluster.fields import ParentalKey
 
 from press.models import Award
 
-
+@python_2_unicode_compatible 
 class ProfilePageClient(Orderable, models.Model):
     page = ParentalKey('profile.ProfilePage', related_name='clients')
     client = models.ForeignKey('design.Client', related_name='+')
@@ -24,6 +24,7 @@ class ProfilePageClient(Orderable, models.Model):
     def __str__(self):
         return self.page.title + " -> " + self.client.name
 
+@python_2_unicode_compatible 
 class ProfilePageCollaborator(Orderable, models.Model):
     page = ParentalKey('profile.ProfilePage', related_name='collaborators')
     collaborator = models.ForeignKey('design.Collaborator', related_name='+')
@@ -32,6 +33,7 @@ class ProfilePageCollaborator(Orderable, models.Model):
         return self.page.title + " -> " + self.collaborator.name
 
 
+@python_2_unicode_compatible
 class EmployeePage(Page):
     job_title = models.CharField(max_length=255)
     bio = RichTextField(blank=True)
