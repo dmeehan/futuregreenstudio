@@ -5,9 +5,16 @@
 {% block body_class %}body--profile{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+<link rel="stylesheet" href="//unpkg.com/leaflet@1.2.0/dist/leaflet.css"
   integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
   crossorigin=""/>
+<style>
+.leaflet-container .leaflet-control-attribution, .leaflet-container .leaflet-control-attribution a {
+    background: transparent;
+    color: #888;
+    font-size: 10px;
+}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -83,18 +90,18 @@
         </footer>
 {% endblock %}
 {% block extra_js %}
-    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+    <script src="//unpkg.com/leaflet@1.2.0/dist/leaflet.js"
       integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
       crossorigin=""></script>
     <script>
           var map = L.map('js-map', {
             center: [40.6734578,-74.0121125],
             zoom: 13,
-            scrollWheelZoom: false,
+            scrollWheelZoom: true,
             touchZoom: false,
             dragging: false,
             tap: true,
-            doubleClickZoom: false,
+            doubleClickZoom: true,
             boxZoom: false,
             keyboard: false,
             zoomControl: false
