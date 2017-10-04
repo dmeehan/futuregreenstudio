@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 
+from django.utils.encoding import python_2_unicode_compatible
+
 from django import forms
 from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -84,6 +86,7 @@ class ProjectPageTag(TaggedItemBase):
 
 
 @register_snippet
+@python_2_unicode_compatible 
 class Collaborator(index.Indexed, Orderable):
     page = ParentalKey('ProjectPage', related_name='collaborators', blank=True, null=True)
     name = models.CharField(max_length=255)
@@ -105,6 +108,7 @@ class Collaborator(index.Indexed, Orderable):
     ]
 
 @register_snippet
+@python_2_unicode_compatible 
 class Client(index.Indexed, Orderable):
     page = ParentalKey('ProjectPage', related_name='clients', blank=True, null=True)
     name = models.CharField(max_length=255)
@@ -201,7 +205,7 @@ class ProjectPageVideo(Orderable):
         FieldPanel('video'),
     ]
 
-
+@python_2_unicode_compatible 
 class ProjectCategory(Orderable, models.Model):
     page = ParentalKey(DesignPage, related_name='project_categories')
     name = models.CharField(max_length=255)
