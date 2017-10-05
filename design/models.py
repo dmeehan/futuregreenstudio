@@ -206,7 +206,7 @@ class ProjectPageVideo(Orderable):
     ]
 
 @python_2_unicode_compatible 
-class ProjectCategory(Orderable, models.Model):
+class ProjectCategory(Orderable):
     page = ParentalKey(DesignPage, related_name='project_categories')
     name = models.CharField(max_length=255)
     
