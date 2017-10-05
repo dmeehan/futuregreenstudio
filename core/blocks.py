@@ -58,5 +58,6 @@ class MarkdownBlock(TextBlock):
         template = 'core/blocks/markdown.html'
 
 class BasicStreamBlock(StreamBlock):
+    heading = CharBlock(icon="title", classname="title")
     subheading = CharBlock(icon="title", classname="title")
     text = RichTextBlock(icon="pilcrow", features=['bold', 'italic'])

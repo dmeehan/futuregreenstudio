@@ -1,0 +1,259 @@
+.research-mosaic {
+    padding-top: $spacing-base;
+    
+    .research-mosaic-tile {
+        position: relative;
+        margin-bottom: $spacing-base;
+        cursor: pointer;
+
+        img {
+            width: 100%;
+        }
+
+        &:hover {
+            .modal {
+                display: block;
+                opacity: 1;
+
+                .modal-glance {
+                    display: block;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    @media(min-width: $bp-horiz-medium) {
+        @include display(flex);
+        @include flex-wrap(wrap);
+
+        .research-mosaic-tile {
+            width: calc(50% - #{$spacing-small});
+
+            &:nth-child(odd) {
+                margin-right: $spacing-small;
+            }
+
+            &:nth-child(even) {
+                margin-left: $spacing-small;
+            }
+        }
+    }
+
+
+    @media(min-width: $bp-horiz-xlarge) {
+        .research-mosaic-tile {
+            width: calc(50% - 20px);
+            margin-bottom: 40px;
+
+            &:nth-child(odd) {
+                margin-right: 20px;
+            }
+
+            &:nth-child(even) {
+                margin-left: 20px;
+            }
+        }
+
+        
+        @supports (display: grid) {
+            $grid-items: 12;
+            $grid-column-first: 1;
+            $grid-column-last: 29;
+            $grid-row-first: 1;
+            $grid-row-last: 42;
+
+            display: grid;
+            grid-template-columns: repeat(29, 3.44%);
+            grid-template-rows: 33px;
+            grid-auto-columns: 3.44%;
+            grid-auto-rows: 33px;
+
+            @media(min-width: $bp-horiz-xlarge) {
+                grid-template-rows: 30px;
+                grid-auto-rows: 30px;
+            }
+
+            @media(min-width: 1366px) {
+                grid-template-rows: 33px;
+                grid-auto-rows: 33px;
+            }
+
+            @media(min-width: $bp-horiz-max) {
+                grid-template-rows: 40px;
+                grid-auto-rows: 40px;
+            }
+
+            .research-mosaic-tile {
+                display: block;
+                position: relative;
+                width: auto;
+                height: auto;
+                margin-bottom: 0;
+                margin: 0;
+
+                &:nth-child(odd) {
+                    margin-right: 0;
+                }
+
+                &:nth-child(even) {
+                    margin-left: 0;
+                }
+
+                &:nth-child(10n+1) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    margin-left: 0;
+                    grid-column-start: 1;
+                    grid-column-end: span 19;
+                    grid-row-start: 1;
+                    grid-row-end: span 11;
+                }
+
+                &:nth-child(10n+2) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 21;
+                    grid-column-end: span 9;
+                    grid-row-start: 1;
+                    grid-row-end: span 5;
+                }
+
+                &:nth-child(10n+3) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 21;
+                    grid-column-end: span 9;
+                    grid-row-start: 7;
+                    grid-row-end: span 5;
+                }
+
+                &:nth-child(10n+4) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 1;
+                    grid-column-end: span 9;
+                    grid-row-start: 13;
+                    grid-row-end: span 5;
+                }
+
+                &:nth-child(10n+5) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 1;
+                    grid-column-end: span 9;
+                    grid-row-start: 19;
+                    grid-row-end: span 5;
+                }
+
+                &:nth-child(10n+6) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    margin-left: 0;
+                    grid-column-start: 11;
+                    grid-column-end: span 19;
+                    grid-row-start: 13;
+                    grid-row-end: span 11;
+                }
+
+                &:nth-child(10n+7) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 1;
+                    grid-column-end: span 29;
+                    grid-row-start: 25;
+                    grid-row-end: span 15;
+                }
+
+                &:nth-child(10n+8) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 1;
+                    grid-column-end: span 9;
+                    grid-row-start: 41;
+                    grid-row-end: span 7;
+                }
+
+                &:nth-child(10n+9) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 11;
+                    grid-column-end: span 9;
+                    grid-row-start: 41;
+                    grid-row-end: span 7;
+                }
+
+                &:nth-child(10n) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 21;
+                    grid-column-end: span 9;
+                    grid-row-start: 41;
+                    grid-row-end: span 7;
+                }
+
+            }
+        }
+        
+    }
+
+    .research-mosaic-tile-image {
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 56%;
+        display: block;
+
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+
+        @media(min-width: $bp-horiz-xlarge) {
+            @supports (display: grid) {
+                position: absolute;
+                padding-bottom: 0;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+        }
+    }
+}
+
+.research-list {
+    @include resetList;
+    margin-bottom: $spacing-small;
+    padding-top: $spacing-base;
+
+    > li {
+        line-height: 1.25;
+        padding-bottom: .5rem;
+
+        > a {
+            font-size: 1rem;
+            display: block;
+            color: $dark-gray;
+            font-family: $font-family-heading;
+
+            &:hover {
+                color: $green;
+            }
+        }
+
+        span {
+            font-size: 1rem;
+        }
+
+    }
+    
+}

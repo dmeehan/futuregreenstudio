@@ -140,6 +140,10 @@
 }
 
 .project-subtitle {
+    .block-heading {
+        padding-bottom: $spacing-small;
+    }
+
     .block-subheading {
         font-size: .875rem;
         color: $green;

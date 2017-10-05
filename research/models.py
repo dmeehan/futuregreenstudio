@@ -17,37 +17,35 @@ from core.blocks import BasicStreamBlock
 
 
 class ResearchPage(Page):
-    intro = models.TextField()
+    #intro = models.TextField()
 
     content_panels = Page.content_panels + [
-        FieldPanel('intro'),
+        InlinePanel('featured_research_projects', label="Featured Research Projects"),
     ]
 
     parent_page_types = ['home.HomePage']
     subpage_types = ['research.ResearchProjectPage']
 
     def get_context(self, request):
-        pagination_num = 3
+        #pagination_num = 3
         context = super(ResearchPage, self).get_context(request)
         
         all_projects = ResearchProjectPage.objects.live().child_of(self)
 
         #publications = PublicationPage.objects.live()[:2]
-
-        paginator = Paginator(all_projects, pagination_num)
-
-        page = request.GET.get('page')
-        try:
-            projects = paginator.page(page)
-        except PageNotAnInteger:
+        #paginator = Paginator(all_projects, pagination_num)
+        #page = request.GET.get('page')
+        #try:
+        #    projects = paginator.page(page)
+        #except PageNotAnInteger:
             # If page is not an integer, deliver first page.
-            projects = paginator.page(1)
-        except EmptyPage:
+        #    projects = paginator.page(1)
+        #except EmptyPage:
             # If page is out of range (e.g. 9999), deliver last page of results.
-            projects = paginator.page(paginator.num_pages)
+        #    projects = paginator.page(paginator.num_pages)
 
         # make the variable 'projects' available on the template
-        context['projects'] = projects
+        context['projects'] = all_projects
         #context['publications'] = publications
         
         return context
@@ -93,6 +91,11 @@ class ResearchProjectPage(Page):
 
     class Meta:
         verbose_name = "Research Project"
+
+class FeaturedResearchProject(Orderable):
+    page = ParentalKey(ResearchPage, related_name='featured_research_projects')
+    research_project = models.ForeignKey(ResearchProjectPage, related_name='+')
+
 
 class ResearchProjectPageGalleryImage(Orderable):
     page = ParentalKey(ResearchProjectPage, related_name='gallery_images')

@@ -37,7 +37,7 @@ body {
                 @include clearfix;
                 margin-bottom: $spacing-base*2;
 
-                > article {
+                > article, > div {
                     width: 75%;
                     padding: 0;
                     margin: 0 0 0 0;
@@ -56,6 +56,7 @@ body {
                         margin: 0 auto;
                     }
                 }
+
 
                 > aside, > header {
                     width: 25%;
@@ -96,6 +97,11 @@ body {
                         width: 50%;
                         margin: 0 auto;
                     }
+                }
+
+                > div {
+                    float: none;
+                    width: 75%;
                 }
 
                 > aside, > header {

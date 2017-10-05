@@ -7,67 +7,62 @@
 {% block content %}
 <main class="research">
     <section>
-        <aside><h1 class="section-title">{{ page.title }}</h1></aside>
-        <article>
-            <h2 class="article-title research-intro">{{ page.intro }}</h2>
-        </article>
-        
-        <aside>
-            <div class="research-publications">
-                <h2 class="article-title">Publications</h2>
-                <ul class="link-list">
-                {% for publication in publications %}
-                    <li><a href="{{ publication.specific.url }}">{{ publication.specific.title }}</a></li>
-                {% endfor %}
-                </ul>
-            </div>
-        </aside>
-        
-    </section>
-    {% for project in projects %}
-        <section class="section-slideshow project-slideshow">
-            <div class="slideshow js-slideshow">
-            {% for item in project.gallery_images.all %}
-                <div>
-                    {% image item.image fill-1600x608 as img %}
-                    <img data-lazy="{{ img.url }}" />
-                </div>
+        <div>
+            <h2 class="article-title">Featured Research</h2>
+            {% if page.featured_research_projects.all %}
+            <div class="research-mosaic">
+            {% for item in page.featured_research_projects.all %}
+                {% if item.research_project.specific.list_image != None %}
+                {% image item.research_project.specific.list_image fill-800x800 as img %}
+                {% else %}
+                    {% image item.research_project.specific.main_image fill-800x800 as img %}
+                {% endif %}
+                <div class="research-mosaic-tile">
+                     <div class="research-mosaic-tile-image" style="background-image: url({{ img.url }})"></div>
+                    <div class="modal">
+                            <a class="modal-glance" href="{{ item.research_project.specific.url }}">
+                                <h3 class="modal-title">{{ item.research_project.specific.title }}</h3>
+                                <h4 class="modal-subtitle">{{ item.research_project.date }}</h4>
+                                <button type="button" class="modal-open"><span>More</span></button>
+                            </a>
+                        </div>
+                </div> 
             {% endfor %}
             </div>
-        </section>
-        <section class="project-content">
-            <header>
-                <h1 class="article-title">{{ project.title }}</h1>
-                {% if project.date %}
-                <h2>{{ project.date|date:"F d, Y" }}</h2>
+            {% else %}
+            <div class="research-mosaic">
+            {% for item in projects %}
+                {% if item.specific.list_image != None %}
+                {% image item.specific.list_image fill-800x800 as img %}
+                {% else %}
+                    {% image item.specific.main_image fill-800x800 as img %}
                 {% endif %}
-            </header>
-            <article>
-                {{ project.description|richtext }}
-            </article>
-            <aside class="project-meta">
-                {% if project.related_links.all %}
-                <h3>Related Links:</h3>
-                <ul class="link-list project-links">
-                    {% for link in project.related_links.all %}
-                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-            </aside>
-        </section>
-    {% endfor %}
-    <ul class="pagination">
-      {% if projects.has_next %}
-        <li class="pagination-item"><a href="?page={{ projects.next_page_number }}"><i class="fa fa-angle-left"></i>&#160;Older</a></li>
-      {% endif %}
-      {% if projects.has_previous %}
-        <li class="pagination-item"><a href="?page={{ projects.previous_page_number }}">Newer&#160;<i class="fa fa-angle-right"></i></a></li>
-      {% endif %}
-      <!--
-      {% for page_num in projects.paginator.page_range %}
-        <li {% if page_num == projects.number %}class="is-active"{% endif %}><a href="?page={{ page_num }}">{{ page_num }}</a></li>
-      {% endfor %}-->
-    </ul>
+                <div class="research-mosaic-tile">
+                    <div class="research-mosaic-tile-image" style="background-image: url({{ img.url }})"></div>
+                    <div class="modal">
+                            <a class="modal-glance" href="{{ item.specific.url }}">
+                                <h3 class="modal-title">{{ item.specific.title }}</h3>
+                                <h4 class="modal-subtitle">{{ item.specific.date }}</h4>
+                                <button type="button" class="modal-open"><span>More</span></button>
+                            </a>
+                        </div>
+                </div> 
+            {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <aside>
+        <h2 class="article-title">All Research</h2>
+        <ul class="research-list">
+            {% for item in projects %}
+            <li>
+                <span>{{ item.specific.date }}</span>
+                <a href="{{ item.specific.url }}">{{ item.specific.title }}</h4></a>
+            </li>
+            {% endfor %}
+        </ul>
+        </aside>
+    </section>
+    
 </main>
 {% endblock %}
