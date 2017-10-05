@@ -30,7 +30,7 @@ class ResearchPage(Page):
         #pagination_num = 3
         context = super(ResearchPage, self).get_context(request)
         
-        all_projects = ResearchProjectPage.objects.live().child_of(self)
+        all_projects = ResearchProjectPage.objects.live().child_of(self).order_by('-date')
 
         #publications = PublicationPage.objects.live()[:2]
         #paginator = Paginator(all_projects, pagination_num)
