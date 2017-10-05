@@ -218,4 +218,5 @@ class ProjectCategory(Orderable):
         return self.name
 
     class Meta:
+        ordering  = ['sort_order',]
         verbose_name_plural = 'project categories'
