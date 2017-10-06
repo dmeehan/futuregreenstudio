@@ -68,6 +68,8 @@
         float: right;
     }
 
+    position: relative;
+
 
     img {
         display: block;
@@ -408,6 +410,17 @@ $slick-opacity-not-active: 0.00 !default;
     opacity: 1;
     position: relative;
     transition: opacity 0.2s ease-in;
+}
+
+
+.slideshow-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: $spacing-base;
+    text-align: center;
+    color: white;
+    font-size: 1rem;
 }
 
 

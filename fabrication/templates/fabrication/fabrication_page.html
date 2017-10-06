@@ -30,6 +30,9 @@
             <div>
                 {% image item.image fill-1600x608 as img %}
                 <img src="{{ img.url }}" />
+                {% if item.caption %}
+                <div class="slideshow-caption">{{ item.caption }}</div>
+                {% endif %}
             </div>
         {% endfor %}
         </div>
