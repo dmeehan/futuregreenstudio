@@ -278,30 +278,6 @@
 
 
     @media(min-width: $bp-horiz-large) {
-        //width: 75%;
-        //margin-right: auto;
-        //margin-left: 0;
-    }
-
-    
-
-    @media(min-width: $bp-horiz-large) {
-        /*.project-mosaic-tile {
-            width: calc(50% - 16px);
-            margin-bottom: 32px;
-
-            &:nth-child(odd) {
-                margin-right: 16px;
-            }
-
-            &:nth-child(even) {
-                margin-left: 16px;
-            }
-        }*/
-    }
-
-
-    @media(min-width: $bp-horiz-large) {
         .project-mosaic-tile {
             width: calc(50% - 20px);
             margin-bottom: 40px;
@@ -375,10 +351,6 @@
                     grid-column-end: span 9;
                     grid-row-start: 1;
                     grid-row-end: span 6;
-
-                    /*&:last-child, &:nth-last-child(2), &:nth-last-child(3), &:nth-last-child(4) {
-                        grid-row-end: span 10; 
-                    }*/
                 }
 
                 &:nth-child(8n+2) {
@@ -389,10 +361,6 @@
                     grid-column-end: span 9;
                     grid-row-start: 1;
                     grid-row-end: span 6;
-
-                    /*&:last-child, &:nth-last-child(2), &:nth-last-child(3), &:nth-last-child(4) {
-                        grid-row-end: span 10; 
-                    }*/
                 }
 
                 &:nth-child(8n+3) {
@@ -403,10 +371,6 @@
                     grid-column-end: span 9;
                     grid-row-start: 1;
                     grid-row-end: span 13;
-
-                    /*&:last-child, &:nth-last-child(2), &:nth-last-child(3), &:nth-last-child(4) {
-                        grid-row-end: span 10; 
-                    }*/
                 }
 
                 &:nth-child(8n+4) {
@@ -417,10 +381,6 @@
                     grid-column-end: span 19;
                     grid-row-start: 8;
                     grid-row-end: span 13;
-
-                    /*&:last-child, &:nth-last-child(2), &:nth-last-child(3), &:nth-last-child(4) {
-                        grid-row-end: span 10; 
-                    }*/
                 }
 
                 &:nth-child(8n+5) {
@@ -431,10 +391,6 @@
                     grid-column-end: span 9;
                     grid-row-start: 15;
                     grid-row-end: span 13;
-
-                    /*&:last-child, &:nth-last-child(2), &:nth-last-child(3), &:nth-last-child(4) {
-                        grid-row-end: span 10; 
-                    }*/
                 }
 
                 &:nth-child(8n+6) {
@@ -446,10 +402,6 @@
                     grid-column-end: span 9;
                     grid-row-start: 22;
                     grid-row-end: span 6;
-
-                    /*&:last-child, &:nth-last-child(2), &:nth-last-child(3), &:nth-last-child(4) {
-                        grid-row-end: span 10; 
-                    }*/
                 }
 
                 &:nth-child(8n+7) {
@@ -460,10 +412,6 @@
                     grid-column-end: span 9;
                     grid-row-start: 22;
                     grid-row-end: span 6;
-
-                    /*&:last-child, &:nth-last-child(2), &:nth-last-child(3), &:nth-last-child(4) {
-                        grid-row-end: span 10; 
-                    }*/
                 }
 
                 &:nth-child(8n) {
@@ -474,10 +422,6 @@
                     grid-column-end: span 29;
                     grid-row-start: 29;
                     grid-row-end: span 15;
-
-                    /*&:last-child, &:nth-last-child(2), &:nth-last-child(3), &:nth-last-child(4) {
-                        grid-row-end: span 10; 
-                    }*/
                 }
 
             }
@@ -500,13 +444,15 @@
         background-size: cover;
         background-position: center center;
 
-        @media(min-width: $bp-horiz-large) {
-            position: absolute;
-            padding-bottom: 0;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+        @supports (display: grid) {
+            @media(min-width: $bp-horiz-large) {
+                position: absolute;
+                padding-bottom: 0;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
         }
     }
 }

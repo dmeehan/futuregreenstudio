@@ -29,7 +29,7 @@
         {% for item in page.gallery_images.all %}
             <div>
                 {% image item.image fill-1600x608 as img %}
-                <img data-lazy="{{ img.url }}" />
+                <img src="{{ img.url }}" />
             </div>
         {% endfor %}
         </div>
