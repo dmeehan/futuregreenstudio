@@ -131,11 +131,11 @@ class Client(index.Indexed, Orderable):
 
 class ProjectPage(Page):    
     main_image = models.ForeignKey(
-        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+'
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+', help_text="Minimum 1600px wide & 800px tall"
     )
     list_image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.PROTECT, related_name='+',
-        blank=True, null=True
+        blank=True, null=True, help_text="Minimum 800px wide & 800px tall"
     )
     location = models.CharField(blank=True,
         max_length=255, help_text='Project location')
@@ -189,7 +189,7 @@ class ProjectPageGalleryImage(Orderable):
     page = ParentalKey(ProjectPage, related_name='gallery_images')
     image = models.ForeignKey(
         'wagtailimages.Image', blank=True, null=True, on_delete=models.PROTECT, related_name='+',
-        help_text='Slideshow image.')
+        help_text='Slideshow image. Minimum 1160px wide and 1160px tall.')
     caption = models.CharField(blank=True, max_length=250)
 
     panels = [

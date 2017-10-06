@@ -72,7 +72,8 @@ class HomePageGalleryItem(Orderable):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+'
+        related_name='+',
+        help_text="Minimum 1920px wide"
     )
     link_page = models.ForeignKey(
         'wagtailcore.Page',

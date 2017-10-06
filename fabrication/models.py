@@ -75,7 +75,7 @@ class FabricationPage(Page):
 class FabricationPageGalleryImage(Orderable):
     page = ParentalKey(FabricationPage, related_name='gallery_images')
     image = models.ForeignKey(
-        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+'
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+', help_text="Minimum 1600px wide & 608px tall"
     )
     caption = models.CharField(blank=True, max_length=250)
 

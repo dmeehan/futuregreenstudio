@@ -62,7 +62,7 @@ class PressPage(RoutablePageMixin, Page):
 
     placeholder_image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.PROTECT, related_name='+', null=True, blank=True,
-        help_text='Press article placeholder image.')
+        help_text='Press article placeholder image. Minimum 400px wide & 500px tall.')
 
     def get_context(self, request):
         context = super(PressPage, self).get_context(request)
@@ -140,7 +140,7 @@ class NewsItemPage(Page):
     date = models.DateField("Post date")
     image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.PROTECT, related_name='+', null=True, blank=True,
-        help_text='Teaser image.')
+        help_text="Teaser Image. Minimum 400px wide & 500px tall")
     external_link = models.URLField(null=True, blank=True, help_text='Link to article in external publication. Optional')
     publication_name = models.CharField(max_length=255, null=True, blank=True)
     body = StreamField(PressStreamBlock(required=False), blank=True, null=True, help_text='Content for FGS published articles. Optional')

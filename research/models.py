@@ -62,11 +62,11 @@ class ResearchProjectPageTag(TaggedItemBase):
 class ResearchProjectPage(Page):
     main_image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.PROTECT, related_name='+',
-        null=True
+        null=True, help_text="Minimum 1600px wide & 800px tall"
     )
     list_image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.PROTECT, related_name='+',
-        blank=True, null=True
+        blank=True, null=True, help_text="Minimum 800px wide & 800px tall"
     )
     date = models.DateField("Project date")
     subtitle = StreamField(BasicStreamBlock(required=False), blank=True)
@@ -100,7 +100,7 @@ class FeaturedResearchProject(Orderable):
 class ResearchProjectPageGalleryImage(Orderable):
     page = ParentalKey(ResearchProjectPage, related_name='gallery_images')
     image = models.ForeignKey(
-        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+'
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+', help_text="Minimum 1160px wide & 1160px tall"
     )
     caption = models.CharField(blank=True, max_length=250)
 

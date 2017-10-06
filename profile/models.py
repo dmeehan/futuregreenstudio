@@ -38,7 +38,7 @@ class EmployeePage(Page):
     job_title = models.CharField(max_length=255)
     bio = RichTextField(blank=True)
     image = models.ForeignKey(
-        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+'
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+', help_text="Minimum 800px wide & 800px tall"
     )
 
     content_panels = Page.content_panels + [
@@ -56,7 +56,7 @@ class EmployeePage(Page):
 
 class ProfilePage(Page):
     image = models.ForeignKey(
-        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+'
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+', help_text="Minimum 1600px wide & 608px tall"
     )
     about_title = models.CharField(max_length=255)
     about_text = RichTextField(blank=True)

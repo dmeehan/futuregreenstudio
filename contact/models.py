@@ -14,7 +14,7 @@ from modelcluster.fields import ParentalKey
 
 class ContactPage(Page):
     image = models.ForeignKey(
-        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+'
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+', help_text="Minimum 1600px wide & 608px tall"
     )
 
     content_panels = Page.content_panels + [
