@@ -82,7 +82,7 @@ class HomePageGalleryItem(Orderable):
         help_text='Add if you want this item to link to a page on this site.'
     )
     caption = RichTextField(features=['bold', 'italic'])
-    theme = models.CharField(max_length=255, choices=THEME_CHOICES, default='dark')
+    theme = models.CharField(max_length=255, choices=THEME_CHOICES, default='light')
     page = ParentalKey('home.HomePage', related_name='slideshow_images')
 
     panels = [
