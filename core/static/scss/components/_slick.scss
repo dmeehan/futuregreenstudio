@@ -394,7 +394,7 @@ $slick-opacity-not-active: 0.00 !default;
 }
 
 .slick-slider {
-    &::before {
+    /*&::before {
         @include transform(translate(-50%, -50%));
         @include animation(sk-rotateplane 1.2s infinite ease-in-out);
         content: '';
@@ -404,7 +404,7 @@ $slick-opacity-not-active: 0.00 !default;
         width: 40px;
         height: 40px;
         background-color: $light-gray;
-    }
+    }*/
 }
 
 .slick-slider .slick-list { 

@@ -96,16 +96,17 @@
       crossorigin=""></script>
     <script>
           var map = L.map('js-map', {
-            center: [40.6734578,-74.0121125],
+            //center: [40.6734578,-74.0121125],
+            center: [40.6895, -74.0168],
             zoom: 13,
             scrollWheelZoom: true,
-            touchZoom: false,
-            dragging: false,
+            touchZoom: true,
+            dragging: true,
             tap: true,
             doubleClickZoom: true,
-            boxZoom: false,
-            keyboard: false,
-            zoomControl: false
+            boxZoom: true,
+            keyboard: true,
+            zoomControl: true
           });
 
           // Prep the background tile layer
