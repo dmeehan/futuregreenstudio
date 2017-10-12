@@ -124,15 +124,15 @@
 }
 
 .section-slideshow {
-    display: block;
+    display: block !important;
     width: 100%;
 }
 
-.slideshow {
-    //img {
-    //    width: 100%;
-    //    height: auto;
-    //}
+.slick-slideshow {
+    img {
+        width: 100%;
+        height: auto;
+    }
 }
 
 .contact-contactinfo {

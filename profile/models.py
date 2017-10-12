@@ -24,6 +24,9 @@ class ProfilePageClient(Orderable, models.Model):
     def __str__(self):
         return self.page.title + " -> " + self.client.name
 
+    class Meta:
+        ordering  = ['sort_order',]
+
 @python_2_unicode_compatible 
 class ProfilePageCollaborator(Orderable, models.Model):
     page = ParentalKey('profile.ProfilePage', related_name='collaborators')
@@ -31,6 +34,9 @@ class ProfilePageCollaborator(Orderable, models.Model):
 
     def __str__(self):
         return self.page.title + " -> " + self.collaborator.name
+        
+    class Meta:
+        ordering  = ['sort_order',]
 
 
 @python_2_unicode_compatible

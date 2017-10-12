@@ -15,14 +15,14 @@
             <h2 class="article-title">News</h2>
             <div class="publication">
                 <h2>{{ page.title }}</h2>
+                {% if page.body %}
+                {{ page.body }}
+                {% endif %}
                 {% if page.publication_name %}
                     <h3>Published in {{  page.publication_name }} {{ page.date|date:"F d, Y" }}</h3>
                 {% endif %}
                 {% if page.external_link %}
                     <p><a href="{{  page.external_link }}" target="_blank">View Article</a></p>
-                {% endif %}
-                {% if page.body %}
-                {{ page.body }}
                 {% endif %}
             </div>
         </article>
