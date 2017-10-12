@@ -1,5 +1,4 @@
-{% load static wagtailuserbar %}
-{% load compress %}
+{% load static compress wagtailuserbar %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -151,8 +150,9 @@
             {# Override this in templates to add a modal #}
         {% endblock %}
         {% block js %}
-        <script type="text/javascript" src="{% static "js/ui/breakpoint.js" %}"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+        {% compress js %}
+        <script type="text/javascript" src="{% static "js/ui/breakpoint.js" %}"></script>
         <script>
         $(document).ready(function(){
               $('.js-slick').slick({
@@ -167,6 +167,7 @@
               });
             });
         </script>
+        {% endcompress %}
         {% endblock js %}
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}

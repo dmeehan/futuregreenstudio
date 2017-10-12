@@ -280,6 +280,7 @@
     &-button {
         outline: none;
         padding: 0 $spacing-small;
+        opacity: 1;
         
         span {
             display: none;
@@ -307,6 +308,18 @@
 
             &::before {
                 font-size: 3rem;
+            }
+        }
+
+        &:disabled {
+            cursor: default;
+            opacity: 0.5;
+            color: $green;
+
+            &:hover {
+                color: $green;
+                cursor: default;
+                opacity: 0.5;
             }
         }
     }

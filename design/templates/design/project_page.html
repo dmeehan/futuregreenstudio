@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
 
 {% block body_class %}body--design{% endblock %}
 
@@ -132,7 +132,7 @@
 <div class="modal project-slideshow js-modal is-hidden">
     <div class="modal-slideshow js-images">
         <button type="button" class="modal-close js-modal-close"><span>Close</span></button>
-        <button type="button" class="modal-slideshow-button modal-slideshow-button--prev js-slideshow-prev">
+        <button type="button" class="modal-slideshow-button modal-slideshow-button--prev js-slideshow-prev disabled">
             <span>Previous</span>
         </button>
         <div class="modal-slideshow-carousel">
@@ -159,85 +159,5 @@
 {% endif %} 
 
 {% block extra_js %}
-    <script>
-        function loadImage($img) {
-            $img.attr('src', $img.data('src'))
-        }
-
-        function loadNextImage($slideshow) {
-            // load the next unloaded image
-            var $nextImgToLoad = $slideshow.find('img:not([src])').first();
-            if ($nextImgToLoad.length) {
-              loadImage($nextImgToLoad);
-            };
-        }
-
-        function loadRemainingImages($slideshow) {
-          var $imgs = $slideshow.find('img:not([src])');
-          if ($imgs.length) {
-            $imgs.each(function(){
-              loadImage($(this));
-            });
-          }
-        }
-
-        $(document).ready(function(){
-
-            loadNextImage($('.js-images'));
-
-            $('body').on('click', '.js-modal-show', function(){
-                $('.js-modal').removeClass('is-hidden');
-                $('.js-modal').addClass('is-expanded');
-
-                $('.js-slideshow-slide').removeClass('is-hidden');
-
-                $target = $('#' + $(this).data('target'));
-                $target.prevAll().addClass('is-hidden');
-
-                loadImage($target.find('img'));
-                loadNextImage($('.js-images'));
-            });
-
-            $('body').on('click', '.js-modal-close', function(){
-                $('.js-modal').addClass('is-hidden');
-                $('.js-modal').removeClass('is-expanded');
-            });
-
-            $('body').on('click', '.js-slideshow-next', function(){
-
-                var $allSlides = $('.js-slideshow-slide');
-                var $hiddenSlides = $('.js-slideshow-slide.is-hidden');
-                var $visibleSlides = $('.js-slideshow-slide:not(.is-hidden)');
-
-                var isFirstSlide = $hiddenSlides.length == 0;
-                var isLastSlide = $visibleSlides.length == 1;
-
-                if (!isFirstSlide && !isLastSlide) {
-                    var $slideToHide = $hiddenSlides.last().next();
-                    $slideToHide.addClass('is-hidden');
-                } else if (isFirstSlide) {
-                    $slideToHide = $allSlides.first();
-                    $slideToHide.addClass('is-hidden');
-                } else if (isLastSlide) {
-                    $allSlides.removeClass('is-hidden');
-                }
-
-                $slideToShow = $slideToHide.next();
-
-                loadNextImage($('.js-images'));
-                loadImage($slideToShow.find('img'));
-            });
-
-             $('body').on('click', '.js-slideshow-prev', function(){
-                var $hiddenSlides = $('.js-slideshow-slide.is-hidden');
-                var isFirstSlide = $hiddenSlides.length == 0;
-            
-                if (!isFirstSlide) {
-                    $prevSlide = $hiddenSlides.last();
-                    $prevSlide.removeClass('is-hidden');
-                    loadImage($prevSlide.find('img'));
-                }
-            });
-        });
-    </script>
+<script type="text/javascript" src="{% static "js/ui/slideshow.js" %}"></script>
 {% endblock %}
