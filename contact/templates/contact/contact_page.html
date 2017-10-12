@@ -30,15 +30,18 @@
                 </li>
                 <li>
                     {{ settings.home.firminformation.address_1 }} {{ settings.home.firminformation.address_2 }}
+                </li>
+                <li>
                     {{ settings.home.firminformation.city }}, {{ settings.home.firminformation.state }} {{ settings.home.firminformation.zip_code }}
                 </li>
                 <li>
+                    <span>t.</span>
                     {{ settings.home.firminformation.phone }}
                 </li>
-                <!--<li>
+                <li>
                     <span>f.</span>
                     {{ settings.home.firminformation.fax }}
-                </li>-->
+                </li>
                 <li>
                     <a mailto="{{ settings.core.FirmInformation.email }}">
                         {{ settings.home.firminformation.email }}

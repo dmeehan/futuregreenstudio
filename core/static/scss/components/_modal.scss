@@ -233,15 +233,15 @@
 .modal-slideshow {
     @include display(flex);
     @include align-items(center);
-    width: calc(100% - 3rem);
-    height: calc(100vh - 3rem);
+    width: calc(100% - 1.5rem);
+    height: calc(100vh - 1.5rem);
     background-color: white;
     overflow: hidden;
 
     .modal-close {
         position: absolute;
-        right: 3rem;
-        top: 3rem;
+        right: 1.5rem;
+        top: 1.5rem;
     }
     
 
@@ -250,8 +250,8 @@
         height: calc(100vh - 4rem);
 
         .modal-close {
-            //right: 4rem;
-            //top: 4rem;
+            right: 3rem;
+            top: 3rem;
         }
     }
 
@@ -260,6 +260,7 @@
         @include display(flex);
         @include align-items(center);
         overflow: hidden;
+        position: relative;
 
         /*&::before {
             @include transform(translate3d(0, 0, 0));
@@ -278,6 +279,7 @@
 
     &-button {
         outline: none;
+        padding: 0 $spacing-small;
         
         span {
             display: none;
@@ -285,20 +287,26 @@
 
         &::before {
             font-family: FontAwesome;
-            font-size: 3rem;
+            font-size: 1.5rem;
         }
 
         &--next {
-            padding: 0 1.5rem 0 3rem;
             &::before {
                 content: '\f105';
             }
         }
 
         &--prev {
-            padding: 0 3rem 0 1.5rem;
             &::before {
                 content: '\f104';
+            }
+        }
+
+        @media(min-width: $bp-horiz-large) {
+            padding: 0 $spacing-base;
+
+            &::before {
+                font-size: 3rem;
             }
         }
     }
