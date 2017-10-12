@@ -98,5 +98,4 @@ $(document).ready(function(){
     $('body').on('click', '.js-slideshow-next', slideshowNext);
 
     $('body').on('click', '.js-slideshow-prev', slideshowPrev);
-    $('.js-slideshow').hammer().bind('swipeleft', slideshowPrev);
 });
