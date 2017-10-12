@@ -442,7 +442,7 @@
 
         background-repeat: no-repeat;
         background-size: cover;
-        background-position: center bottom;
+        background-position: center center;
 
         @supports (display: grid) {
             @media(min-width: $bp-horiz-large) {
