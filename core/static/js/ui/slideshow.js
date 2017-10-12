@@ -33,7 +33,7 @@ function slideshowNext() {
         $slideToHide.addClass('is-hidden');
         $prevButton.prop('disabled', false);
     } else if (isFirstSlide) {
-        $slideToHide = $allSlides.first();
+        var $slideToHide = $allSlides.first();
         $slideToHide.addClass('is-hidden');
         $prevButton.prop('disabled', false);
     } else if (isLastSlide) {
@@ -41,10 +41,13 @@ function slideshowNext() {
         $prevButton.prop('disabled', true);
     }
 
-    $slideToShow = $slideToHide.next();
-
+    if (!isLastSlide) {
+        var $slideToShow = $slideToHide.next();
+        loadImage($slideToShow.find('img'));
+    }
+    
     loadNextImage($('.js-images'));
-    loadImage($slideToShow.find('img'));
+    
 }
 
 function slideshowPrev() {
