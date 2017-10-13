@@ -78,10 +78,8 @@
             
             $projects.each(function() {
                 var categories = $(this).data('categories');
-                console.log(categories);
                 $(this).addClass('is-disabled');
                 if (categories.indexOf(category) >=0 ) {
-                    console.log('disable');
                     $(this).removeClass('is-disabled');
                 }
             });
