@@ -101,4 +101,15 @@ $(document).ready(function(){
     $('body').on('click', '.js-slideshow-next', slideshowNext);
 
     $('body').on('click', '.js-slideshow-prev', slideshowPrev);
+
+    //implmement touch events with hammer.js
+    //var slideContainer = document.getElementById('js-slideshow');
+
+    // create a simple instance
+    // by default, it only adds horizontal recognizers
+    //var hammerit = new Hammer(slideContainer);
+
+    // listen to events...
+    //hammerit.on('swipeleft', slideshowNext);
+    //hammerit.on('swiperight', slideshowPrev);
 });

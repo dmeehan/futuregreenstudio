@@ -102,14 +102,19 @@
 
     .slideshow-caption {
         position: absolute;
-        left: 0;
-        right: 0;
-        bottom: $spacing-base;
+        left: $spacing-base;
+        right: $spacing-base;
+        bottom: $spacing-small;
         text-align: center;
+        font-size: 0.75rem;
         color: white;
-        font-size: 1rem;
         font-family: $font-family-heading;
         text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+
+        @media(min-width: $bp-horiz-medium) {
+            font-size: 1rem;
+            bottom: $spacing-base;
+        }
     }
 }
 .slick-arrow.slick-hidden {
