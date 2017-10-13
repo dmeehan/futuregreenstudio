@@ -9,7 +9,7 @@ DEBUG = False
 #==============================================================================
 # Site
 #==============================================================================
-ALLOWED_HOSTS = ['futuregreenstudio.com', 'futuregreenstudio.com', 'smtp.webfaction.com']
+ALLOWED_HOSTS = ['futuregreenstudio.com', 'www.futuregreenstudio.com', 'smtp.webfaction.com']
 
 BASE_URL = 'http://futuregreenstudio.com'
 
