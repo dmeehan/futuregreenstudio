@@ -78,7 +78,7 @@ function slideshowPrev() {
 
 $(document).ready(function(){
 
-    loadNextImage($('.js-images'));
+    loadRemainingImages($('.js-images'));
 
     $('body').on('click', '.js-modal-show', function(){
         $('.js-modal').removeClass('is-hidden');
