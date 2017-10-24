@@ -344,6 +344,16 @@
             height: 100%;
             max-width: 100%;
             object-fit: contain;
+
+            [data-src] {
+                opacity: 0;
+                @include transition(all 0.25s linear);
+            }
+
+            [src] {
+                opacity: 1;
+                @include transition(all 0.25s linear);
+            }
         }
 
         .responsive-object {

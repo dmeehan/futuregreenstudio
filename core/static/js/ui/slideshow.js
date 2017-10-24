@@ -1,9 +1,13 @@
 function loadImage($img) {
     if (!$img[0].hasAttribute('src')) {
         $img.attr('src', $img.data('src'));
+        $img.on('load', function () {
+            $img.closest('.js-slideshow-slide').removeClass('is-loading'); 
+        });
+    } else {
+        $img.closest('.js-slideshow-slide').removeClass('is-loading'); 
     }
-
-    $img.closest('.js-slideshow-slide').removeClass('is-loading'); 
+    
 }
 
 function loadNextImage($slideshow) {
