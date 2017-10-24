@@ -1,5 +1,9 @@
 function loadImage($img) {
-    $img.attr('src', $img.data('src'))
+    if (!$img[0].hasAttribute('src')) {
+        $img.attr('src', $img.data('src'));
+    }
+
+    $img.closest('.js-slideshow-slide').removeClass('is-loading'); 
 }
 
 function loadNextImage($slideshow) {
@@ -43,6 +47,7 @@ function slideshowNext() {
 
     if (!isLastSlide) {
         var $slideToShow = $slideToHide.next();
+        $slideToShow.addClass('is-loading');
         loadImage($slideToShow.find('img'));
     }
     
@@ -58,6 +63,7 @@ function slideshowPrev() {
     if (!isFirstSlide) {
         $prevSlide = $hiddenSlides.last();
         $prevSlide.removeClass('is-hidden');
+        $prevSlide.addClass('is-loading');
         loadImage($prevSlide.find('img'));
     }
 
@@ -88,7 +94,7 @@ $(document).ready(function(){
             $prevButton.prop('disabled', true);
         }
         
-
+        $target.addClass('is-loading');
         loadImage($target.find('img'));
         loadNextImage($('.js-images'));
     });

@@ -104,9 +104,9 @@
         position: absolute;
         left: $spacing-base;
         right: $spacing-base;
-        bottom: $spacing-small;
+        bottom: $spacing-small/2;
         text-align: center;
-        font-size: 0.75rem;
+        font-size: 0.625rem;
         color: white;
         font-family: $font-family-heading;
         text-shadow: 1px 1px 4px rgba(0,0,0,0.2);

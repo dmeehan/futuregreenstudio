@@ -329,7 +329,7 @@
         @include display(flex);
         @include align-items(center);
         @include justify-content(center);
-        @include transition(all 0.125s ease-in-out);
+        @include transition(all 0.125s linear);
         @include transform(translate3d(0, 0, 0));
         width: 100%;
         height: calc(100vh - 6rem);
@@ -352,8 +352,27 @@
 
         &.is-hidden {
             @include transform(translate3d(0, 0, 0));
-            @include transition(all 0.125s ease-in-out);
+            @include transition(all 0.125s linear);
             margin-left: -100%;
+        }
+
+        &.is-loading {
+            position: relative;
+            &::after {
+                display: block;
+                @include animation(fa-spin 1s infinite linear);
+                position: absolute;
+                top: calc(50% - 1.25rem);
+                left: calc(50% - 1.25rem);
+                font-family: FontAwesome;
+                font-size: 2.5rem;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                line-height: 1;
+                //use one of the FontAwesome spinnable font icons
+                content: "\f1ce"; //fa-notch
+            }
         }
 
     }
