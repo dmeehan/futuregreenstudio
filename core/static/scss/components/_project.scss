@@ -220,7 +220,7 @@
 }
 
 .project-videos {
-    padding-bottom: 24px;
+    padding-top: $spacing-base;
     
     @media(min-width: $bp-horiz-large) {
         width: 75%;
@@ -232,15 +232,15 @@
     @media(min-width: $bp-horiz-xlarge) {
         margin-left: auto;
         margin-right: 0;
-        padding-bottom: 30px;
+        padding-top: 30px;
     }
 
     @media(min-width: 1366px) {
-        padding-bottom: 33px;
+        padding-top: 33px;
     }
 
     @media(min-width: $bp-horiz-max) {
-        padding-bottom: 40px;
+        padding-top: 40px;
     }
 }
 
