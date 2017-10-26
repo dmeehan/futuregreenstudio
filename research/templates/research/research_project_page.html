@@ -45,15 +45,6 @@
              {% endif %}
         </aside>
     </section>
-    {% if page.videos.all %}
-    <div class="project-videos">
-        {% for item in page.videos.all %}
-            <div class="responsive-object">
-                {% embed item.video %}
-            </div>
-        {% endfor %}
-    </div>
-    {% endif %}
     {% if page.gallery_images.all %}
     <div class="project-mosaic">
         {% for item in page.gallery_images.all %}
@@ -67,6 +58,15 @@
         {% endfor %}
     </div>
     {% endif %} 
+    {% if page.videos.all %}
+    <div class="project-videos">
+        {% for item in page.videos.all %}
+            <div class="responsive-object">
+                {% embed item.video %}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 </main>
 {% endblock %}
 {% if page.gallery_images.all %}
