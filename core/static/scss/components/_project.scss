@@ -460,6 +460,12 @@
 
 .project-photocredit {
     font-size: 0.75rem;
-    text-align: right;
-    padding-top: $spacing-base;
+    text-align: center;
+    padding-top: $spacing-small;
+
+    @media(min-width: $bp-horiz-large) {
+        text-align: right;
+        padding-top: $spacing-base;
+    }
+    
 }
