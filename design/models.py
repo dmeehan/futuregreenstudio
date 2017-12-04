@@ -144,6 +144,8 @@ class ProjectPage(Page):
         max_length=255, help_text='Project Date / Season')
     size = models.CharField(blank=True,
         max_length=255, help_text='Project size')
+    photo_credit = models.CharField(blank=True,
+        max_length=255, help_text='Add credits for photography here.')
 
     categories = ParentalManyToManyField('design.ProjectCategory', blank=True)
     tags = ClusterTaggableManager(through=ProjectPageTag, blank=True)
@@ -169,6 +171,7 @@ class ProjectPage(Page):
         InlinePanel('clients', label="Clients"),
         InlinePanel('collaborators', label="Collaborators"),
         InlinePanel('gallery_images', label="Slideshow images"),
+        FieldPanel('photo_credit'),
         InlinePanel('videos', label="Videos"),
         MultiFieldPanel([
             FieldPanel('website'),

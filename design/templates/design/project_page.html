@@ -125,6 +125,9 @@
         {% endfor %}
     </div>
     {% endif %}
+    {% if page.photo_credit %}
+    <p class="project-photocredit">{{ page.photo_credit }}</p>
+    {% endif %}
 </main>
 {% endblock %}
 {% if page.gallery_images.all %}
