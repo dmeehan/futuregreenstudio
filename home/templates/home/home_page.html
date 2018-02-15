@@ -12,6 +12,8 @@
         <li data-theme="{{ item.theme }}" id="slideshow-item-{{ item.id }}">
             {% if item.link_page %}
             <a href="{{ item.link_page.url }}">
+            {% else %}
+            <span>
             {% endif %}
              {% image item.image width-1920 as img %}
              <img data-src="{{ img.url }}" />
@@ -20,6 +22,8 @@
              {% endif %}
             {% if item.link_page %}
             </a>
+            {% else %}
+            </span>
             {% endif %}
         </li>
     {% endfor %}
