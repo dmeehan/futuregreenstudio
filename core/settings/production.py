@@ -4,12 +4,12 @@ import os
 
 from .base import *
 
-DEBUG = False
+DEBUG = True
 
 #==============================================================================
 # Site
 #==============================================================================
-ALLOWED_HOSTS = ['futuregreenstudio.com', 'www.futuregreenstudio.com', 'smtp.webfaction.com']
+ALLOWED_HOSTS = ['futuregreenstudio.com', 'www.futuregreenstudio.com', 'futuregreenstudio.opalstacked.com',  'smtp.webfaction.com']
 
 BASE_URL = 'http://futuregreenstudio.com'
 
@@ -68,7 +68,7 @@ DATABASES = {
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:20017',
+        'LOCATION': 'redis://127.0.0.1:63008',
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
