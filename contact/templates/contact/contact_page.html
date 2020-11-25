@@ -119,6 +119,11 @@
           // Add the tile layer
           var streets = L.tileLayer(tileUrl, {
               attribution: tileAttribution,
+              tileSize: 512,
+              maxZoom: 18,
+              zoomOffset: -1,
+              id: 'mapbox/light-v10',
+              accessToken: 'pk.eyJ1IjoiZnV0dXJlZ3JlZW5zdHVkaW8iLCJhIjoiY2tod2dnb2ljMDBjcTJxcXptcHl3YW5uayJ9.0rO1sr9CDdUugOHNP7FbpA'
           }).addTo(map);
 
           //map.setZoom(12.2, { animate: true} );
