@@ -137,7 +137,7 @@
 $slick-font-path: "./fonts/" !default;
 $slick-font-family: $font-family-base !default;
 $slick-loader-path: "./" !default;
-$slick-arrow-color: white !default;
+$slick-arrow-color: $dark-gray !default;
 $slick-dot-color: black !default;
 $slick-dot-color-active: $slick-dot-color !default;
 $slick-prev-character: "<" !default;
@@ -249,7 +249,7 @@ $slick-opacity-not-active: 0.00 !default;
     line-height: 0px;
     font-size: 0px;
     cursor: pointer;
-    background: $green;
+    background: rgba(255,255,255,0.5);
     color: transparent;
     top: 0;
     bottom: 0;

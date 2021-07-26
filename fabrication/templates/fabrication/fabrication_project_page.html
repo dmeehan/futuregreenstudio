@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}body--fabrication{% endblock %}
+
+{% block content %}
+<main class="project">
+    <section class="section-slideshow fabrication-slideshow">
+        <div class="slick-slideshow js-slick">
+        {% for item in page.fabrication_project_gallery_images.all %}
+            <div>
+                {% image item.image fill-1600x608 as img %}
+                <img src="{{ img.url }}" />
+                {% if item.caption %}
+                <div class="slideshow-caption">{{ item.caption }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        </div>
+    </section>
+    <section class="project-content">
+        <header>
+            <h1 class="article-title">{{ page.title }}</h1>
+            <h2></h2>
+            <a class="link-back" href="{{ page.get_parent.url }}">{{ page.get_parent.title }}</a>
+        </header>
+        <article>
+            {{ page.description|richtext }}
+        </article>
+        <aside class="project-meta">
+            {% if page.date %}
+            <div class="project-meta-date">
+                <h3>Completion</h3>
+                <p>{{ page.date }}</p>
+            </div>
+            {% endif %}
+            {% if page.items %}
+            <div class="project-meta-date">
+                <h3>Items</h3>
+                <p>{{ page.items }}</p>
+            </div>
+            {% endif %}
+        </aside>
+    </section>
+</main>
+
+{% endblock %}

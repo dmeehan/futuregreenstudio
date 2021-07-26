@@ -5,6 +5,7 @@
 @import "components/design";
 @import "components/expander";
 @import "components/footer";
+@import "components/imagelist";
 @import "components/links";
 @import "components/logo";
 @import "components/modal";
@@ -22,6 +23,23 @@
 @import "components/slick";
 
 @import "layout";
+
+
+.video-banner {
+    position: relative;
+    width: 100%;
+    //z-index: -1;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
 
 
 .link-list {
@@ -490,49 +508,9 @@
 }
 
 
-.body--fabrication {
-    background-color: $green;
 
-    .article-title {
-        color: white;
-    }
 
-    .nav-toggle {
-        span, &::before, &:after {
-            background: white;
-        }
-    }
-
-    .block-numbered_item_list {
-        .block-text_and_title {
-            :first-child {
-                font-size: 2.5rem;
-                &::before {
-                    color: white;
-                }
-                
-            }
-        }
-    }
-
-    .slick-prev, .slick-next {
-        background-color: $dark-gray;
-
-        &::before {
-            color: $green;
-        }
-    }
-
-    .footer-social {
-        .social-link {
-            background: white;
-            color: $green;
-        }
-    }
-    
-}
-
-.body--press {
+.body--press, .body--fabrication {
     background-color: $dark-gray;
     
     main {

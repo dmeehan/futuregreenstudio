@@ -1,3 +1,110 @@
+.block-title_text_image, .block-title_text_imagelist {
+    margin-bottom: $spacing-base;
+    @media(min-width: $bp-horiz-medium) {
+        margin-bottom: $spacing-base*2;
+        @include display(flex);
+        @include flex-wrap(wrap);
+        > div {
+            width: 50%;
+
+            &:nth-child(odd) {
+                padding-right: 1.75rem;
+            }
+
+            &:nth-child(even) {
+                padding-left: 1.75rem;
+            }
+        }
+    }
+}
+
+.block-title_text_imagelist {
+    .imagelist {
+        
+        &-item {
+            position: relative;
+            display: block;
+            margin: 0;
+            padding: 0;
+            margin-bottom: $spacing-base*2;
+    
+            img {
+                display: block;
+                width: 100%;
+            }
+
+            &:hover {
+                .imagelist-content {
+                    background: rgba(0, 0, 0, 0.35);
+                    top: $spacing-base;
+                    bottom: $spacing-base;
+                    left: $spacing-base;
+                    right: $spacing-base;
+                    padding: $spacing-base;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                }
+    
+                .imagelist-text {
+                    display: block;
+                }
+            }
+        }
+
+        &-link {
+            color: white;
+
+            &:hover {
+                color: white  !important;
+            }
+        }
+    
+        &-content {
+            position: absolute;
+            top: 0;
+            left: 0; 
+            bottom: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &-text {
+            display: none;
+        }
+
+        
+    
+        @media (min-width: $bp-horiz-medium) {
+            display: block;
+    
+                .imagelist-item {
+                    width: auto;
+                    
+    
+                    &:nth-child(1n) {
+                        padding-left: 0;
+                        padding-right: 0;
+                    }
+        
+                    &:nth-child(2n) {
+                        padding-right: 0;
+                        padding-left: 0;
+                    }
+    
+                    &:nth-child(3n){
+                        padding-left: 0;
+                        padding-right: 0;
+                    }
+                }
+        }
+    }
+}
+
+
+
 .block-image, .block-captioned_image {
     img, picture {
         display: block;

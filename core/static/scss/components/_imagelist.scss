@@ -1,0 +1,65 @@
+.imagelist {
+    @include resetList;
+
+    &-item {
+        position: relative;
+        display: block;
+        margin: 0;
+        padding: 0;
+
+        img {
+            display: block;
+            width: 100%;
+        }
+    }
+
+    &-content {
+        position: absolute;
+        top: 0%;
+        bottom: 0; 
+        left: 0;
+        right: 0;
+        @include display(flex);
+        @include flex-direction(column);
+        @include justify-content(center);
+        @include align-items(center);
+    }
+
+    &-title {
+        display: block;
+    }
+
+    &-text {
+        display: none;
+    }
+
+    &-link {
+        display: block;
+        color: white;
+    }
+
+    @media (min-width: $bp-horiz-medium) {
+        @include display(flex);
+        @include flex-wrap(wrap);
+
+            .imagelist-item {
+                width: 33.333333%;
+                
+
+                &:nth-child(1n) {
+                    padding-left: 0;
+                    padding-right: $spacing-base;
+                }
+    
+                &:nth-child(2n) {
+                    padding-right: $spacing-base/2;
+                    padding-left: $spacing-base/2;
+                }
+
+                &:nth-child(3n){
+                    padding-left: $spacing-base;
+                    padding-right: 0;
+                }
+            }
+    }
+}

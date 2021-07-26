@@ -5,7 +5,7 @@ from django.db import models
 from django.utils.functional import cached_property
 
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, PageChooserPanel
-from wagtail.wagtailcore.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock, PageChooserBlock
+from wagtail.wagtailcore.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock, PageChooserBlock, ListBlock
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtaildocs.blocks import DocumentChooserBlock
 from wagtail.wagtailembeds.blocks import EmbedBlock
@@ -30,6 +30,23 @@ class TitleAndTextBlock(StructBlock):
 
     class Meta:
         template = 'core/blocks/title_and_text.html'
+
+class TitleTextImageBlock(StructBlock):
+    title = CharBlock()
+    text = TextBlock()
+    image = ImageChooserBlock()
+
+    class Meta:
+        template = 'core/blocks/title_text_image.html'
+
+class TitleTextImageListBlock(StructBlock):
+    image_list = ListBlock(TitleTextImageBlock())
+    title = CharBlock()
+    text = RichTextBlock(features=['bold', 'italic', 'ul', 'ol', 'link'])
+    
+
+    class Meta:
+        template = 'core/blocks/title_text_imagelist.html'
 
 class CarouselBlock(StreamBlock):
     image = ImageChooserBlock()

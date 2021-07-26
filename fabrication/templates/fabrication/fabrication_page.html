@@ -1,47 +1,37 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
 
 {% block body_class %}body--fabrication{% endblock %}
 
+{% block banner %} 
+<div class="video-banner">
+    {% embed page.video_url %}
+</div>
+{% endblock %}
 {% block content %}
 <main>
     <section>
-        <aside>
-            <h1 class="section-title">{{ page.title }}</h1>
-        </aside>
-        <article class="fabrication-process">
-            <h2 class="article-title">{{ page.process_title }}</h2>
-            {{ page.process_content }}
-        </article>
-        <aside>
-            <h2 class="article-title">{{ page.production_title }}</h2>
-            {{ page.production_content|richtext }}
-        </aside>
+        <h1 class="article-title">{{ page.title }}</h1>
     </section>
-    <section class="fabrication-fabrication-title">
-        <article>
-            <h2 class="article-title">{{ page.fabrication_title }}</h2>
-        </article>
-    </section>
-    <section class="section-slideshow fabrication-slideshow">
-        <div class="slick-slideshow js-slick">
-        {% for item in page.gallery_images.all %}
-            <div>
-                {% image item.image fill-1600x608 as img %}
-                <img src="{{ img.url }}" />
-                {% if item.caption %}
-                <div class="slideshow-caption">{{ item.caption }}</div>
-                {% endif %}
-            </div>
-        {% endfor %}
+    <section>
+        <div class="imagelist">
+            {% for material in materials %}
+                <div class="imagelist-item">
+                    <a class="imagelist-link" href="{{ material.specific.url }}">
+                        <div class="imagelist-content">
+                            <h3 class="imagelist-title">{{ material.title }}</h3>
+                        </div>
+                        {% image material.image fill-800x800 as img %}
+                        <img src="{{ img.url }}" alt="{{ material.title }}" />
+                    </a>
+                </div>
+            {% endfor %}
         </div>
     </section>
-    <section class="fabrication-fabrication-content">
-        <article>
-            {{ page.fabrication_content }}
-        </article>
-    </section>
+    <div>
+        {{ page.fabrication_content }}
+    </div>
 </main>
 
 {% endblock %}

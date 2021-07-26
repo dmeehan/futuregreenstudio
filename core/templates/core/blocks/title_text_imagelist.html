@@ -1,0 +1,20 @@
+{% load wagtailimages_tags %}
+<div>
+    <div class="imagelist">
+        {% for item in value.image_list %}
+            <div class="imagelist-item">
+                <div class="imagelist-content">
+                    <h3 class="imagelist-title">{{ item.title }}</h3>
+                    <div class="imagelist-text">
+                        {{ item.text }}
+                    </div>
+                </div>
+                {% image item.image fill-800x400 %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div>
+    <h2 class="article-title">{{ value.title }}</h2>
+    {{ value.text }}
+</div>

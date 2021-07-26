@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}body--fabrication{% endblock %}
+
+{% block content %}
+<main>
+    <section>
+        <h1 class="article-title">{{ page.title }}</h1>
+    </section>
+    <section class="design-projects mosaic">
+        {% for project in projects %}
+        {% image project.specific.list_image fill-800x800 as img %}
+        <section class="project-tile mosaic-tile">
+            <div class="tile-image" style="background-image: url({{ img.url }})"></div>
+            <div href="{{ project.specific.url }}" class="modal js-modal">
+                 <a class="modal-glance profile-employee-glance" href="{{ project.specific.url }}">
+                    <h3 class="modal-title">{{ project.specific.title }}</h3>
+                    {% if project.specific.location %}
+                    <h4 class="modal-subtitle">{{ project.specific.location }}</h4>
+                    {% endif %}
+                    <button type="button" class="modal-open"><span>More</span></button>
+                 </a>
+            </div>
+        </section>
+        {% endfor %}
+    </section>
+</main>
+
+{% endblock %}

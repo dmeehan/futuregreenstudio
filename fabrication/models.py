@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django import forms
 from django.db import models
 
-from modelcluster.fields import ParentalKey
+from django.utils.encoding import python_2_unicode_compatible
+
+from modelcluster.fields import ParentalKey, ParentalManyToManyField
 
 from wagtail.wagtailcore.blocks import CharBlock, RichTextBlock, StreamBlock, BlockQuoteBlock, ListBlock
 from wagtail.wagtailembeds.blocks import EmbedBlock
@@ -15,10 +18,12 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, MultiFie
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
 
-from core.blocks import CaptionedImageBlock, TitleAndTextBlock
+from core.blocks import CaptionedImageBlock, TitleAndTextBlock, TitleTextImageBlock, TitleTextImageListBlock
 
 
 class FabricationStreamBlock(StreamBlock):
+    title_text_image = TitleTextImageBlock()
+    title_text_imagelist = TitleTextImageListBlock()
     item_list = ListBlock(TitleAndTextBlock(), icon='list-ul')
     numbered_item_list = ListBlock(TitleAndTextBlock(), icon='list-ol')
     paragraph = RichTextBlock(icon="pilcrow")
@@ -26,45 +31,27 @@ class FabricationStreamBlock(StreamBlock):
     video = EmbedBlock()
 
 class FabricationPage(Page):
-    process_title = models.CharField(max_length=255)
-    process_content = StreamField(FabricationStreamBlock())
-    fabrication_title = models.CharField(max_length=255)
+    video_url = models.URLField(blank=True,
+        help_text='URL from a video streaming service such as Vimeo.')
     fabrication_content = StreamField(FabricationStreamBlock())
-    production_title = models.CharField(max_length=255)
-    production_content = RichTextField()
+    
 
     content_panels = Page.content_panels + [
-        MultiFieldPanel(
-            [
-                FieldPanel('process_title'),
-                StreamFieldPanel('process_content'),
-            ],
-            heading="Process",
-            classname="collapsible"
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel('fabrication_title'),
-                InlinePanel('gallery_images', label="Slideshow image"),
-                StreamFieldPanel('fabrication_content'),
-            ],
-            heading="Fabrication",
-            classname="collapsible"
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel('production_title'),
-                FieldPanel('production_content'),
-            ],
-            heading="Production",
-            classname="collapsible"
-        ),
+        FieldPanel('video_url'),
+        StreamFieldPanel('fabrication_content'),
     ]
         
-        
+    parent_page_types = ['home.HomePage'] 
+    subpage_types = ['fabrication.FabricationMaterialPage']
 
-    parent_page_types = ['home.HomePage']
-    subpage_types = []
+    def get_context(self, request):
+        context = super(FabricationPage, self).get_context(request)
+        materials = FabricationMaterialPage.objects.live().child_of(self)
+
+        # make the variable 'Materials' available on the template
+        context['materials'] = materials
+
+        return context
 
     @classmethod
     def can_create_at(cls, parent):
@@ -72,8 +59,67 @@ class FabricationPage(Page):
         return super(FabricationPage, cls).can_create_at(parent) \
             and not cls.objects.exists()
 
+class FabricationProjectPage(Page):    
+    list_image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+',
+        blank=True, null=True, help_text="Minimum 800px wide & 800px tall"
+    )
+    
+    description = RichTextField(features=['bold', 'italic', 'ul', 'ol', 'link'])
+    items = models.CharField(blank=True, max_length=250)
+
+    content_panels = Page.content_panels + [
+        
+        ImageChooserPanel('list_image'),
+        FieldPanel('description'),
+        FieldPanel('items'),
+        InlinePanel('fabrication_project_gallery_images', label="Slideshow images"),
+    ]
+
+    subpage_types = []
+    parent_page_types = ['fabrication.FabricationMaterialPage']
+
+    class Meta:
+        verbose_name = "Fabrication Project"
+
+class FabricationMaterialPage(Page):
+    image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+',
+        help_text='Material Image', blank=True, null=True)
+    
+    content_panels = Page.content_panels + [
+       ImageChooserPanel('image'),
+    ]
+
+    subpage_types = ['fabrication.FabricationProjectPage']
+    parent_page_types = ['fabrication.FabricationPage']
+
+    def get_context(self, request):
+        context = super(FabricationMaterialPage, self).get_context(request)
+        projects = FabricationProjectPage.objects.live().child_of(self)
+
+        # make the variable 'Materials' available on the template
+        context['projects'] = projects
+
+        return context
+
+    class Meta:
+        verbose_name_plural = 'fabrication materials'
+
 class FabricationPageGalleryImage(Orderable):
     page = ParentalKey(FabricationPage, related_name='gallery_images')
+    image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+', help_text="Minimum 1600px wide & 608px tall"
+    )
+    caption = models.CharField(blank=True, max_length=250)
+
+    panels = [
+        ImageChooserPanel('image'),
+        FieldPanel('caption'),
+    ]
+
+class FabricationProjectPageGalleryImage(Orderable):
+    page = ParentalKey(FabricationProjectPage, related_name='fabrication_project_gallery_images')
     image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.PROTECT, related_name='+', help_text="Minimum 1600px wide & 608px tall"
     )

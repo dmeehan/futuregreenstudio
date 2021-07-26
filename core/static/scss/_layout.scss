@@ -151,5 +151,20 @@ body {
         }
     }
 
+    &.body--fabrication {
+        max-width: 100%;
+
+        > main {
+            margin: 0 auto;
+            margin-top: 78px;
+            max-width: $bp-horiz-max;
+        }
+
+        > header {
+            position:absolute;
+            top: 0;
+        }
+    }
+
 }
 
