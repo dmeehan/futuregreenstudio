@@ -1,5 +1,5 @@
 gunicorn>=19.6,<19.7 # server
-psycopg2_binary # postgres bindings
+psycopg2 # postgres bindings
 Django>=1.11,<2.0
 wagtail>=1.13,<1.14
 markdown>=2.6.7,<2.7
