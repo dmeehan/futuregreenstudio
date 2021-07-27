@@ -153,9 +153,11 @@ body {
 
     &.body--fabrication {
         max-width: 100%;
+        padding: 0 0;
 
         > main {
             margin: 0 auto;
+            padding: 0 $spacing-base;
             margin-top: 78px;
             max-width: $bp-horiz-max;
         }
@@ -163,6 +165,18 @@ body {
         > header {
             position:absolute;
             top: 0;
+        }
+
+        @media (min-width: $bp-horiz-large) {
+            > main {
+                padding: 0 3rem;
+            }
+        }
+    
+        @media (min-width: $bp-horiz-max) {
+            > main {
+                padding: 0 0;
+            }
         }
     }
 
