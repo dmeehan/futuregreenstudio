@@ -43,7 +43,9 @@ class FabricationPage(Page):
     
 
     content_panels = Page.content_panels + [
-        FieldPanel('video_url'),
+        FieldPanel('video_hd_url'),
+        FieldPanel('video_sd_url'),
+        ImageChooserPanel('video_poster'),
         StreamFieldPanel('fabrication_content'),
     ]
         
