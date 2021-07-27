@@ -26,6 +26,9 @@
         </section>
         {% endfor %}
     </section>
+    <section>
+        <a class="link-back" href="{{ page.get_parent.url }}">{{ page.get_parent.title }}</a>
+    </section>
 </main>
 
 {% endblock %}
