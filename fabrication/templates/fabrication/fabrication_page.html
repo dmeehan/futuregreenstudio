@@ -6,7 +6,13 @@
 
 {% block banner %} 
 <div class="video-banner">
-    {% embed page.video_url %}
+    <video width="100%" loop="" autoplay="" autostart="" playsinline="" muted="" preload="metadata"
+    poster="{{ page.video_poster.url }}"
+    data-video-hd="{{ page.video_hd_url }}" 
+    data-video-sd="{{ page.video_sd_url }}">
+        Your browser doesn't support HTML5 video tag.
+      <source src="{{ page.video_hd_url }}" type="video/mp4">
+    </video>
 </div>
 {% endblock %}
 {% block content %}

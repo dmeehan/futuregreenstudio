@@ -31,8 +31,14 @@ class FabricationStreamBlock(StreamBlock):
     video = EmbedBlock()
 
 class FabricationPage(Page):
-    video_url = models.URLField(blank=True,
-        help_text='URL from a video streaming service such as Vimeo.')
+    video_hd_url = models.URLField(blank=True,
+        help_text='High Definition URL from a video streaming service such as Vimeo.')
+    video_sd_url = models.URLField(blank=True,
+        help_text='Standard Definition URL from a video streaming service such as Vimeo.')
+    video_poster = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+',
+        blank=True, null=True, help_text="Still frame from video to show while loading"
+    )
     fabrication_content = StreamField(FabricationStreamBlock())
     
 
