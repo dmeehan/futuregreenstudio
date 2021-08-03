@@ -16,11 +16,13 @@
 </div>
 {% endblock %}
 {% block content %}
-<main>
+<main class="main--fabrication">
     <section>
-        <h1 class="article-title">{{ page.title }}</h1>
+       
+        <h1 class="article-title fabrication-title"><span>{{ page.title }}</span> <a href="#content"><i class="fa fa-angle-down"></i></a></h1>
+        
     </section>
-    <section>
+    <section id="content">
         <div class="imagelist">
             {% for material in materials %}
                 <div class="imagelist-item">
