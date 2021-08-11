@@ -28,9 +28,16 @@
 .video-banner {
     position: relative;
     width: 100%;
-    //z-index: -1;
-    padding-bottom: 56.25%; /* 16:9 */
+    //padding-bottom: 56.25%; /* 16:9 */
+    padding-bottom: 41.84%; /* 2.39:1 */
+    overflow: hidden;
     height: 0;
+
+    video {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+    }
 
     iframe {
         position: absolute;
@@ -559,31 +566,8 @@
     }
 }
 
-.body--fabrication {
-    .main--fabrication {
-        position: relative;
-        z-index: 10;
-        margin-top: -4.875rem;
 
-        .fabrication-title {
-            margin-top: -3rem;
-            margin-bottom: 6rem;
-            display: flex;
-            align-items: center;
-            width: 100%;
 
-            > span {
-                margin-right: auto;
-            }
-
-            > a {
-                color: white;
-                font-size: 3rem;
-                font-weight: bold;
-            }
-        }
-    }
-}
 
 
 
