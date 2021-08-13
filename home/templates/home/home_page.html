@@ -15,8 +15,18 @@
             {% else %}
             <span>
             {% endif %}
-             {% image item.image width-1920 as img %}
-             <img data-src="{{ img.url }}" />
+            {% if item.video_hd_url %}
+              <video width="100%" loop="" autoplay="" autostart="" playsinline="" muted="" preload="metadata"
+              poster="{{ item.image.url }}"
+              data-video-hd="{{ item.video_hd_url }}" 
+              data-video-sd="{{ item.video_sd_url }}">
+                  Your browser doesn't support HTML5 video tag.
+                <source src="{{ item.video_hd_url }}" type="video/mp4">
+              </video>
+            {% else %}
+              {% image item.image width-1920 as img %}
+              <img data-src="{{ img.url }}" />
+            {% endif %}
              {% if item.caption %}
                 <span class="slideshow-caption js-pause-on-hover">{{ item.caption|richtext }}</span>
              {% endif %}
@@ -25,13 +35,14 @@
             {% else %}
             </span>
             {% endif %}
+            
         </li>
     {% endfor %}
     </ul>
     <ul class="slideshow-nav js-slideshow-nav js-pause-on-hover">
       {% for item in page.slideshow_images.all %}
       <li class="slideshow-nav-item">
-        <button type="button" data-target="slideshow-item-{{ item.id }}" class="js-slideshow-nav-button">
+        <button type="button" title="{{ item.caption|striptags }}" data-target="slideshow-item-{{ item.id }}" class="js-slideshow-nav-button">
           <span>{{ item.image }}</span>
           </button>
         </li>
