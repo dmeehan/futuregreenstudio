@@ -22,7 +22,7 @@ body {
             width: 100%;
             margin-bottom: $spacing-base;
 
-            &:first-child:not(.section-image) {
+            &:first-child:not(.section-image):not(.section-video) {
                 padding-top: $spacing-base*2;
             }
 
@@ -145,13 +145,13 @@ body {
         }
     }
 
-    &.body--profile {
+    &.body--profile, &.body--fabrication {
         > header {
             padding-bottom: 2.5rem;
         }
     }
 
-    &.body--fabrication {
+    /*&.body--fabrication {
         max-width: 100%;
         padding: 0 0;
 
@@ -178,7 +178,7 @@ body {
                 padding: 0 0;
             }
         }
-    }
+    }*/
 
 }
 

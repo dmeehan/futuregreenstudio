@@ -9,7 +9,10 @@
                         {{ item.text }}
                     </div>
                 </div>
-                {% image item.image fill-800x400 %}
+                <div class="imagelist-image">
+                {% image item.image fill-800x400 as img %}
+                <img src="{{ img.url }}" alt="{{ material.title }}" />
+                </div>
             </div>
         {% endfor %}
     </div>

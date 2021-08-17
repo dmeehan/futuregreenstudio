@@ -28,9 +28,14 @@
 .video-banner {
     position: relative;
     width: 100%;
-    padding-bottom: 38.02%;
+    padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
+
+    @media (min-width: $bp-horiz-large) {
+        padding-bottom: 38.02%;
+    }
+    
 
     video {
         position: absolute;
@@ -268,6 +273,7 @@
 }
 
 .newsitem, .publication {
+    
     padding-top: $spacing-base*2;
 
     .article-title + & {
