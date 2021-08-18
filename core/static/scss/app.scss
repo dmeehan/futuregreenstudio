@@ -24,6 +24,14 @@
 
 @import "layout";
 
+.grayscale {
+    filter: grayscale(100%);
+
+    &:hover {
+        filter: none;
+    }
+}
+
 
 .video-banner {
     position: relative;
@@ -561,8 +569,22 @@
     }
 }
 
-.body--design {
+.body--fabrication {
+    .block-title_text_image {
 
+        img {
+            filter: grayscale(100%);
+        }
+
+        &:hover {
+            img {
+                filter: none;
+            } 
+        }
+
+
+        
+    }
 }
 
 .body--research {

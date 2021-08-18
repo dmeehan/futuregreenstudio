@@ -8,9 +8,19 @@
         padding: 0;
         padding-bottom: $spacing-base;
 
+        
+
         img {
             display: block;
             width: 100%;
+
+            filter: grayscale(100%);
+        }
+
+        &:hover {
+            img {
+                filter: none;
+            }
         }
 
         
@@ -39,6 +49,10 @@
     &-link {
         display: block;
         color: white;
+
+        &:hover {
+            color: white;
+        }
     }
 
     @media (min-width: $bp-horiz-medium) {
