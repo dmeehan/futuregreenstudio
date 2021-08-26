@@ -71,6 +71,8 @@
             font-family: "Kievit OT W01 Book", Helvetica, Arial, sans-serif;
             text-transform: uppercase;
             font-weight:normal;
+            background: rgba(0, 0, 0, 0.3);
+            padding: .5rem 1rem;
             
             &::after {
                 font-family: FontAwesome;
