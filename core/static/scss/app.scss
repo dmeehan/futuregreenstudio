@@ -570,6 +570,10 @@
 }
 
 .body--fabrication {
+    .section-imagelist {
+        margin-bottom: $spacing-base*3;
+    }
+
     .block-title_text_image {
 
         img {
