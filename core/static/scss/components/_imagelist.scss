@@ -71,11 +71,18 @@
             font-family: "Kievit OT W01 Book", Helvetica, Arial, sans-serif;
             text-transform: uppercase;
             font-weight:normal;
+            
             &::after {
                 font-family: FontAwesome;
                 content: "\f067";
-                padding-left: 0.25rem;
+                padding-left: 0.5rem;
                 font-weight:normal;
+            }
+
+            @media (min-width: $bp-horiz-xlarge) {
+                &::after {
+                    display: none;
+                }
             }
         }
     }
