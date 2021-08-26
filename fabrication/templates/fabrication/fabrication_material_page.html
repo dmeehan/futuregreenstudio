@@ -1,34 +1,77 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
 
 {% block body_class %}body--fabrication{% endblock %}
 
 {% block content %}
-<main>
-    <section>
-        <h1 class="article-title">{{ page.title }}</h1>
+<main class="project">
+    <section class="section-image project-image">
+        {% image page.image fill-1600x608 %}
     </section>
-    <section class="design-projects mosaic">
-        {% for project in projects %}
-        {% image project.specific.list_image fill-800x800 as img %}
-        <section class="project-tile mosaic-tile">
-            <div class="tile-image" style="background-image: url({{ img.url }})"></div>
-            <div href="{{ project.specific.url }}" class="modal js-modal">
-                 <a class="modal-glance profile-employee-glance" href="{{ project.specific.url }}">
-                    <h3 class="modal-title">{{ project.specific.title }}</h3>
-                    {% if project.specific.location %}
-                    <h4 class="modal-subtitle">{{ project.specific.location }}</h4>
-                    {% endif %}
-                    <button type="button" class="modal-open"><span>More</span></button>
-                 </a>
+    <section class="project-content">
+        <header>
+            <h1 class="article-title">{{ page.title }}</h1>
+            <a class="link-back" href="{{ page.get_parent.url }}">{{ page.get_parent.title }}</a>
+        </header>
+        <article>
+            {{ page.description|richtext }}
+        </article>
+        <aside class="project-meta">
+            {% if page.items %}
+            <div class="project-meta-date">
+                <h3>Items</h3>
+                <p>{{ page.items }}</p>
             </div>
-        </section>
+            {% endif %}
+        </aside>
+    </section>
+    {% if page.fabrication_material_gallery_images.all %}
+    <div class="project-mosaic">
+        {% for item in page.fabrication_material_gallery_images.all %}
+            {% image item.image fill-1160x1160 as img %}
+            <div class="project-mosaic-tile js-modal-show" 
+                 data-target="slideshow-item-{{ item.id }}">
+                 <div class="project-mosaic-tile-image" style="background-image: url({{ img.url }})">
+                     
+                </div>
+            </div>
         {% endfor %}
-    </section>
-    <section>
-        <a class="link-back" href="{{ page.get_parent.url }}">{{ page.get_parent.title }}</a>
-    </section>
+    </div>
+    {% endif %}
 </main>
+{% endblock %}
+{% if page.fabrication_material_gallery_images.all %}
+{% block modal %}
+<div class="modal project-slideshow js-modal is-hidden">
+    <div class="modal-slideshow js-images" id="js-slideshow">
+        <button type="button" class="modal-close js-modal-close"><span>Close</span></button>
+        <button type="button" class="modal-slideshow-button modal-slideshow-button--prev js-slideshow-prev disabled">
+            <span>Previous</span>
+        </button>
+        <div class="modal-slideshow-carousel">
+        {% for item in page.fabrication_material_gallery_images.all %}
+            <div class="modal-slideshow-slide js-slideshow-slide" id="slideshow-item-{{ item.id }}">
+                {% if item.video %}
+                <div class="responsive-object">
+                    {% embed item.video %}
+                </div>
+                {% else %}
+                {% image item.image height-1200 as img %}
+                <img data-src="{{ img.url }}" />
+                {% endif %}
+            </div>
+        {% endfor %}
+        </div>
+        <button type="button" class="modal-slideshow-button modal-slideshow-button--next js-slideshow-next">
+            <span>Next</span>
+        </button>
+    </div>
+</div>
+<div class="modal-overlay"></div>
+{% endblock %}
+{% endif %} 
 
+{% block extra_js %}
+<script type="text/javascript" src="{% static "js/ui/slideshow.js" %}"></script>
 {% endblock %}

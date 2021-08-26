@@ -13,13 +13,24 @@
         img {
             display: block;
             width: 100%;
-
-            filter: grayscale(100%);
+            filter: none;
         }
 
         &:hover {
             img {
                 filter: none;
+            }
+        }
+
+        @media (min-width: $bp-horiz-xlarge) {
+            img  {
+                filter: grayscale(100%);
+            }
+
+            &:hover {
+                img {
+                    filter: none;
+                }
             }
         }
 
@@ -52,6 +63,20 @@
 
         &:hover {
             color: white;
+        }
+
+        .imagelist-title {
+            @include display(flex);
+            @include align-items(center);
+            font-family: "Kievit OT W01 Book", Helvetica, Arial, sans-serif;
+            text-transform: uppercase;
+            font-weight:normal;
+            &::after {
+                font-family: FontAwesome;
+                content: "\f067";
+                padding-left: 0.25rem;
+                font-weight:normal;
+            }
         }
     }
 
