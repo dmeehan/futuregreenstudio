@@ -16,28 +16,11 @@
             filter: none;
         }
 
-        &:hover {
-            img {
-                filter: none;
-            }
-        }
-
-        @media (min-width: $bp-horiz-xlarge) {
-            img  {
-                filter: grayscale(100%);
-            }
-
-            &:hover {
-                img {
-                    filter: none;
-                }
-            }
-        }
-
         
     }
 
     &-content {
+        z-index: 10;
         position: absolute;
         top: 0%;
         bottom: 0; 
@@ -71,8 +54,7 @@
             font-family: "Kievit OT W01 Book", Helvetica, Arial, sans-serif;
             text-transform: uppercase;
             font-weight:normal;
-            background: rgba(0, 0, 0, 0.3);
-            padding: .5rem 1rem;
+            font-size: 1.875rem;
             
             &::after {
                 font-family: FontAwesome;
@@ -93,25 +75,45 @@
         @include display(flex);
         @include flex-wrap(wrap);
 
-            .imagelist-item {
-                width: 33.333333%;
-                padding-bottom: 0;
-                
+        .imagelist-item {
+            width: 33.333333%;
+            padding-bottom: 0;
+            
 
-                &:nth-child(1n) {
-                    padding-left: 0;
-                    padding-right: $spacing-base;
-                }
-    
-                &:nth-child(2n) {
-                    padding-right: $spacing-base/2;
-                    padding-left: $spacing-base/2;
+            &:nth-child(1n) {
+                padding-left: 0;
+                padding-right: $spacing-base;
+            }
+
+            &:nth-child(2n) {
+                padding-right: $spacing-base/2;
+                padding-left: $spacing-base/2;
+            }
+
+            &:nth-child(3n){
+                padding-left: $spacing-base;
+                padding-right: 0;
+            }
+        }
+    }
+
+    @media (min-width: $bp-horiz-xlarge) {
+        .imagelist-item {
+
+            .imagelist-title {
+                display: none;
+            }
+            
+
+            &:hover {
+                .imagelist-title {
+                    display: block;
                 }
 
-                &:nth-child(3n){
-                    padding-left: $spacing-base;
-                    padding-right: 0;
+                img {
+                    filter: grayscale(100%);
                 }
             }
+        }
     }
 }
