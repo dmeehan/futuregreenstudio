@@ -29,7 +29,7 @@
     {% if page.fabrication_material_gallery_images.all %}
     <div class="project-mosaic">
         {% for item in page.fabrication_material_gallery_images.all %}
-            {% image item.image fill-1160x1160 as img %}
+            {% image item.image width-1160 as img %}
             <div class="project-mosaic-tile js-modal-show" 
                  data-target="slideshow-item-{{ item.id }}">
                  <div class="project-mosaic-tile-image" style="background-image: url({{ img.url }})">
