@@ -325,6 +325,7 @@
     }
 
     &-slide {
+        position: relative;
         @include flex(none);
         @include display(flex);
         @include align-items(center);
@@ -385,6 +386,16 @@
             }
         }
 
+    }
+
+    &-caption {
+        position: absolute;
+        bottom: $spacing-base;
+        left: 50%;
+        transform: translate(-50%, 0);
+        padding: $spacing-small $spacing-base;
+        color: white;
+        background-color: rgba(0,0,0,0.3);
     }
 }
 

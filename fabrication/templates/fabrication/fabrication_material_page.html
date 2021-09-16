@@ -60,6 +60,9 @@
                 {% image item.image height-1200 as img %}
                 <img data-src="{{ img.url }}" />
                 {% endif %}
+                {% if item.caption %}
+                    <div class="modal-slideshow-caption">{{ item.caption }}</div>
+                {% endif %}
             </div>
         {% endfor %}
         </div>
