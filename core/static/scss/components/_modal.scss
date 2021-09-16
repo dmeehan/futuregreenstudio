@@ -325,7 +325,6 @@
     }
 
     &-slide {
-        position: relative;
         @include flex(none);
         @include display(flex);
         @include align-items(center);
@@ -339,23 +338,7 @@
             height: calc(100vh - 8rem);
         }
 
-        img {
-            display: block;
-            width: auto;
-            height: 100%;
-            max-width: 100%;
-            object-fit: contain;
-
-            [data-src] {
-                opacity: 0;
-                @include transition(all 0.25s linear);
-            }
-
-            [src] {
-                opacity: 1;
-                @include transition(all 0.25s linear);
-            }
-        }
+        
 
         .responsive-object {
             width: 100%;
@@ -389,13 +372,36 @@
     }
 
     &-caption {
-        position: absolute;
-        bottom: $spacing-base;
-        left: 50%;
-        transform: translate(-50%, 0);
-        padding: $spacing-small $spacing-base;
-        color: white;
-        background-color: rgba(0,0,0,0.3);
+        
+        padding: $spacing-base;
+        
+    }
+
+    &-content {
+        @include flex(1);
+        @include display(flex);
+        @include flex-direction(column);
+        @include align-items(center);
+        @include justify-content(center);
+
+        height: calc(100vh - 6rem);
+
+        @media(min-width: $bp-horiz-large) {
+            height: calc(100vh - 8rem);
+        }
+    }
+
+    &-image {
+        @include flex(1);
+        width: 100%;
+        overflow: hidden;
+        
+        img {
+            display: block;
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+        }
     }
 }
 
