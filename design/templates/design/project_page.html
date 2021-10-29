@@ -106,7 +106,7 @@
     {% if page.gallery_images.all %}
     <div class="project-mosaic">
         {% for item in page.gallery_images.all %}
-            {% image item.image fill-1160x1160 as img %}
+            {% image item.image width-1160 as img %}
             <div class="project-mosaic-tile js-modal-show" 
                  data-target="slideshow-item-{{ item.id }}">
                  <div class="project-mosaic-tile-image" style="background-image: url({{ img.url }})">
@@ -141,14 +141,21 @@
         <div class="modal-slideshow-carousel">
         {% for item in page.gallery_images.all %}
             <div class="modal-slideshow-slide js-slideshow-slide" id="slideshow-item-{{ item.id }}">
+                <div class="modal-slideshow-content">
                 {% if item.video %}
-                <div class="responsive-object">
-                    {% embed item.video %}
-                </div>
+                    <div class="responsive-object">
+                        {% embed item.video %}
+                    </div>
                 {% else %}
                 {% image item.image height-1200 as img %}
-                <img data-src="{{ img.url }}" />
+                    <div class="modal-slideshow-image">
+                        <img data-src="{{ img.url }}" />
+                    </div>
                 {% endif %}
+                {% if item.caption %}
+                    <div class="modal-slideshow-caption">{{ item.caption }}</div>
+                {% endif %}
+                </div>
             </div>
         {% endfor %}
         </div>

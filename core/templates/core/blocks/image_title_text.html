@@ -1,0 +1,8 @@
+{% load wagtailimages_tags %}
+<div class="block-image">
+    {% image value.image fill-800x452 %}
+</div>
+<div class="block-text_and_title">
+    <h2 class="article-title">{{ value.title }}</h3>
+    <p>{{ value.text }}</p>
+</div>

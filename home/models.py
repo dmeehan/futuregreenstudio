@@ -3,7 +3,7 @@ from __future__ import absolute_import, unicode_literals
 from django.db import models
 from django import forms
 
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, PageChooserPanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, PageChooserPanel, MultiFieldPanel
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
@@ -82,12 +82,21 @@ class HomePageGalleryItem(Orderable):
         related_name='+',
         help_text='Add if you want this item to link to a page on this site.'
     )
+
+    video_hd_url = models.URLField(blank=True,
+        help_text='High Definition URL from a video streaming service such as Vimeo.')
+    video_sd_url = models.URLField(blank=True,
+        help_text='Standard Definition URL from a video streaming service such as Vimeo.')
     caption = RichTextField(features=['bold', 'italic'])
     theme = models.CharField(max_length=255, choices=THEME_CHOICES, default='light')
     page = ParentalKey('home.HomePage', related_name='slideshow_images')
 
     panels = [
         ImageChooserPanel('image'),
+        MultiFieldPanel([
+            FieldPanel('video_hd_url'),
+            FieldPanel('video_sd_url'),
+        ], heading="Video"),
         FieldPanel('caption'),
         FieldPanel('theme'),
         PageChooserPanel('link_page'),
@@ -108,7 +117,7 @@ class HomePage(Page):
 
 HomePage.content_panels = [
     FieldPanel('title', classname="full title"),
-    InlinePanel('slideshow_images', label="Slideshow images"),
+    InlinePanel('slideshow_images', label="Slideshow Items"),
 ]
 
 HomePage.promote_panels = Page.promote_panels

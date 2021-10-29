@@ -18,11 +18,12 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, MultiFie
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
 
-from core.blocks import CaptionedImageBlock, TitleAndTextBlock, TitleTextImageBlock, TitleTextImageListBlock
+from core.blocks import CaptionedImageBlock, TitleAndTextBlock, TitleTextImageBlock, TitleTextImageListBlock, ImageTitleTextBlock
 
 
 class FabricationStreamBlock(StreamBlock):
     title_text_image = TitleTextImageBlock()
+    image_title_text = ImageTitleTextBlock()
     title_text_imagelist = TitleTextImageListBlock()
     item_list = ListBlock(TitleAndTextBlock(), icon='list-ul')
     numbered_item_list = ListBlock(TitleAndTextBlock(), icon='list-ol')
@@ -91,25 +92,28 @@ class FabricationProjectPage(Page):
         verbose_name = "Fabrication Project"
 
 class FabricationMaterialPage(Page):
+    list_image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+',
+        blank=True, null=True, help_text="Minimum 800px wide & 800px tall"
+    )
+
     image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.PROTECT, related_name='+',
         help_text='Material Image', blank=True, null=True)
     
+    description = RichTextField(features=['bold', 'italic', 'ul', 'ol', 'link'])
+    items = models.CharField(blank=True, max_length=250)
+    
+    
     content_panels = Page.content_panels + [
-       ImageChooserPanel('image'),
+        ImageChooserPanel('list_image'),
+        ImageChooserPanel('image'),
+        FieldPanel('description'),
+        FieldPanel('items'),
+        InlinePanel('fabrication_material_gallery_images', label="Slideshow images"),
     ]
 
-    subpage_types = ['fabrication.FabricationProjectPage']
     parent_page_types = ['fabrication.FabricationPage']
-
-    def get_context(self, request):
-        context = super(FabricationMaterialPage, self).get_context(request)
-        projects = FabricationProjectPage.objects.live().child_of(self)
-
-        # make the variable 'Materials' available on the template
-        context['projects'] = projects
-
-        return context
 
     class Meta:
         verbose_name_plural = 'fabrication materials'
@@ -128,6 +132,18 @@ class FabricationPageGalleryImage(Orderable):
 
 class FabricationProjectPageGalleryImage(Orderable):
     page = ParentalKey(FabricationProjectPage, related_name='fabrication_project_gallery_images')
+    image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.PROTECT, related_name='+', help_text="Minimum 1600px wide & 608px tall"
+    )
+    caption = models.CharField(blank=True, max_length=250)
+
+    panels = [
+        ImageChooserPanel('image'),
+        FieldPanel('caption'),
+    ]
+
+class FabricationMaterialPageGalleryImage(Orderable):
+    page = ParentalKey(FabricationMaterialPage, related_name='fabrication_material_gallery_images')
     image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.PROTECT, related_name='+', help_text="Minimum 1600px wide & 608px tall"
     )

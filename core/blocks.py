@@ -26,18 +26,27 @@ class CaptionedImageBlock(StructBlock):
 
 class TitleAndTextBlock(StructBlock):
     title = CharBlock()
-    text = TextBlock()
+    text = RichTextBlock(features=['bold', 'italic', 'ul', 'ol', 'link'])
 
     class Meta:
         template = 'core/blocks/title_and_text.html'
 
 class TitleTextImageBlock(StructBlock):
     title = CharBlock()
-    text = TextBlock()
+    text = RichTextBlock(features=['bold', 'italic', 'ul', 'ol', 'link'])
     image = ImageChooserBlock()
 
     class Meta:
         template = 'core/blocks/title_text_image.html'
+
+class ImageTitleTextBlock(StructBlock):
+    image = ImageChooserBlock()
+    title = CharBlock()
+    text = RichTextBlock(features=['bold', 'italic', 'ul', 'ol', 'link'])
+    
+
+    class Meta:
+        template = 'core/blocks/image_title_text.html'
 
 class TitleTextImageListBlock(StructBlock):
     image_list = ListBlock(TitleTextImageBlock())

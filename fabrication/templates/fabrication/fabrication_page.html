@@ -5,15 +5,7 @@
 {% block body_class %}body--fabrication{% endblock %}
 
 {% block banner %} 
-<div class="video-banner">
-    <video width="100%" loop="" autoplay="" autostart="" playsinline="" muted="" preload="metadata"
-    poster="{{ page.video_poster.url }}"
-    data-video-hd="{{ page.video_hd_url }}" 
-    data-video-sd="{{ page.video_sd_url }}">
-        Your browser doesn't support HTML5 video tag.
-      <source src="{{ page.video_hd_url }}" type="video/mp4">
-    </video>
-</div>
+
 {% endblock %}
 {% block content %}
 <main class="main--fabrication">
@@ -24,7 +16,7 @@
                     <i class="fa fa-angle-down"></i></a>-->
         </h1>
     </section>
-    <section id="content">
+    <section class="section-imagelist">
         <div class="imagelist">
             {% for material in materials %}
                 <div class="imagelist-item">
@@ -32,7 +24,7 @@
                         <div class="imagelist-content">
                             <h3 class="imagelist-title">{{ material.title }}</h3>
                         </div>
-                        {% image material.image fill-800x800 as img %}
+                        {% image material.list_image fill-800x800 as img %}
                         <img src="{{ img.url }}" alt="{{ material.title }}" />
                     </a>
                 </div>
