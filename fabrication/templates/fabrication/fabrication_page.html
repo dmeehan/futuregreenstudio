@@ -9,12 +9,19 @@
 {% endblock %}
 {% block content %}
 <main class="main--fabrication">
-    <section class="fabrication-title-section">
-        <h1 class="article-title fabrication-title">
-                <span>{{ page.title }}</span> 
-                <!--<a href="#content">
-                    <i class="fa fa-angle-down"></i></a>-->
-        </h1>
+    <section class="section-video">
+        <div class="video-banner">
+            <video width="100%" loop="" autoplay="" autostart="" playsinline="" muted="" preload="metadata"
+            poster="{{ page.video_poster.url }}"
+            data-video-hd="{{ page.video_hd_url }}" 
+            data-video-sd="{{ page.video_sd_url }}">
+                Your browser doesn't support HTML5 video tag.
+              <source src="{{ page.video_hd_url }}" type="video/mp4">
+            </video>
+        </div>
+    </section>
+    <section>
+        <h1 class="article-title"><span>{{ page.title }}</span></h1>
     </section>
     <section class="section-imagelist">
         <div class="imagelist">
