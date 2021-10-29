@@ -36,6 +36,9 @@
 .video-banner {
     position: relative;
     width: 100%;
+    //padding-bottom: 56.25%; /* 16:9 */
+    padding-bottom: 41.84%; /* 2.39:1 */
+    overflow: hidden;
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
@@ -603,9 +606,12 @@
     }
 }
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> development
 
 
 
