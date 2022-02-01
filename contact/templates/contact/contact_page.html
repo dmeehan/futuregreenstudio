@@ -58,6 +58,9 @@
                 <button type="submit" id="mc-embedded-subscribe">Submit</button>
             </form>
             <!--End mc_embed_signup-->
+            {% if page.job_posting %}
+                <div class="contact-jobposting">{{ page.job_posting|richtext }}</div>
+            {% endif %}
         </aside>
     </section>
     </section>
