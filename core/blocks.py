@@ -39,6 +39,13 @@ class TitleTextImageBlock(StructBlock):
     class Meta:
         template = 'core/blocks/title_text_image.html'
 
+class TwoImageBlock(StructBlock):
+    image1 = ImageChooserBlock()
+    image2 = ImageChooserBlock()
+
+    class Meta:
+        template = 'core/blocks/two_image.html'
+
 class ImageTitleTextBlock(StructBlock):
     image = ImageChooserBlock()
     title = CharBlock()

@@ -4,7 +4,7 @@ from __future__ import absolute_import
 from django.db import models
 
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
-from wagtail.wagtailcore.fields import RichTextField
+from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
@@ -12,8 +12,10 @@ from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 from modelcluster.fields import ParentalKey
 
+from core.blocks import TwoImageBlock
 
 class ContactPage(Page):
+    body = StreamField(TwoImageBlock(required=False), blank=True, null=True, help_text='Page Content')
     image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.PROTECT, related_name='+', help_text="Minimum 1600px wide & 608px tall"
     )
