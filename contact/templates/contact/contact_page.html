@@ -19,8 +19,8 @@
 
 {% block content %}
 <main class="contact">
-    <section class="section-map" id="js-map">
-    </section>
+    <!--<section class="section-map" id="js-map">
+    </section>-->
     <section class="content-section">
         <aside><h1 class="section-title">{{ page.title }}</h1></aside>
         <article>
@@ -34,19 +34,38 @@
                 <li>
                     {{ settings.home.firminformation.city }}, {{ settings.home.firminformation.state }} {{ settings.home.firminformation.zip_code }}
                 </li>
+            </ul>
+            <ul class="contact-contactinfo">
+                <li>
+                    {{ settings.home.farminformation.name }}
+                </li>
+                <li>
+                    {{ settings.home.farminformation.address_1 }} {{ settings.home.farminformation.address_2 }}
+                </li>
+                <li>
+                    {{ settings.home.farminformation.city }}, {{ settings.home.farminformation.state }} {{ settings.home.firminformation.zip_code }}
+                </li>
+            </ul>
+            <ul class="contact-contactinfo">
+                (% if settings.home.firminformation.phone %)
                 <li>
                     <span>t.</span>
                     {{ settings.home.firminformation.phone }}
                 </li>
+                {% endif %}
+                (% if settings.home.firminformation.fax %)
                 <li>
                     <span>f.</span>
                     {{ settings.home.firminformation.fax }}
                 </li>
+                {% endif %}
+                (% if settings.home.firminformation.email %)
                 <li>
-                    <a mailto="{{ settings.core.FirmInformation.email }}">
+                    <a mailto="{{ settings.core.firminformation.email }}">
                         {{ settings.home.firminformation.email }}
                     </a>
                 </li>
+                (% endif %)
             </ul>
         </article>
         <aside class="contact-signup">

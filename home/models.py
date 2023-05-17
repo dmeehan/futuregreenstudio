@@ -54,6 +54,44 @@ class FirmInformation(BaseSetting):
     ]
 
 @register_setting
+class FarmInformation(BaseSetting):
+    name = models.CharField(
+        max_length=255, help_text='Farm name')
+    address_1 = models.CharField(max_length=255, blank=True)
+    address_2 = models.CharField(max_length=255, blank=True)
+    city = models.CharField(max_length=255, blank=True)
+    state = models.CharField(max_length=255, blank=True)
+    zip_code = models.CharField(max_length=10, blank=True)
+    email = models.EmailField(blank=True,
+        help_text='Email address to display on site.')
+    phone = models.CharField(max_length=255, blank=True,
+        help_text='Phone number to display on site.')
+    fax = models.CharField(max_length=255, blank=True,
+        help_text='Fax number to display on site.')
+    twitter = models.CharField(
+        max_length=255, blank=True, help_text='Twitter username, without the @')
+    facebook = models.URLField(blank=True,
+        help_text='Facebook page URL')
+    instagram = models.CharField(blank=True,
+        max_length=255, help_text='Instagram username, without the @')
+    
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('tagline'),
+        FieldPanel('address_1'),
+        FieldPanel('address_2'),
+        FieldPanel('city'),
+        FieldPanel('state'),
+        FieldPanel('zip_code'),
+        FieldPanel('email'),
+        FieldPanel('phone'),
+        FieldPanel('fax'),
+        FieldPanel('twitter'),
+        FieldPanel('facebook'),
+        FieldPanel('instagram'),
+    ]
+
+@register_setting
 class Mapbox(BaseSetting):
     map_tile_url = models.URLField()
     
