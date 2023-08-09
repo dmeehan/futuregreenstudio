@@ -19,15 +19,15 @@
 
 {% block content %}
 <main class="contact">
+    {% if page.body %}
     <section class="section-body">
-        {% if page.body %}
             {{ page.body }}
-        {% endif %}
     </section>
+    {% endif %}
     <section class="content-section">
         <aside><h1 class="section-title">{{ page.title }}</h1></aside>
-        <article>
-            <ul class="contact-contactinfo">
+        <article style="display:flex;">
+            <ul>
                 <li>
                     {{ settings.home.firminformation.name }}
                 </li>
@@ -38,7 +38,7 @@
                     {{ settings.home.firminformation.city }}, {{ settings.home.firminformation.state }} {{ settings.home.firminformation.zip_code }}
                 </li>
             </ul>
-            <ul class="contact-contactinfo">
+            <ul>
                 <li>
                     {{ settings.home.farminformation.name }}
                 </li>
@@ -49,26 +49,22 @@
                     {{ settings.home.farminformation.city }}, {{ settings.home.farminformation.state }} {{ settings.home.firminformation.zip_code }}
                 </li>
             </ul>
-            <ul class="contact-contactinfo">
-                (% if settings.home.firminformation.phone %)
+            <ul>
                 <li>
                     <span>t.</span>
                     {{ settings.home.firminformation.phone }}
                 </li>
-                {% endif %}
-                (% if settings.home.firminformation.fax %)
+                {% if setting.home.firminformation.fax   %}
                 <li>
                     <span>f.</span>
                     {{ settings.home.firminformation.fax }}
                 </li>
                 {% endif %}
-                (% if settings.home.firminformation.email %)
                 <li>
                     <a mailto="{{ settings.core.firminformation.email }}">
                         {{ settings.home.firminformation.email }}
                     </a>
                 </li>
-                (% endif %)
             </ul>
         </article>
         <aside class="contact-signup">

@@ -77,7 +77,6 @@ class FarmInformation(BaseSetting):
     
     panels = [
         FieldPanel('name'),
-        FieldPanel('tagline'),
         FieldPanel('address_1'),
         FieldPanel('address_2'),
         FieldPanel('city'),

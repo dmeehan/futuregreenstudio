@@ -3,8 +3,8 @@ psycopg2-binary # postgres bindings
 Django>=1.11,<2.0
 wagtail>=1.13,<1.14
 markdown>=2.6.7,<2.7
-django-compressor>=2.2,<2.3
+django-compressor==2.0
 django-libsass==0.7
-#django-supervisor>=0.4.0,<0.5
+django-supervisor>=0.4.0,<0.5
 django-redis>=4.7,<4.8
 

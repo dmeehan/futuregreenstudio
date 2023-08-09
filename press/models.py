@@ -21,7 +21,7 @@ from wagtail.wagtailsearch import index
 
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 
-from core.blocks import CaptionedImageBlock, MarkdownBlock, CarouselBlock
+from core.blocks import CaptionedImageBlock
 
 @register_snippet
 class Award(index.Indexed, models.Model):

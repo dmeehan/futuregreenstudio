@@ -110,12 +110,9 @@ SERVER_PORT = os.environ.get("SERVER_PORT", "8000")
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DJANGO_DB_NAME', 'futuregreenstudio'),
-        'USER': os.environ.get('DJANGO_DB_USER', 'futuregreenstudio'),
-        'PASSWORD': os.environ.get('DJANGO_DB_PASSWORD', 'password'),
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'futuregreenstudio', # This is where you put the name of the db file. 
+                 # If one doesn't exist, it will be created at migration time.
     }
 }
 
