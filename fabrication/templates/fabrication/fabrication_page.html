@@ -9,6 +9,7 @@
 {% endblock %}
 {% block content %}
 <main class="main--fabrication">
+    {% if page.video_hd_url %}
     <section class="section-video">
         <div class="video-banner">
             <video width="100%" loop="" autoplay="" autostart="" playsinline="" muted="" preload="metadata"
@@ -20,6 +21,11 @@
             </video>
         </div>
     </section>
+    {% else %}
+    <section class="section-image">
+        {% image page.video_poster fill-1600x608 %}
+    </section>
+    {% endif %}
     <section>
         <h1 class="article-title"><span>{{ page.title }}</span></h1>
     </section>
