@@ -172,6 +172,22 @@
     padding-bottom: $spacing-base;
 }
 
+.block-twoimage {
+    display: flex;
+
+    img {
+        display: block;
+
+        &:first-child {
+            padding-right: $spacing-small;
+        }
+
+        &:last-child {
+            padding-left: $spacing-small;
+        }
+    }
+}
+
 .block-captioned_image {
     &::after {
         content: '';

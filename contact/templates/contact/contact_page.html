@@ -20,14 +20,14 @@
 {% block content %}
 <main class="contact">
     {% if page.body %}
-    <section class="section-body">
+    <section class="section-image">
             {{ page.body }}
     </section>
     {% endif %}
     <section class="content-section">
         <aside><h1 class="section-title">{{ page.title }}</h1></aside>
-        <article style="display:flex;">
-            <ul>
+        <article class="contact-addresses">
+            <ul class="contact-contactinfo">
                 <li>
                     {{ settings.home.firminformation.name }}
                 </li>
@@ -38,7 +38,7 @@
                     {{ settings.home.firminformation.city }}, {{ settings.home.firminformation.state }} {{ settings.home.firminformation.zip_code }}
                 </li>
             </ul>
-            <ul>
+            <ul class="contact-contactinfo">
                 <li>
                     {{ settings.home.farminformation.name }}
                 </li>
@@ -49,7 +49,7 @@
                     {{ settings.home.farminformation.city }}, {{ settings.home.farminformation.state }} {{ settings.home.firminformation.zip_code }}
                 </li>
             </ul>
-            <ul>
+            <ul class="contact-contactinfo">
                 <li>
                     <span>t.</span>
                     {{ settings.home.firminformation.phone }}
