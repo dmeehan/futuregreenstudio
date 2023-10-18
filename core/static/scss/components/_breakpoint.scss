@@ -8,6 +8,7 @@ $bp-horiz-small: 320px;
 $bp-horiz-medium: 768px;
 $bp-horiz-large: 1024px;
 $bp-horiz-xlarge: 1280px;
+$bp-horiz-xxlarge: 1440px;
 $bp-horiz-max: 1600px;
 
 body:before {
@@ -30,6 +31,12 @@ body:before {
 @media (min-width: $bp-horiz-xlarge) {
   body:before {
     content: "xlarge";
+  }
+}
+
+@media (min-width: $bp-horiz-xxlarge) {
+  body:before {
+    content: "xxlarge";
   }
 }
 

@@ -173,19 +173,28 @@
 }
 
 .block-twoimage {
-    display: flex;
-
+    display: block;
     img {
-        display: block;
-
         &:first-child {
-            padding-right: $spacing-small;
-        }
-
-        &:last-child {
-            padding-left: $spacing-small;
+            padding-bottom: $spacing-small;
         }
     }
+
+    @media (min-width: $bp-horiz-medium) {
+        display: flex;
+        img {
+            &:first-child {
+                padding-bottom: 0;
+                padding-right: $spacing-small;
+            }
+    
+            &:last-child {
+                padding-left: $spacing-small;
+            }
+        }
+    }
+
+    
 }
 
 .block-captioned_image {
