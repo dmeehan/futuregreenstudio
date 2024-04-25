@@ -1,10 +1,20 @@
 .design-projects {
-
-    
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     row-gap: 20px;
     column-gap: 40px;
+    grid-template-columns: repeat(1, 1fr);
+    
+    @media(min-width: $bp-horiz-medium) {
+
+    }
+
+    @media(min-width: $bp-horiz-large) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media(min-width: $bp-horiz-xlarge) {
+        grid-template-columns: repeat(3, 1fr);
+    }
 
     .project-tile, .design-nav {
         .project-image {
