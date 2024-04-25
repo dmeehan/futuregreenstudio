@@ -113,7 +113,7 @@
             }
         }
 
-        @supports (display: grid) {
+        /*@supports (display: grid) {
             $grid-items: 12;
             $grid-column-first: 1;
             $grid-column-last: 31;
@@ -350,7 +350,7 @@
                     }
                 } 
             }
-        }
+        }*/
     }
 
     @media(min-width: $bp-horiz-xlarge) {
@@ -450,7 +450,7 @@
         }
 
         
-        @supports (display: grid) {
+        /*@supports (display: grid) {
             $grid-items: 12;
             $grid-column-first: 1;
             $grid-column-last: 41;
@@ -706,7 +706,7 @@
             }
 
             
-        }
+        }*/
         
     }
 }
