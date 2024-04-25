@@ -11,18 +11,10 @@
         @include display(flex);
         @include flex-wrap(wrap);
 
+        gap: $spacing-small;
+
         .mosaic-tile {
-            width: calc(50% - #{$spacing-small});
-            &:nth-child(odd) {
-                margin-right: $spacing-small;
-            }
-
-            &:nth-child(even) {
-                margin-left: $spacing-small;
-            }
-
-            
-
+            width: 50%;
         }
     }
 
@@ -34,19 +26,13 @@
 
         .mosaic-tile {
             //width: calc(33.33% - #{$spacing-small});
-            width: calc(33.33% - 31px);
+            width: calc(33.33%);
             height: 300px;
 
             margin-right: 31px;
             margin-bottom: 31px;
 
-            &:nth-child(odd) {
-                margin-right: 31px;
-            }
-
-            &:nth-child(even) {
-                margin-left: 0;
-            }
+            
 
             &:nth-child(12n+1) {
                 width: calc(30% - 31px);
