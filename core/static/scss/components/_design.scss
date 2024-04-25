@@ -15,23 +15,25 @@
         }
 
         .project-details{
+            margin-top: 5px;
             .project-title {
                 color: black;
                 text-transform: uppercase;
                 margin: 0 0 0 0;
+                line-height: 1.1;
             }
 
             .project-subtitle {
                 font-family: $font-family-base;
                 color: black;
                 text-transform: uppercase;
-                margin: 0 0 0 0;
+                line-height: 1.1;
             }
         }
     }
 
     .design-nav {
-
+        margin-bottom: 44px;
         > ul {
             @include resetList;
             display: flex;
