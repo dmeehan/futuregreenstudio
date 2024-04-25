@@ -113,7 +113,7 @@
             }
         }
 
-        /*@supports (display: grid) {
+        @supports (display: grid) {
             $grid-items: 12;
             $grid-column-first: 1;
             $grid-column-last: 31;
@@ -350,7 +350,7 @@
                     }
                 } 
             }
-        }*/
+        }
     }
 
     @media(min-width: $bp-horiz-xlarge) {
@@ -450,7 +450,263 @@
         }
 
         
-        
+        @supports (display: grid) {
+            $grid-items: 12;
+            $grid-column-first: 1;
+            $grid-column-last: 41;
+            $grid-row-first: 1;
+            $grid-row-last: 30;
+
+            display: grid;
+            grid-template-columns: repeat(40, 2.5%);
+            grid-template-rows: 23px;
+            grid-auto-columns: 2.5%;
+            grid-auto-rows: 23px;
+
+            @media(min-width: $bp-horiz-xlarge) {
+                grid-template-rows: 30px;
+                grid-auto-rows: 30px;
+            }
+
+            @media(min-width: 1366px) {
+                grid-template-rows: 33px;
+                grid-auto-rows: 33px;
+            }
+
+            @media(min-width: $bp-horiz-max) {
+                grid-template-rows: 40px;
+                grid-auto-rows: 40px;
+            }
+            
+            
+
+            .mosaic-tile {
+                display: block;
+                position: relative;
+                width: auto;
+                height: auto;
+                //padding-bottom: 0;
+                margin-bottom: 0;
+                margin: 0;
+                //padding: 0;
+
+                &:nth-child(odd) {
+                    margin-right: 0;
+                }
+
+                &:nth-child(even) {
+                    margin-left: 0;
+                }
+
+
+                &:nth-child(12n+1) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 1;
+                    grid-column-end: span 7;
+                    grid-row-start: 1;
+                    grid-row-end: span 8;
+
+                    &:last-child, &:nth-last-child(2), &:nth-last-child(3), &:nth-last-child(4) {
+                        grid-row-end: span 10; 
+                    }
+                }
+
+                &:nth-child(12n+2) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 9;
+                    grid-column-end: span 10;
+                    grid-row-start: 1;
+                    grid-row-end: span 8;
+
+                    &:last-child, &:nth-last-child(2), &:nth-last-child(3) {
+                        grid-row-end: span 10; 
+                    }
+                }
+
+                &:nth-child(12n+3) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 20;
+                    grid-column-end: span 10;
+                    grid-row-start: 1;
+                    grid-row-end: span 12;
+
+                    &:last-child, &:nth-last-child(2) {
+                        grid-row-end: span 10; 
+                    }
+                }
+
+                &:nth-child(12n+4) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 31;
+                    grid-column-end: span 10;
+                    grid-row-start: 1;
+                    grid-row-end: span 10;
+
+                    &:last-child {
+                        grid-row-end: span 10; 
+                    }
+                }
+
+                &:nth-child(12n+5) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 1;
+                    grid-column-end: span 10;
+                    grid-row-start: 10;
+                    grid-row-end: span 7;
+
+                    &:last-child, &:nth-last-child(2), &:nth-last-child(3), &:nth-last-child(4) {
+                        grid-row-end: span 10; 
+                    }
+                }
+
+                &:nth-child(12n+6) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 12;
+                    grid-column-end: span 7;
+                    grid-row-start: 10;
+                    grid-row-end: span 7;
+
+                    &:last-child, &:nth-last-child(2), &:nth-last-child(3) {
+                        grid-row-end: span 10; 
+                    }
+                }
+
+                &:nth-child(12n+7) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 20;
+                    grid-column-end: span 10;
+                    grid-row-start: 14;
+                    grid-row-end: span 7;
+
+                    &:last-child, &:nth-last-child(2) {
+                        grid-row-end: span 6; 
+                    }
+                }
+
+                &:nth-child(12n+8) {
+                    width: auto;
+                    height: auto;
+                    grid-column-start: 31;
+                    grid-column-end: span 10;
+                    grid-row-start: 12;
+                    grid-row-end: span 6;
+
+                    &:last-child {
+                        grid-row-end: span 8; 
+                    }
+                }
+
+                &:nth-child(12n+9) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 1;
+                    grid-column-end: span 10;
+                    grid-row-start: 18;
+                    grid-row-end: span 12;
+                }
+
+                &:nth-child(12n+10) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 12;
+                    grid-column-end: span 7;
+                    grid-row-start: 18;
+                    grid-row-end: span 12;
+                }
+
+                
+
+                &:nth-child(12n+11) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 20;
+                    grid-column-end: span 10;
+                    grid-row-start: 22;
+                    grid-row-end: span 8;
+                }
+
+                &:nth-child(12n) {
+                    width: auto;
+                    height: auto;
+                    margin-right: 0;
+                    grid-column-start: 31;
+                    grid-column-end: span 10;
+                    grid-row-start: 19;
+                    grid-row-end: span 11;
+                }
+
+                // all the grid to repeat another 9 times
+                @for $i from 0 through 10 {
+                    &:nth-child(#{13+$i*$grid-items}) {
+                        grid-row-start: $grid-row-last*($i+1) + 1;
+                    }
+
+                    &:nth-child(#{14+$i*$grid-items}) {
+                        grid-row-start: $grid-row-last*($i+1) + 1;
+                    }
+
+                    &:nth-child(#{15+$i*$grid-items}) {
+                        grid-row-start: $grid-row-last*($i+1) + 1;
+                    }
+
+                    &:nth-child(#{16+$i*$grid-items}) {
+                        grid-row-start: $grid-row-last*($i+1) + 1;
+                    }
+
+                    &:nth-child(#{17+$i*$grid-items}) {
+                        grid-row-start: $grid-row-last*($i+1) + 10;
+                    }
+
+                    &:nth-child(#{18+$i*$grid-items}) {
+                        grid-row-start: $grid-row-last*($i+1) + 10;
+                    }
+
+                    &:nth-child(#{19+$i*$grid-items}) {
+                        grid-row-start: $grid-row-last*($i+1) + 14;
+                    }
+
+                    &:nth-child(#{20+$i*$grid-items}) {
+                        grid-row-start: $grid-row-last*($i+1) + 12;
+                    }
+
+                    &:nth-child(#{21+$i*$grid-items}) {
+                        grid-row-start: $grid-row-last*($i+1) + 18;
+                    }
+
+
+                    &:nth-child(#{22+$i*$grid-items}) {
+                        grid-row-start: $grid-row-last*($i+1) + 18;
+                    }
+
+                    &:nth-child(#{23+$i*$grid-items}) {
+                        grid-row-start: $grid-row-last*($i+1) + 22;
+                    }
+
+                    &:nth-child(#{24+$i*$grid-items}) {
+                        grid-row-start: $grid-row-last*($i+1) + 19;
+                    }
+                }
+            }
+
+            
+        }
         
     }
 }
