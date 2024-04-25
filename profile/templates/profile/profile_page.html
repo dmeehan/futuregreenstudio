@@ -25,11 +25,15 @@
                         <img src="{{ img.url }}" />
                     </div>
                 </div>
+                <div class="profile-employee-details js-modal-detail-trigger">
+                    <h3 class="profile-employee-title">{{ employee.title }}</h3>
+                    <h4 class="profile-employee-subtitle">{{ employee.job_title }}</h4>
+                    <button type="button" class="modal-open"><span>More</span></button>
+                 </div>
                  <div class="modal js-modal">
-                     <div class="modal-glance profile-employee-glance js-modal-detail-trigger">
+                     <div class="modal-glance profile-employee-glance">
                         <h3 class="modal-title">{{ employee.title }}</h3>
                         <h4 class="modal-subtitle">{{ employee.job_title }}</h4>
-                        <button type="button" class="modal-open"><span>More</span></button>
                      </div>
                      <div class="modal-detail profile-employee-detail">
                         <header>
