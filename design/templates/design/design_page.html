@@ -35,7 +35,7 @@
         <a class="project-tile" href="{{ project.specific.url }}"
             data-categories="all  {% for category in project.categories.all %}{{ category|cut:' '|cut:'/' }} {% endfor %}">
             <div class="project-image">
-                <img src="url({{ img.url }})" />
+                <img src="{{ img.url }}" />
             </div>
             <div href="{{ project.specific.url }}" class="project-details">
                 <h3 class="project-title">{{ project.specific.title }}</h3>
