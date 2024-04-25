@@ -8,7 +8,6 @@
 <main>
     <div class="design-projects">
         <nav class="design-nav project-tile">
-            <h1 class="section-title">{{ page.title }} {{ placeholder_count }}</h1>
             <ul>
             {% for category in page.project_categories.all %}
                 <li><a data-category="{{ category|cut:' '|cut:'/' }}" 
