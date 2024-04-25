@@ -32,7 +32,7 @@
         {% else %}
             {% image project.specific.main_image fill-800x552 as img %}
         {% endif %}
-        <a class="project-tile" href="{{ project.specific.url }}">
+        <a class="project-tile" href="{{ project.specific.url }}"
             data-categories="all  {% for category in project.categories.all %}{{ category|cut:' '|cut:'/' }} {% endfor %}">
             <div class="project-image">
                 <img src="url({{ img.url }})" />
