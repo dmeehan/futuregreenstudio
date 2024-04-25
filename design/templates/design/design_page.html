@@ -28,23 +28,22 @@
         </nav>
         {% for project in projects %}
         {% if project.specific.list_image != None %}
-            {% image project.specific.list_image fill-800x800 as img %}
+            {% image project.specific.list_image fill-800x552 as img %}
         {% else %}
-            {% image project.specific.main_image fill-800x800 as img %}
+            {% image project.specific.main_image fill-800x552 as img %}
         {% endif %}
-        <section class="project-tile mosaic-tile" 
+        <a class="project-tile" href="{{ project.specific.url }}">
             data-categories="all  {% for category in project.categories.all %}{{ category|cut:' '|cut:'/' }} {% endfor %}">
-            <div class="tile-image" style="background-image: url({{ img.url }})"></div>
-            <div href="{{ project.specific.url }}" class="modal js-modal">
-                 <a class="modal-glance profile-employee-glance" href="{{ project.specific.url }}">
-                    <h3 class="modal-title">{{ project.specific.title }}</h3>
-                    {% if project.specific.location %}
-                    <h4 class="modal-subtitle">{{ project.specific.location }}</h4>
-                    {% endif %}
-                    <button type="button" class="modal-open"><span>More</span></button>
-                 </a>
+            <div class="project-image">
+                <img src="url({{ img.url }})" />
             </div>
-        </section>
+            <div href="{{ project.specific.url }}" class="project-details">
+                <h3 class="project-title">{{ project.specific.title }}</h3>
+                {% if project.specific.location %}
+                <h4 class="project-subtitle">{{ project.specific.location }}</h4>
+                {% endif %}
+            </div>
+        </a>
         {% endfor %}
     </div>
     {% if projects.has_previous or projects.has_next %}

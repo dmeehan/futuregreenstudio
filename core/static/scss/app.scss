@@ -305,6 +305,13 @@
     margin-bottom: $spacing-base * 2;
 }
 
+.design-projects {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-auto-rows: 100px; */
+    gap: 40px;
+}
+
 
 
 
