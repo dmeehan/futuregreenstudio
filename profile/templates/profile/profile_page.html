@@ -16,11 +16,14 @@
             {{ page.about_text|richtext }}
         </article>
     </section>
-    <section class="mosaic profile-people">
+    <section class="profile-employees">
         {% for employee in employees %}
-        {% image employee.image fill-800x800 as img %}
-            <div class="mosaic-tile profile-employee js-modal-anchor ">
-                <div class="tile-image" style="background-image: url({{ img.url }})">
+        {% image employee.image fill-800x736 as img %}
+            <div class="profile-employee js-modal-anchor ">
+                <div class="profile-employee-image">
+                    <div class="project-image">
+                        <img src="{{ img.url }}" />
+                    </div>
                 </div>
                  <div class="modal js-modal">
                      <div class="modal-glance profile-employee-glance js-modal-detail-trigger">
