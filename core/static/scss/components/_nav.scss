@@ -22,12 +22,19 @@
     }
 
     .nav-link-studio {
-        + ul {
+        display: relative;
+        ul {
             display: none;
+            @include resetList;
         }
 
         &:hover {
-            + ul {
+            ul {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                left: 0;
+                bottom: -100%;
                 display: flex;
             }
         }
