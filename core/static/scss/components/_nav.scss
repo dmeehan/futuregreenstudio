@@ -4,8 +4,8 @@
     > ul {
         @include resetList;
         display: flex;
-        align-content: center;
-        align-items: stretch;
+        align-items: center;
+        height: 39px;
 
         > li {
             margin-left: 40px;
