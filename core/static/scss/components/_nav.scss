@@ -2,6 +2,8 @@
     display: none;
     position: absolute;
     right: 0;
+
+
     > ul {
         @include resetList;
         display: flex;
@@ -17,6 +19,18 @@
         color: #000000;
         //font-family: $font-family-heading;
         font-size: 1.125rem;
+    }
+
+    .nav-link-studio {
+        + ul {
+            display: none;
+        }
+
+        &:hover {
+            + ul {
+                display: flex;
+            }
+        }
     }
 
     @media (min-width: $bp-horiz-xlarge) {
