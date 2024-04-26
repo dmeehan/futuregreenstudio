@@ -99,6 +99,10 @@
     height: 17px;
     cursor: pointer;
     //background-color: transparentize(white, 0.75);
+
+    @media (min-width: $bp-horiz-xlarge) {
+        display: none;
+   }
     
     span, &::before, &:after {
         @include transition(all 0.5s ease-in-out, background-color 2s ease-in-out);
