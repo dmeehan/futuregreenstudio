@@ -1,4 +1,6 @@
 .desktop-nav {
+    position: absolute;
+    right: 0;
     > ul {
         @include resetList;
         display: flex;
