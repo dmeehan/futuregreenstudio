@@ -1,3 +1,18 @@
+.desktop-nav {
+    > ul {
+        @include resetList;
+        display: flex;
+    }
+
+    a {
+        color: black;
+        font-family: $font-family-header;
+        font-size: 1.25rem;
+    }
+}
+
+
+
 .nav {
     @include transition(all 0.5s ease-in-out);
     @include display(flex);
