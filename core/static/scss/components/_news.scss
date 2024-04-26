@@ -93,7 +93,7 @@
     @media(min-width: $bp-horiz-large) {
         .modal {
             opacity: 0;
-            background-color: $green;
+            background-color: white;
 
             .modal-glance {
                 opacity: 0;
@@ -103,7 +103,7 @@
     }
 
     .news-tile-date {
-        color: white;
+        color: black;
         text-transform: uppercase;
         font-size: 1rem;
         font-family: $font-family-base;
@@ -112,14 +112,14 @@
     }
 
     .news-tile-title {
-        color: white;
+        color: black;
         text-transform: none;
         font-size: 1.625rem;
     }
 
     .news-tile-publication {
         font-size: 1.625rem;
-        color: white;
+        color: black;
         text-transform: none;
         font-family: $font-family-base;
     }
