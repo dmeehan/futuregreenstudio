@@ -1,8 +1,27 @@
 
 
 .news-grid {
-    @include display(flex);
-    @include flex-wrap(wrap);
+    display: grid;
+    
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 10px;
+    column-gap: 30px;
+
+    @media(min-width: $bp-horiz-medium) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /*@media(min-width: $bp-horiz-large) {
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 20px;
+        column-gap: 40px;
+    }*/
+
+    @media(min-width: $bp-horiz-xlarge) {
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 20px;
+        column-gap: 40px;
+    }
     
     padding-top: $spacing-base;
 }
@@ -22,7 +41,7 @@
         z-index: 9;
         opacity: 1;
         margin: 1rem;
-        background-color: transparentize($green, 0.1);
+        background-color: transparentize(white, 0.1);
 
 
         .modal-glance {
