@@ -1,15 +1,15 @@
-/*.desktop-nav {
+.desktop-nav {
     > ul {
         @include resetList;
         display: flex;
     }
 
     a {
-        color: black;
-        font-family: $font-family-header;
+        color: #000000;
+        font-family: $font-family-heading;
         font-size: 1.25rem;
     }
-}*/
+}
 
 
 
