@@ -76,7 +76,7 @@
         background-color: white;
     }
 
-    @media(min-width: 700px) {
+    /*@media(min-width: 700px) {
         width: calc(50% - 20px);
         position: relative;
         margin-bottom: 40px;
@@ -88,7 +88,7 @@
         &:nth-child(even) {
             margin-left: 20px;
         }
-    }
+    }*/
 
     @media(min-width: $bp-horiz-large) {
         .modal {
