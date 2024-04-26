@@ -13,9 +13,9 @@
             <div class="research-tiles">
             {% for item in page.featured_research_projects.all %}
                 {% if item.research_project.specific.list_image != None %}
-                {% image item.research_project.specific.list_image fill-800x736 as img %}
+                {% image item.research_project.specific.list_image fill-736x800 as img %}
                 {% else %}
-                    {% image item.research_project.specific.main_image fill-800x736 as img %}
+                    {% image item.research_project.specific.main_image fill-736x800 as img %}
                 {% endif %}
                 <div class="research-tile">
                      <div class="research-tile-image">
