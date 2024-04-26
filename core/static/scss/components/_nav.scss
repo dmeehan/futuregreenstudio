@@ -33,9 +33,13 @@
                 position: absolute;
                 display: flex;
                 align-items: center;
-                left: 0;
-                bottom: -100%;
+                left: 40px;
+                bottom: 0;
                 display: flex;
+
+                li {
+                    margin-right: 40px;
+                }
             }
         }
     }
