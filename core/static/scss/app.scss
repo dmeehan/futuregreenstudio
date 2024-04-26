@@ -363,7 +363,6 @@
 
     > header {
         position: fixed;
-        position: fixed;
         //top: 34px;
         z-index: 999999;
         margin-left: $spacing-base;
@@ -371,6 +370,10 @@
         @media (min-width: $bp-horiz-medium) {
             margin-left: 0;
         }
+
+        padding: 0 3rem;
+
+
     }
 
     > .slideshow {
