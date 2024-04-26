@@ -42,6 +42,10 @@
     padding: $spacing-base; 
     z-index: 9998;
 
+    @media (min-width: $bp-horiz-xlarge) {
+        display: none;
+   }
+
     h2 {
         font-family: $font-family-base;
         max-width: 300px;
