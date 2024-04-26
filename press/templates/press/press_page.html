@@ -13,7 +13,7 @@
             <a class="link-back" href="{{ page.url }}">Back</a>
             {% endif %}
         </aside>-->
-        <article>
+        <div>
             <h2 class="article-title">
                 Press Articles 
             {% if page.month or page.year %}for {% if page.month %} {{ page.month }}{% endif %}{% if page.year %} {{ page.year }}{% endif %}{% endif %}</h2>
@@ -93,7 +93,7 @@
                 {% endfor %}
             </div>
             {% endif %}
-        </article>
+        </div>
         <aside>
             <h2 class="article-title">News Archive</h2>
             {% if recent_newsitems %}
