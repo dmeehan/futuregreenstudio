@@ -10,42 +10,44 @@
         <div class="research-projects">
             <h2 class="article-title">Featured Research</h2>
             {% if page.featured_research_projects.all %}
-            <div class="research-mosaic">
+            <div class="research-tiles">
             {% for item in page.featured_research_projects.all %}
                 {% if item.research_project.specific.list_image != None %}
-                {% image item.research_project.specific.list_image fill-800x800 as img %}
+                {% image item.research_project.specific.list_image fill-800x736 as img %}
                 {% else %}
-                    {% image item.research_project.specific.main_image fill-800x800 as img %}
+                    {% image item.research_project.specific.main_image fill-800x736 as img %}
                 {% endif %}
-                <div class="research-mosaic-tile">
-                     <div class="research-mosaic-tile-image" style="background-image: url({{ img.url }})"></div>
-                    <div class="modal">
-                            <a class="modal-glance" href="{{ item.research_project.specific.url }}">
-                                <h3 class="modal-title">{{ item.research_project.specific.title }}</h3>
-                                <h4 class="modal-subtitle">{{ item.research_project.date }}</h4>
-                                <button type="button" class="modal-open"><span>More</span></button>
-                            </a>
-                        </div>
+                <div class="research-tile">
+                     <div class="research-tile-image">
+                        <a href="{{ item.research_project.specific.url }}"><img src="{{ img.url }}" /></a>
+                    </div>
+                    <div class="research-tile-details">
+                        <a href="{{ item.research_project.specific.url }}">
+                            <h3 class="research-tile-title">{{ item.research_project.specific.title }}</h3>
+                            <h4 class="research-tile-subtitle">{{ item.research_project.date }}</h4>
+                        </a>
+                    </div>
                 </div> 
             {% endfor %}
             </div>
             {% else %}
-            <div class="research-mosaic">
+            <div class="research-tiles">
             {% for item in projects %}
                 {% if item.specific.list_image != None %}
-                {% image item.specific.list_image fill-800x800 as img %}
+                {% image item.specific.list_image fill-800x736 as img %}
                 {% else %}
-                    {% image item.specific.main_image fill-800x800 as img %}
+                    {% image item.specific.main_image fill-800x736 as img %}
                 {% endif %}
-                <div class="research-mosaic-tile">
-                    <div class="research-mosaic-tile-image" style="background-image: url({{ img.url }})"></div>
-                    <div class="modal">
-                            <a class="modal-glance" href="{{ item.specific.url }}">
-                                <h3 class="modal-title">{{ item.specific.title }}</h3>
-                                <h4 class="modal-subtitle">{{ item.specific.date }}</h4>
-                                <button type="button" class="modal-open"><span>More</span></button>
-                            </a>
-                        </div>
+                <div class="research-tile">
+                    <div class="research-tile-image"">
+                        <a href="{{ item.specific.url }}"><img src="{{ img.url }}" /></a>
+                    </div>
+                    <div class="research-tile-details">
+                        <a href="{{ item.specific.url }}">
+                            <h3 class="research-tile-title">{{ item.specific.title }}</h3>
+                            <h4 class="research-tile-subtitle">{{ item.specific.date }}</h4>
+                        </a>
+                    </div>
                 </div> 
             {% endfor %}
             </div>
