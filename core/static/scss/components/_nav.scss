@@ -5,6 +5,7 @@
         @include resetList;
         display: flex;
         align-content: center;
+        align-items: stretch;
 
         > li {
             margin-left: 40px;
