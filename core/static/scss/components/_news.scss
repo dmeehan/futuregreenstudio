@@ -93,7 +93,7 @@
     @media(min-width: $bp-horiz-large) {
         .modal {
             opacity: 0;
-            background-color: white;
+            background-color: transparentize(white, 0.1);
 
             .modal-glance {
                 opacity: 0;
