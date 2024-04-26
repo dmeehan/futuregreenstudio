@@ -34,11 +34,12 @@
                 display: flex;
                 align-items: center;
                 left: 40px;
-                bottom: -40px;
+                bottom: -20px;
                 display: flex;
 
                 li {
                     margin-right: 40px;
+                    font-family: $font-family-base;
                 }
             }
         }
