@@ -4,12 +4,17 @@
     > ul {
         @include resetList;
         display: flex;
+        align-content: center;
+
+        > li {
+            margin-left: 40px;
+        }
     }
 
     a {
         color: #000000;
-        font-family: $font-family-heading;
-        font-size: 1.25rem;
+        //font-family: $font-family-heading;
+        font-size: 1.125rem;
     }
 }
 
