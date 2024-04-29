@@ -142,7 +142,7 @@ body {
 
     &.body--home {
         > header {
-            position: static;
+            position: fixed;
         }
         @media (min-width: $bp-horiz-max) {
             margin: 0;
