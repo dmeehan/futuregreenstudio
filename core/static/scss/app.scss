@@ -89,7 +89,7 @@
 }
 
 .article-title {
-    color: $green;
+    color: $color-font-base;
     font-size: 1.5rem;
     font-weight: bold;
 }
@@ -268,7 +268,7 @@
     }
 
     a {
-        color: white;
+        color: $color-font-base;
 
         /*&:after {
             margin-left: $spacing-small/3;
@@ -318,7 +318,7 @@
 
 .research {
     .project-content {
-        border-bottom: 2px solid $green;
+        border-bottom: 2px solid $dark-gray;
         padding-bottom: $spacing-base;
     }
 }
@@ -342,7 +342,7 @@
     }
 
     h3 {
-        color: $green;
+        color: $color-font-base;
         margin-bottom: $spacing-small;
     }
 }
