@@ -20,12 +20,12 @@
         {% for employee in employees %}
         {% image employee.image fill-736x800 as img %}
             <div class="profile-employee js-modal-anchor">
-                <div class="profile-employee-image">
+                <div class="profile-employee-image js-modal-trigger">
                     <div class="project-image">
                         <img src="{{ img.url }}" />
                     </div>
                 </div>
-                <div class="profile-employee-glance js-modal-detail-trigger">
+                <div class="profile-employee-glance">
                     <h3 class="profile-employee-title">{{ employee.title }}</h3>
                     <h4 class="profile-employee-subtitle">{{ employee.job_title }}</h4>
                  </div>
@@ -96,9 +96,10 @@
 {% block extra_js %}
     <script>
         $(document).ready(function(){
-            $('body').on('click', '.js-modal-detail-trigger', function(){
+            $('body').on('click', '.js-modal-trigger', function(){
                 $('.js-modal').removeClass('is-expanded');
-                $(this).next('.js-modal').addClass('is-expanded');
+                $(this).siblings('.js-modal').addClass('is-expanded');
+                console.log('test');
             });
 
             $('body').on('click', '.js-modal-close', function(){

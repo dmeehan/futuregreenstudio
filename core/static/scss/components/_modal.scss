@@ -66,7 +66,7 @@
         }
 
         &:hover {
-            //opacity: 1;
+            opacity: 1;
             .modal-glance {
                 //opacity: 0;
                 display: none;
@@ -94,7 +94,7 @@
         right: 0;
         opacity: 0;
         z-index: 9;
-        background-color: $green;
+        background-color: $dark-gray;
     }
 
     @media(min-width: $bp-horiz-large) {
