@@ -28,7 +28,7 @@
     }
 
     &.is-expanded {
-        @include display(flex);
+        @include display(flex) !important;
         @include align-items(center);
         @include justify-content(center);
         position: fixed;
