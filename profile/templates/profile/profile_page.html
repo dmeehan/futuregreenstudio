@@ -98,7 +98,7 @@
         $(document).ready(function(){
             $('body').on('click', '.js-modal-detail-trigger', function(){
                 $('.js-modal').removeClass('is-expanded');
-                $(this).closest('.js-modal').addClass('is-expanded');
+                $(this).next('.js-modal').addClass('is-expanded');
             });
 
             $('body').on('click', '.js-modal-close', function(){
