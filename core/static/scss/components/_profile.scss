@@ -60,6 +60,7 @@
     }
 
     .profile-employee {
+        cursor: pointer;
         .profile-employee-image {
             img {
                 display: block;
@@ -68,7 +69,7 @@
         }
 
         .profile-employee-glance {
-            cursor: pointer;
+            
             margin-top: 5px;
             
             .profile-employee-title {
