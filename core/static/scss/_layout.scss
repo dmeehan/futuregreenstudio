@@ -5,6 +5,7 @@ body {
 
 
     > header {
+        position: relative;
         @include display(flex);
         @include justify-content(center);
         background: transparent;
@@ -140,6 +141,9 @@ body {
     }
 
     &.body--home {
+        > header {
+            position: static;
+        }
         @media (min-width: $bp-horiz-max) {
             margin: 0;
         }
