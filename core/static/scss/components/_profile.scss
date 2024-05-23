@@ -77,7 +77,7 @@
             margin-top: 5px;
             
             .profile-employee-title {
-                color: black;
+                color: $color-font-base;
                 text-transform: uppercase;
                 margin: 0 0 0 0;
                 line-height: 1.1;
@@ -86,7 +86,7 @@
 
             .profile-employee-subtitle {
                 font-family: $font-family-base;
-                color: black;
+                color: $color-font-base;
                 text-transform: uppercase;
                 line-height: 1.1;
                 font-size: 0.875em;
