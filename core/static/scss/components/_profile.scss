@@ -44,6 +44,10 @@
     > article {
         width: auto;
         margin: 0 0 0 0;
+
+        &:last-child {
+            margin: 0 0 0 0;
+        }
     }
 }
 
