@@ -1,9 +1,10 @@
 .design {
     > section {
         > aside {
+            width: 100% !important;
 
             @media(min-width: $bp-horiz-medium) {
-                width: 120px;
+                width: 25% !important;
             }
         }
     }
