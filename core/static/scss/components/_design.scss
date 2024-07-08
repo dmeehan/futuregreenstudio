@@ -1,3 +1,41 @@
+.design {
+    > section {
+        > aside {
+
+            @media(min-width: $bp-horiz-medium) {
+                width: 120px;
+            }
+        }
+    }
+
+    .design-nav {
+        margin-bottom: 44px;
+        > ul {
+            @include resetList;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+
+            li {
+                flex-grow: 1;
+            }
+        }
+
+        a {
+            color: rgb(0, 0, 0);
+
+            &.is-active {
+                color: $green;
+                font-family: $font-family-heading;
+                &::after {
+                    content: " >";
+                }
+            }
+        }
+    }
+}
+
 .design-projects {
     display: grid;
     
@@ -10,14 +48,12 @@
     }
 
     @media(min-width: $bp-horiz-large) {
+        grid-template-columns: repeat(3, 1fr);
         row-gap: 20px;
         column-gap: 40px;
     }
 
     @media(min-width: $bp-horiz-xlarge) {
-        grid-template-columns: repeat(3, 1fr);
-        row-gap: 20px;
-        column-gap: 40px;
     }
 
     .project-tile, .design-nav {
