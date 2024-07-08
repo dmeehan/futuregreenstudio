@@ -6,8 +6,8 @@
 
 {% block content %}
 <main>
-    <div class="design-projects">
-        <nav class="design-nav project-tile">
+    <aside>
+        <nav class="design-nav">
             <ul>
             {% for category in page.project_categories.all %}
                 <li><a data-category="{{ category|cut:' '|cut:'/' }}" 
@@ -25,6 +25,8 @@
                 </li>
             </ul>
         </nav>
+    </aside>
+    <div class="design-projects">
         {% for project in projects %}
         {% if project.specific.list_image != None %}
             {% image project.specific.list_image fill-800x552 as img %}
