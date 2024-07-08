@@ -70,7 +70,7 @@ class PressPage(RoutablePageMixin, Page):
         #all_newsitems = NewsItemPage.objects.live().child_of(self).order_by('-date')
         recent_newsitems = NewsItemPage.objects.live().child_of(self).order_by('-date')[:10]
         archive_dates = NewsItemPage.objects.live().dates('date', 'month', order='DESC')
-
+        awards = Award.objects.all().order_by('-date')
         #paginator = Paginator(all_newsitems, 3) # Show 3 news items per page
 
         #page = request.GET.get('page')
