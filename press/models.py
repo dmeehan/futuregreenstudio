@@ -86,6 +86,7 @@ class PressPage(RoutablePageMixin, Page):
         # make the variable 'newsitems' available on the template
         context['recent_newsitems'] = recent_newsitems
         context['archive_dates'] = archive_dates
+        context['awards'] = awards
         #context['publications'] = publications
 
         return context
