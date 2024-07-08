@@ -21,6 +21,7 @@
 
             li {
                 flex-grow: 1;
+                margin-bottom: $spacing-small;
             }
         }
 
@@ -96,34 +97,7 @@
         }
     }
 
-    .design-nav {
-        margin-bottom: 44px;
-        > ul {
-            @include resetList;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-
-            li {
-                flex-grow: 1;
-                margin-bottom: 10px;
-            }
-        }
-
-        a {
-            color: rgb(0, 0, 0);
-
-            &.is-active {
-                color: $green;
-                font-family: $font-family-heading;
-                &::after {
-                    content: " >";
-                }
-            }
-        }
-    }
-
+   
 
    
 }
