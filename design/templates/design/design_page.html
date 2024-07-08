@@ -6,62 +6,64 @@
 
 {% block content %}
 <main>
-    <aside>
-        <nav class="design-nav">
-            <ul>
-            {% for category in page.project_categories.all %}
-                <li><a data-category="{{ category|cut:' '|cut:'/' }}" 
-                        href="{% pageurl page %}?category={{ category }}"
-                        {% if search_category == category.name %}class="is-active"{% endif %}>
-                    {{ category.name }}</a>
-                </li>
+    <section>
+        <aside>
+            <nav class="design-nav">
+                <ul>
+                {% for category in page.project_categories.all %}
+                    <li><a data-category="{{ category|cut:' '|cut:'/' }}" 
+                            href="{% pageurl page %}?category={{ category }}"
+                            {% if search_category == category.name %}class="is-active"{% endif %}>
+                        {{ category.name }}</a>
+                    </li>
+                {% endfor %}
+                    <li>
+                        <a data-category="all" 
+                            href="{% pageurl page %}"
+                            {% if not search_category %}class="is-active"{% endif %}>
+                            All Projects
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <div class="design-projects">
+            {% for project in projects %}
+            {% if project.specific.list_image != None %}
+                {% image project.specific.list_image fill-800x552 as img %}
+            {% else %}
+                {% image project.specific.main_image fill-800x552 as img %}
+            {% endif %}
+            <a class="project-tile" href="{{ project.specific.url }}"
+                data-categories="all  {% for category in project.categories.all %}{{ category|cut:' '|cut:'/' }} {% endfor %}">
+                <div class="project-image">
+                    <img src="{{ img.url }}" />
+                </div>
+                <div href="{{ project.specific.url }}" class="project-details">
+                    <h4 class="project-title">{{ project.specific.title }}</h4>
+                    {% if project.specific.location %}
+                    <h4 class="project-subtitle">{{ project.specific.location }}</h4>
+                    {% endif %}
+                </div>
+            </a>
             {% endfor %}
-                <li>
-                    <a data-category="all" 
-                        href="{% pageurl page %}"
-                        {% if not search_category %}class="is-active"{% endif %}>
-                        All Projects
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </aside>
-    <div class="design-projects">
-        {% for project in projects %}
-        {% if project.specific.list_image != None %}
-            {% image project.specific.list_image fill-800x552 as img %}
-        {% else %}
-            {% image project.specific.main_image fill-800x552 as img %}
+        </div>
+        {% if projects.has_previous or projects.has_next %}
+        <ul class="pagination">
+        {% if projects.has_previous %}
+            <li class="pagination-item"><a class="pagination-link" href="?page={{ projects.previous_page_number }}"><i class="fa fa-angle-left"></i>&#160;Prev</a></li>
         {% endif %}
-        <a class="project-tile" href="{{ project.specific.url }}"
-            data-categories="all  {% for category in project.categories.all %}{{ category|cut:' '|cut:'/' }} {% endfor %}">
-            <div class="project-image">
-                <img src="{{ img.url }}" />
-            </div>
-            <div href="{{ project.specific.url }}" class="project-details">
-                <h4 class="project-title">{{ project.specific.title }}</h4>
-                {% if project.specific.location %}
-                <h4 class="project-subtitle">{{ project.specific.location }}</h4>
-                {% endif %}
-            </div>
-        </a>
+        {% if projects.paginator.num_pages > 1 %}
+        {% for page_num in projects.paginator.page_range %}
+            <li class="pagination-item" {% if page_num == projects.number %}class="is-active"{% endif %}><a class="pagination-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
         {% endfor %}
-    </div>
-    {% if projects.has_previous or projects.has_next %}
-    <ul class="pagination">
-      {% if projects.has_previous %}
-        <li class="pagination-item"><a class="pagination-link" href="?page={{ projects.previous_page_number }}"><i class="fa fa-angle-left"></i>&#160;Prev</a></li>
-      {% endif %}
-      {% if projects.paginator.num_pages > 1 %}
-      {% for page_num in projects.paginator.page_range %}
-        <li class="pagination-item" {% if page_num == projects.number %}class="is-active"{% endif %}><a class="pagination-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
-      {% endfor %}
-      {% endif %}
-      {% if projects.has_next %}
-        <li class="pagination-item"><a class="pagination-link" href="?page={{ projects.next_page_number }}">Next&#160;<i class="fa fa-angle-right"></i></a></li>
-      {% endif %}
-    </ul>
-    {% endif %}
+        {% endif %}
+        {% if projects.has_next %}
+            <li class="pagination-item"><a class="pagination-link" href="?page={{ projects.next_page_number }}">Next&#160;<i class="fa fa-angle-right"></i></a></li>
+        {% endif %}
+        </ul>
+        {% endif %}
+    </section>
 </main>
 {% endblock %}
 {% block extra_js %}    
