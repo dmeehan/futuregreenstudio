@@ -6,8 +6,8 @@
 
 {% block content %}
 <main class="design">
-    <section>
-        <aside>
+    <div>
+        <div>
             <nav class="design-nav">
                 <ul>
                 {% for category in page.project_categories.all %}
@@ -26,7 +26,7 @@
                     </li>
                 </ul>
             </nav>
-        </aside>
+        </div>
         <div class="design-projects">
             {% for project in projects %}
             {% if project.specific.list_image != None %}
@@ -63,7 +63,7 @@
         {% endif %}
         </ul>
         {% endif %}
-    </section>
+    </div>
 </main>
 {% endblock %}
 {% block extra_js %}    
