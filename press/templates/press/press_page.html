@@ -15,7 +15,7 @@
         </aside>-->
         <div>
             <h2 class="article-title">
-                Press Articles 
+                Press
             {% if page.month or page.year %}for {% if page.month %} {{ page.month }}{% endif %}{% if page.year %} {{ page.year }}{% endif %}{% endif %}</h2>
             {% if page.newsitems %}
             <div class="news-grid">
@@ -93,6 +93,28 @@
             {% endif %}
         </div>
         <aside>
+            {% if awards %}
+            <div class="profile-awards">
+                <h2 class="article-title">Awards</h2>
+                {% for award in awards %}
+                    {% ifchanged award.date|date:"Y" %}
+                        <h3>{{ award.date|date:"Y" }}</h3>
+                    {% endifchanged %}
+                    <div class="press-award">
+                    {% if award.url %}
+                        <a href="{{ award.url }}" target="_blank">
+                    {% endif %}
+                    {{ award.name }}
+                    {% if award.url %}
+                        </a>
+                    {% endif %}
+                    <br />
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </aside>
+        <!--<aside>
             <h2 class="article-title">News Archive</h2>
             {% if recent_newsitems %}
             <div class="news-recent">
@@ -114,7 +136,7 @@
                 </ul>
             </div>
             {% endif %}
-        </aside>
+        </aside>-->
     </section>
     
 </main>
