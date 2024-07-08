@@ -34,7 +34,7 @@
         columns: auto 2;
         column-gap: 2.5rem;
 
-        @media(min-width: $bp-horiz-xlarge) {
+        @media(min-width: $bp-horiz-large) {
             columns: auto 3;
         }
     }
