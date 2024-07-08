@@ -247,11 +247,11 @@
         column-gap: 40px;
     }
 
-    /*@media(min-width: $bp-horiz-xlarge) {
+    @media(min-width: $bp-horiz-xlarge) {
         grid-template-columns: repeat(4, 1fr);
         row-gap: 20px;
         column-gap: 40px;
-    }*/
+    }
 
     .research-tile {
         .research-tile-image {
